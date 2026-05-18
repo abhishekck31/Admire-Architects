@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #fafaf9;
+  --foreground: #0c1a2e;
+  --card: #ffffff;
+  --card-foreground: #0c1a2e;
+  --popover: #ffffff;
+  --popover-foreground: #0c1a2e;
+  --primary: #0c1a2e;
+  --primary-foreground: #fafaf9;
+  --secondary: #8a8d91;
+  --secondary-foreground: #0c1a2e;
+  --muted: #e2e2e2;
+  --muted-foreground: #8a8d91;
+  --accent: #b89b72;
+  --accent-foreground: #fafaf9;
+  --destructive: #ff4d4f;
+  --destructive-foreground: #fafaf9;
+  --border: #e2e2e2;
+  --input: #e2e2e2;
+  --ring: #0c1a2e;
+  --radius: 0rem;
+}
+
+.dark {
+  --background: #070b11;
+  --foreground: #ededed;
+  --card: #0f1722;
+  --card-foreground: #ededed;
+  --popover: #0f1722;
+  --popover-foreground: #ededed;
+  --primary: #ededed;
+  --primary-foreground: #0c1a2e;
+  --secondary: #8a8d91;
+  --secondary-foreground: #ededed;
+  --muted: #1f2937;
+  --muted-foreground: #8a8d91;
+  --accent: #b89b72;
+  --accent-foreground: #ffffff;
+  --destructive: #7f1d1d;
+  --destructive-foreground: #ededed;
+  --border: #1f2937;
+  --input: #1f2937;
+  --ring: #ededed;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+
+/* Base styles for Lenis */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Utility animations */
+.reveal-text {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.hero-gradient {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%);
+}
