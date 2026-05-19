@@ -5,14 +5,17 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
 
+import { use } from "react";
+
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
 };
 
-export default function ServiceDetail({ params }: { params: { slug: string } }) {
+export default function ServiceDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = use(params);
   // Format slug to title (e.g., project-management -> Project Management)
-  const title = params.slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  const title = resolvedParams.slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
