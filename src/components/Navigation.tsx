@@ -59,6 +59,7 @@ export default function Navigation() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-0 z-[90] bg-[#070b11] overflow-y-auto px-6 md:px-24"
+            data-lenis-prevent
           >
             {/* Ambient Background Grid */}
             <div className="fixed inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: 'linear-gradient(#FAFAF9 1px, transparent 1px), linear-gradient(90deg, #FAFAF9 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
