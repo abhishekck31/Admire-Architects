@@ -121,28 +121,34 @@ export default function ProcessPage() {
             ))}
           </div>
 
-          {/* Process Flow Timeline (Horizontal Flow) */}
+          {/* Process Flow Timeline (Horizontal Auto-Scrolling Marquee) */}
           <motion.div 
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-            className="pt-16 border-t border-white/10 overflow-x-auto pb-8 hide-scrollbar"
+            className="pt-16 border-t border-white/10 overflow-hidden pb-8 relative w-full flex"
           >
-            <div className="flex items-center min-w-max gap-8 px-4">
-              {FLOW_STEPS.map((step, idx) => (
-                <div key={idx} className="flex items-center gap-8 group">
+            {/* Left and right gradient masks for a smooth fade effect */}
+            <div className="absolute top-0 left-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#0a0f16] to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 right-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#0a0f16] to-transparent z-10 pointer-events-none" />
+            
+            <motion.div
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
+              className="flex items-center w-max"
+            >
+              {[...FLOW_STEPS, ...FLOW_STEPS].map((step, idx) => (
+                <div key={idx} className="flex items-center gap-8 group px-4">
                   <div className="flex flex-col items-center gap-4">
                     <div className="w-4 h-4 rounded-full border-2 border-white/20 bg-[#070b11] group-hover:border-[#b89b72] group-hover:bg-[#b89b72]/20 transition-all duration-500" />
                     <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-gray-500 group-hover:text-white transition-colors duration-500 text-center w-32">
                       {step}
                     </span>
                   </div>
-                  {idx < FLOW_STEPS.length - 1 && (
-                    <div className="w-16 md:w-32 h-[1px] bg-gradient-to-r from-white/10 via-white/30 to-white/10 relative">
-                      <div className="absolute top-1/2 -translate-y-1/2 right-0 w-2 h-2 border-t border-r border-white/30 transform rotate-45" />
-                    </div>
-                  )}
+                  <div className="w-16 md:w-32 h-[1px] bg-gradient-to-r from-white/10 via-white/30 to-white/10 relative">
+                    <div className="absolute top-1/2 -translate-y-1/2 right-0 w-2 h-2 border-t border-r border-white/30 transform rotate-45" />
+                  </div>
                 </div>
               ))}
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
