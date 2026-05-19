@@ -42,10 +42,10 @@ const ORG_CHART = {
 
 export default function ProcessPage() {
   const horizontalScrollRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: horizontalScrollRef });
+  const { scrollYProgress } = useScroll({ target: horizontalScrollRef, offset: ["start start", "end end"] });
   
   // Shift the timeline left as the user scrolls down (Desktop only)
-  const xTransform = useTransform(scrollYProgress, [0, 1], ["0%", "calc(-100% + 100vw)"]);
+  const xTransform = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
 
   const [activeCycle, setActiveCycle] = useState(0);
   const [hoveredOrgDept, setHoveredOrgDept] = useState<number | null>(null);
