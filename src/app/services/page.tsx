@@ -48,7 +48,7 @@ export default function ServicesIndex() {
   const [activeService, setActiveService] = useState(SERVICES[0]);
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground overflow-hidden font-sans pt-32 pb-32">
+    <div className="relative min-h-screen bg-background text-foreground overflow-clip font-sans pt-32 pb-32">
       
       {/* Background Image that crossfades based on hover */}
       <div className="fixed top-0 right-0 w-full md:w-[50vw] h-screen z-0 hidden md:block">
@@ -96,7 +96,7 @@ export default function ServicesIndex() {
               onMouseEnter={() => setActiveService(service)}
               className="group border-b border-border py-12 cursor-pointer"
             >
-              <Link href={`/expertise/services/${service.id}`} className="block">
+              <Link href={`/services/${service.id}`} className="block">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                   <div className="flex gap-8 md:gap-16 items-start">
                     <span className="text-xs font-medium text-muted-foreground mt-3 group-hover:text-accent transition-colors duration-500">
