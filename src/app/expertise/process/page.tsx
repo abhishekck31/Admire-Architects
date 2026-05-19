@@ -45,7 +45,7 @@ export default function ProcessPage() {
   const { scrollYProgress } = useScroll({ target: horizontalScrollRef });
   
   // Shift the timeline left as the user scrolls down (Desktop only)
-  const xTransform = useTransform(scrollYProgress, [0, 1], ["0%", "-85%"]);
+  const xTransform = useTransform(scrollYProgress, [0, 1], ["0%", "calc(-100% + 100vw)"]);
 
   const [activeCycle, setActiveCycle] = useState(0);
   const [hoveredOrgDept, setHoveredOrgDept] = useState<number | null>(null);
@@ -163,7 +163,7 @@ export default function ProcessPage() {
               <p className="text-gray-500 font-light uppercase tracking-[0.2em] text-[10px]">Interactive Workflow</p>
             </div>
 
-            <motion.div style={{ x: xTransform }} className="flex gap-16 px-24 pt-20">
+            <motion.div style={{ x: xTransform }} className="flex w-max gap-16 px-24 pt-20">
               {ADMIRE_PROCESS.map((stage, i) => (
                 <div key={i} className="w-[500px] flex-shrink-0 relative group">
                   
