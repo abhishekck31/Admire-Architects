@@ -100,7 +100,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 1.5, delay: 0.5 }}
           >
-            <Link href="/studio/about" className="text-xs uppercase tracking-[0.2em] border-b border-primary pb-2 hover:text-muted-foreground hover:border-muted-foreground transition-colors duration-500">
+            <Link href="/about" className="text-xs uppercase tracking-[0.2em] border-b border-primary pb-2 hover:text-muted-foreground hover:border-muted-foreground transition-colors duration-500">
               Read Our Manifesto
             </Link>
           </motion.div>
