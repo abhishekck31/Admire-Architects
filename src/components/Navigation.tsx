@@ -58,12 +58,12 @@ export default function Navigation() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[90] bg-[#070b11] flex flex-col justify-center px-6 md:px-24"
+            className="fixed inset-0 z-[90] bg-[#070b11] overflow-y-auto px-6 md:px-24"
           >
             {/* Ambient Background Grid */}
-            <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: 'linear-gradient(#FAFAF9 1px, transparent 1px), linear-gradient(90deg, #FAFAF9 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+            <div className="fixed inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: 'linear-gradient(#FAFAF9 1px, transparent 1px), linear-gradient(90deg, #FAFAF9 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
-            <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-end h-full py-32 md:py-48">
+            <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center min-h-[100dvh] py-32 md:py-48">
               
               <ul className="flex flex-col gap-4 md:gap-8 w-full md:w-2/3">
                 {navLinks.map((link, i) => (
