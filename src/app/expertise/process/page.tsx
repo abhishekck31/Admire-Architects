@@ -51,7 +51,7 @@ export default function ProcessPage() {
   const [hoveredOrgDept, setHoveredOrgDept] = useState<number | null>(null);
 
   return (
-    <div className="relative bg-[#070b11] text-[#fafaf9] overflow-hidden font-sans pb-32">
+    <div className="relative bg-[#070b11] text-[#fafaf9] overflow-clip font-sans pb-32">
       
       {/* Background Architectural Grid */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.02]" style={{ backgroundImage: 'linear-gradient(#FAFAF9 1px, transparent 1px), linear-gradient(90deg, #FAFAF9 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
