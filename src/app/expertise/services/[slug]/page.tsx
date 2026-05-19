@@ -7,7 +7,7 @@ import { FiArrowRight } from "react-icons/fi";
 
 import { use } from "react";
 
-const fadeUp = {
+const fadeUp: any = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
 };
