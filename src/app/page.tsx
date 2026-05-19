@@ -22,7 +22,7 @@ const staggerContainer: Variants = {
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen bg-background text-foreground overflow-hidden font-sans">
+    <div className="relative min-h-screen bg-background text-foreground overflow-clip font-sans">
       
 
 

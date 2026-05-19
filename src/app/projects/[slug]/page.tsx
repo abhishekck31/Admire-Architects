@@ -26,7 +26,7 @@ export default function ProjectCaseStudyPage({ params }: { params: Promise<{ slu
   const title = resolvedParams.slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground overflow-hidden font-sans pb-32">
+    <div className="relative min-h-screen bg-background text-foreground overflow-clip font-sans pb-32">
       
       {/* Hero Banner */}
       <section ref={containerRef} className="relative h-[90vh] w-full flex items-end pb-24 px-6 md:px-16 lg:px-24 overflow-hidden">

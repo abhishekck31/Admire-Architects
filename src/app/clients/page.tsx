@@ -20,7 +20,7 @@ const MARQUEE_ITEMS = [...CLIENTS, ...CLIENTS, ...CLIENTS];
 
 export default function ClientsPage() {
   return (
-    <div className="relative min-h-screen bg-background text-foreground overflow-hidden font-sans pb-32">
+    <div className="relative min-h-screen bg-background text-foreground overflow-clip font-sans pb-32">
       
       {/* Hero Section */}
       <section className="relative pt-48 pb-32 px-6 md:px-16 lg:px-24 bg-card border-b border-border">

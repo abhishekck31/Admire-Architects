@@ -31,7 +31,7 @@ export default function AboutPage() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <div className="relative min-h-screen bg-[#070b11] text-[#fafaf9] overflow-hidden font-sans">
+    <div className="relative min-h-screen bg-[#070b11] text-[#fafaf9] overflow-clip font-sans">
       
       {/* SECTION 1 — HERO SECTION */}
       <section ref={containerRef} className="relative h-screen w-full flex items-center justify-center overflow-hidden">
