@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function StaggerText({ text, className }: { text: string, className?: string }) {
   const words = text.split(" ");
   
-  const container = {
+  const container: any = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -13,7 +13,7 @@ export default function StaggerText({ text, className }: { text: string, classNa
     }
   };
   
-  const child = {
+  const child: any = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } },
     hidden: { opacity: 0, y: 30 } // Subtle vertical slide rather than aggressive flying
   };
