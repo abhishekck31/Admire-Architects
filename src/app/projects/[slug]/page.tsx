@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, use } from "react";
 import { FiArrowRight } from "react-icons/fi";
 
 const fadeUp = {
@@ -11,7 +11,8 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
 };
 
-export default function ProjectCaseStudyPage({ params }: { params: { slug: string } }) {
+export default function ProjectCaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = use(params);
   const containerRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll({
@@ -22,7 +23,7 @@ export default function ProjectCaseStudyPage({ params }: { params: { slug: strin
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   
   // Format slug to title (e.g., the-zenith-tower -> The Zenith Tower)
-  const title = params.slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  const title = resolvedParams.slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
   return (
     <div className="relative min-h-screen bg-background text-foreground overflow-hidden font-sans pb-32">
