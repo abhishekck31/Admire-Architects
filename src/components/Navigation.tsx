@@ -98,7 +98,7 @@ export default function Navigation() {
               </AnimatePresence>
             </div>
 
-            <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center min-h-max py-48 px-6 md:px-16 lg:px-24">
+            <div className="relative z-10 flex flex-col md:flex-row justify-between items-start min-h-max py-48 px-6 md:px-16 lg:px-24">
               
               <ul className="flex flex-col w-full md:w-1/2" onMouseLeave={() => setHoveredLink(pathname)}>
                 {navLinks.map((link, i) => {
@@ -136,7 +136,7 @@ export default function Navigation() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0.5 }}
-                className="mt-16 md:mt-0 md:w-1/3 text-[#fafaf9] flex flex-col gap-10 md:pl-20 pt-8 md:pt-0"
+                className="mt-16 md:mt-0 md:w-1/3 text-[#fafaf9] flex flex-col gap-10 md:pl-20 pt-8 md:pt-0 md:sticky md:top-48"
               >
                 <div>
                   <h4 className="text-[10px] uppercase tracking-[0.3em] text-[#b89b72] mb-4">Global Headquarters</h4>
