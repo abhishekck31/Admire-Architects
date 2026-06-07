@@ -11,8 +11,8 @@ const fadeUp: any = {
 };
 
 const CLIENTS = [
-  "IBM", "Dell", "Genpact", "Schneider Electric", 
-  "Mercedes-Benz", "Cognizant", "Cisco", "Airtel", "Goldman Sachs"
+  "Genpact", "Schneider Electric", "Cognizant", "Dell", 
+  "Wipro", "Mercedes-Benz", "Target", "Cisco"
 ];
 
 // Duplicate for seamless infinite marquee
@@ -159,11 +159,11 @@ export default function ClientsPage() {
               <div className="flex justify-between items-start">
                 <div>
                   <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2">Technology Sector</div>
-                  <h3 className="text-3xl font-serif font-light mb-3">IBM Innovation Campus</h3>
+                  <h3 className="text-3xl font-serif font-light mb-3">TARGET Services India</h3>
                   <p className="text-muted-foreground font-light mb-6 max-w-sm">
-                    A 1.5M sq ft development engineered for extreme collaboration and absolute data security.
+                    A 1,50,000 sq ft workspace engineered for extreme collaboration and absolute data security.
                   </p>
-                  <Link href="/projects/ibm-campus" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-medium hover:text-accent transition-colors">
+                  <Link href="/projects" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-medium hover:text-accent transition-colors">
                     View Case Study <FiArrowRight />
                   </Link>
                 </div>
@@ -188,11 +188,11 @@ export default function ClientsPage() {
               <div className="flex justify-between items-start">
                 <div>
                   <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2">Automotive Sector</div>
-                  <h3 className="text-3xl font-serif font-light mb-3">Mercedes-Benz R&D Center</h3>
+                  <h3 className="text-3xl font-serif font-light mb-3">Mercedes-Benz</h3>
                   <p className="text-muted-foreground font-light mb-6 max-w-sm">
-                    A structural masterpiece housing state-of-the-art automotive testing facilities in a LEED Platinum shell.
+                    A corporate workspace designed to reflect the precision and engineering heritage of the automotive giant.
                   </p>
-                  <Link href="/projects/mercedes-benz-rd" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-medium hover:text-accent transition-colors">
+                  <Link href="/projects" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-medium hover:text-accent transition-colors">
                     View Case Study <FiArrowRight />
                   </Link>
                 </div>

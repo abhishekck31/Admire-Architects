@@ -39,7 +39,7 @@ export default function Home() {
             className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center md:text-left"
           >
             {[
-              { number: "25+", label: "Years of Excellence" },
+              { number: "20+", label: "Years of Excellence" },
               { number: "150+", label: "Global HQ Built" },
               { number: "12", label: "Industry Awards" },
               { number: "4", label: "Continents Reached" }
@@ -73,7 +73,7 @@ export default function Home() {
             className="flex flex-wrap justify-center md:justify-between items-center gap-12 md:gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-1000"
           >
             {/* Cinematic text representing client logos for elegance */}
-            {["AERO SPACE", "SYNTHESIS GLOBAL", "NEXUS FINANCE", "OMNI CORP", "VERTEX AI"].map((client, i) => (
+            {["GENPACT", "SCHNEIDER ELECTRIC", "COGNIZANT", "DELL", "MERCEDES-BENZ"].map((client, i) => (
               <motion.div key={i} variants={fadeUp} className="text-xl md:text-2xl font-serif tracking-wider font-medium text-foreground">
                 {client}
               </motion.div>
@@ -141,15 +141,15 @@ export default function Home() {
             <div className="relative h-[80vh] w-full overflow-hidden mb-8 bg-secondary">
               <Image
                 src="/project_1_1779118457708.png"
-                alt="The Zenith Tower"
+                alt="TARGET Services India"
                 fill
                 className="object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
               />
             </div>
             <div className="flex justify-between items-start">
               <div>
-                <h3 className="text-3xl font-serif font-light mb-3">The Zenith Corporate HQ</h3>
-                <p className="text-muted-foreground uppercase tracking-[0.2em] text-xs">Frankfurt, Germany / 2025</p>
+                <h3 className="text-3xl font-serif font-light mb-3">TARGET Services India</h3>
+                <p className="text-muted-foreground uppercase tracking-[0.2em] text-xs">Bangalore / 1,50,000 SFT</p>
               </div>
             </div>
           </motion.div>
@@ -164,15 +164,15 @@ export default function Home() {
             <div className="relative h-[80vh] w-full overflow-hidden mb-8 bg-secondary">
               <Image
                 src="/project_2_1779118501379.png"
-                alt="Aura Residences"
+                alt="DELL Hyderabad"
                 fill
                 className="object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
               />
             </div>
             <div className="flex justify-between items-start">
               <div>
-                <h3 className="text-3xl font-serif font-light mb-3">Omni Global Campus</h3>
-                <p className="text-muted-foreground uppercase tracking-[0.2em] text-xs">Tokyo, Japan / 2024</p>
+                <h3 className="text-3xl font-serif font-light mb-3">DELL Hyderabad Campus</h3>
+                <p className="text-muted-foreground uppercase tracking-[0.2em] text-xs">Hyderabad / 40,000 SFT</p>
               </div>
             </div>
           </motion.div>
@@ -284,11 +284,11 @@ export default function Home() {
               </svg>
             </div>
             <p className="text-2xl md:text-5xl font-serif font-light leading-[1.3] mb-12">
-              "Admire Architects didn't just design our global headquarters; they physically manifested our enterprise's identity into steel and glass. Absolute visionaries."
+              "Admire Architects didn't just design our workspace; they physically manifested our enterprise's operational identity into steel and glass. Absolute visionaries."
             </p>
             <div className="text-xs uppercase tracking-[0.2em]">
-              <strong className="font-medium text-foreground block mb-1">Elias Vance</strong>
-              <span className="text-muted-foreground">CEO, Synthesis Global</span>
+              <strong className="font-medium text-foreground block mb-1">Director, Corporate Real Estate</strong>
+              <span className="text-muted-foreground">Fortune 500 Technology Partner</span>
             </div>
           </motion.div>
         </div>

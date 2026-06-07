@@ -1,12 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
-import { useRef, useEffect } from "react";
-import { FiArrowRight, FiPlay, FiMousePointer } from "react-icons/fi";
+import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { FiArrowRight, FiPlay, FiMousePointer, FiX } from "react-icons/fi";
+import { useRouter } from "next/navigation";
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const [showVideo, setShowVideo] = useState(false);
   
   // Scroll Parallax
   const { scrollYProgress } = useScroll({
@@ -102,11 +105,17 @@ export default function Hero() {
             transition={{ duration: 1, delay: 1.2 }}
             className="flex flex-col gap-6"
           >
-            <button className="group flex items-center justify-between gap-8 border border-white/20 bg-white/5 backdrop-blur-md px-8 py-5 hover:bg-white hover:text-black transition-all duration-700 w-64">
+            <button 
+              onClick={() => router.push('/projects')}
+              className="group flex items-center justify-between gap-8 border border-white/20 bg-white/5 backdrop-blur-md px-8 py-5 hover:bg-white hover:text-black transition-all duration-700 w-64"
+            >
               <span className="uppercase tracking-[0.2em] text-xs font-medium">Explore Projects</span>
               <FiArrowRight className="transform group-hover:translate-x-1 transition-transform" />
             </button>
-            <button className="group flex items-center justify-between gap-8 border border-white/20 bg-white/5 backdrop-blur-md px-8 py-5 hover:bg-[#b89b72] hover:border-[#b89b72] hover:text-black transition-all duration-700 w-64">
+            <button 
+              onClick={() => setShowVideo(true)}
+              className="group flex items-center justify-between gap-8 border border-white/20 bg-white/5 backdrop-blur-md px-8 py-5 hover:bg-[#b89b72] hover:border-[#b89b72] hover:text-black transition-all duration-700 w-64"
+            >
               <span className="uppercase tracking-[0.2em] text-xs font-medium">Watch Showreel</span>
               <FiPlay className="transform transition-transform" />
             </button>
@@ -147,6 +156,39 @@ export default function Hero() {
         </div>
       </motion.div>
 
+      {/* Video Modal */}
+      <AnimatePresence>
+        {showVideo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+          >
+            <button 
+              onClick={() => setShowVideo(false)}
+              className="absolute top-10 right-10 text-white hover:text-[#b89b72] transition-colors p-2"
+            >
+              <FiX className="w-8 h-8" />
+            </button>
+            
+            <motion.div 
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ delay: 0.1 }}
+              className="w-full max-w-5xl aspect-video bg-black rounded-lg overflow-hidden border border-white/10"
+            >
+              <video 
+                src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" 
+                controls 
+                autoPlay 
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

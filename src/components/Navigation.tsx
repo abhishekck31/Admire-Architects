@@ -44,9 +44,9 @@ export default function Navigation() {
         <Link href="/" className="text-xl md:text-2xl tracking-[0.2em] font-light uppercase z-[101]">
           Admire <span className="font-medium">Architects</span>
         </Link>
-        
+
         {/* Mobile & Desktop Hamburger */}
-        <button 
+        <button
           onClick={() => setIsOpen(!isOpen)}
           className="relative z-[101] text-3xl w-12 h-12 flex items-center justify-center hover:scale-110 transition-transform touch-manipulation"
           aria-label="Toggle Menu"
@@ -57,7 +57,7 @@ export default function Navigation() {
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -98,13 +98,13 @@ export default function Navigation() {
               </AnimatePresence>
             </div>
 
-            <div className="relative z-10 flex flex-col md:flex-row justify-between items-start min-h-max py-24 md:py-48 px-6 md:px-16 lg:px-24">
-              
+            <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center min-h-max py-48 px-6 md:px-16 lg:px-24">
+
               <ul className="flex flex-col w-full md:w-1/2" onMouseLeave={() => setHoveredLink(pathname)}>
                 {navLinks.map((link, i) => {
                   const isActive = pathname === link.href;
                   return (
-                    <motion.li 
+                    <motion.li
                       key={link.href}
                       initial={{ opacity: 0, y: 50, rotate: 2 }}
                       animate={{ opacity: 1, y: 0, rotate: 0 }}
@@ -112,10 +112,10 @@ export default function Navigation() {
                       transition={{ duration: 0.8, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
                       className="border-b border-white/5 last:border-none"
                     >
-                      <Link 
-                        href={link.href} 
+                      <Link
+                        href={link.href}
                         onMouseEnter={() => setHoveredLink(link.href)}
-                        className="group flex items-center justify-between text-4xl md:text-5xl lg:text-7xl font-serif font-light text-[#fafaf9] hover:text-[#b89b72] transition-colors duration-500 tracking-tighter leading-none py-4 md:py-8"
+                        className="group flex items-center justify-between text-4xl md:text-5xl lg:text-7xl font-serif font-light text-[#fafaf9] hover:text-[#b89b72] transition-colors duration-500 tracking-tighter leading-none py-6 md:py-8"
                       >
                         <div className="flex items-center gap-6 md:gap-10">
                           <span className={`text-[10px] md:text-xs uppercase tracking-widest font-sans font-medium transition-colors duration-500 ${isActive ? "text-[#b89b72]" : "text-gray-600 group-hover:text-gray-400"}`}>
@@ -132,18 +132,18 @@ export default function Navigation() {
                 })}
               </ul>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0.5 }}
-                className="mt-12 md:mt-0 md:w-1/3 text-[#fafaf9] flex flex-col gap-8 md:gap-10 md:pl-20 pt-8 md:pt-0 md:sticky md:top-48 pb-24 md:pb-0"
+                className="mt-16 md:mt-0 md:w-1/3 text-[#fafaf9] flex flex-col gap-10 md:pl-20 pt-8 md:pt-0"
               >
                 <div>
                   <h4 className="text-[10px] uppercase tracking-[0.3em] text-[#b89b72] mb-4">Global Headquarters</h4>
                   <p className="font-light text-sm md:text-base leading-relaxed text-gray-300">
-                    145 Corporate Boulevard<br/>
-                    Financial District<br/>
-                    New York, NY 10005
+                    1853, 17th Main, 30th B Cross<br />
+                    5th Block, HBR Layout<br />
+                    Bangalore - 560043
                   </p>
                 </div>
                 <div>
