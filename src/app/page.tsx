@@ -41,8 +41,7 @@ export default function Home() {
             {[
               { number: "20+", label: "Years of Excellence" },
               { number: "150+", label: "Global HQ Built" },
-              { number: "12", label: "Industry Awards" },
-              { number: "4", label: "Continents Reached" }
+              { number: "12", label: "Industry Awards" }
             ].map((stat, i) => (
               <motion.div key={i} variants={fadeUp}>
                 <div className="text-5xl md:text-6xl font-serif font-light text-primary mb-4">{stat.number}</div>
