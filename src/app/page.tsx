@@ -294,9 +294,9 @@ export default function Home() {
       </section>
 
       {/* Footer CTA */}
-      <section className="py-48 bg-[#070B11] text-[#FAFAF9] text-center px-6 relative overflow-hidden">
+      <section className="py-48 bg-[#ffffff] text-[#000000] text-center px-6 relative overflow-hidden">
         {/* Faint architectural grid background */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(#FAFAF9 1px, transparent 1px), linear-gradient(90deg, #FAFAF9 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(#000000 1px, transparent 1px), linear-gradient(90deg, #000000 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
         
         <motion.div
           initial="hidden"
@@ -306,10 +306,10 @@ export default function Home() {
           className="max-w-5xl mx-auto relative z-10"
         >
           <motion.h2 variants={fadeUp} className="text-5xl md:text-[6rem] font-serif font-light mb-12 leading-[1.1]">
-            Ready to build <br /> <span className="italic text-[#B89B72]">your legacy?</span>
+            Ready to build <br /> <span className="italic text-[#60A5FA]">your legacy?</span>
           </motion.h2>
           <motion.div variants={fadeUp}>
-            <Link href="/contact" className="inline-block border-b border-white/30 pb-4 text-sm md:text-xl uppercase tracking-[0.2em] hover:text-[#B89B72] hover:border-[#B89B72] transition-colors duration-500">
+            <Link href="/contact" className="inline-block border-b border-black/30 pb-4 text-sm md:text-xl uppercase tracking-[0.2em] hover:text-[#60A5FA] hover:border-[#60A5FA] transition-colors duration-500">
               Start a Conversation
             </Link>
           </motion.div>
@@ -317,14 +317,17 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-16 border-t border-white/10 bg-[#070B11] text-[#FAFAF9] px-6 md:px-16 flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
-        <div className="text-[10px] uppercase tracking-[0.2em] text-gray-500">
-          &copy; {new Date().getFullYear()} Admire Architects Pvt Ltd. All rights reserved.
+      <footer className="py-16 border-t border-black/10 bg-[#ffffff] text-[#000000] px-6 md:px-16 flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
+        <div className="flex items-center gap-6">
+          <Image src="/logo.png" alt="Admire Architects Logo" width={80} height={80} className="object-contain mix-blend-multiply" />
+          <div className="text-[10px] uppercase tracking-[0.2em] text-gray-500">
+            &copy; {new Date().getFullYear()} Admire Architects Pvt Ltd. All rights reserved.
+          </div>
         </div>
         <div className="flex gap-10 text-[10px] uppercase tracking-[0.2em] text-gray-500">
-          <a href="#" className="hover:text-white transition-colors">Instagram</a>
-          <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
-          <a href="#" className="hover:text-white transition-colors">Behance</a>
+          <a href="#" className="hover:text-black transition-colors">Instagram</a>
+          <a href="#" className="hover:text-black transition-colors">LinkedIn</a>
+          <a href="#" className="hover:text-black transition-colors">Behance</a>
         </div>
       </footer>
     </div>

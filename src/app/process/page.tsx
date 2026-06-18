@@ -51,20 +51,20 @@ export default function ProcessPage() {
   const [hoveredOrgDept, setHoveredOrgDept] = useState<number | null>(null);
 
   return (
-    <div className="relative bg-[#070b11] text-[#fafaf9] overflow-clip font-sans pb-32">
+    <div className="relative bg-[#ffffff] text-[#000000] overflow-clip font-sans pb-32">
       
       {/* Background Architectural Grid */}
-      <div className="fixed inset-0 pointer-events-none opacity-[0.02]" style={{ backgroundImage: 'linear-gradient(#FAFAF9 1px, transparent 1px), linear-gradient(90deg, #FAFAF9 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+      <div className="fixed inset-0 pointer-events-none opacity-[0.02]" style={{ backgroundImage: 'linear-gradient(#000000 1px, transparent 1px), linear-gradient(90deg, #000000 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
 
       {/* Hero Section */}
-      <section className="relative pt-48 pb-32 px-6 md:px-16 lg:px-24 border-b border-white/5 relative z-10">
+      <section className="relative pt-48 pb-32 px-6 md:px-16 lg:px-24 border-b border-black/5 relative z-10">
         <div className="max-w-7xl mx-auto text-center md:text-left">
           <motion.div initial="hidden" animate="visible" variants={fadeUp}>
-            <div className="text-[10px] uppercase tracking-[0.3em] text-[#b89b72] mb-6">Execution Excellence</div>
-            <h1 className="text-5xl md:text-[7rem] font-serif font-light text-white tracking-tighter leading-[1] mb-10">
+            <div className="text-[10px] uppercase tracking-[0.3em] text-[#60A5FA] mb-6">Execution Excellence</div>
+            <h1 className="text-5xl md:text-[7rem] font-serif font-light text-black tracking-tighter leading-[1] mb-10">
               The Engine of <br className="hidden md:block" /> <span className="text-gray-500 italic">Precision.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-400 font-light max-w-3xl leading-relaxed mx-auto md:mx-0">
+            <p className="text-xl md:text-2xl text-gray-600 font-light max-w-3xl leading-relaxed mx-auto md:mx-0">
               We do not leave massive enterprise structures to chance. Our execution methodology is a highly calibrated, zero-tolerance framework.
             </p>
           </motion.div>
@@ -72,11 +72,11 @@ export default function ProcessPage() {
       </section>
 
       {/* SECTION 1 — PROJECT CYCLE */}
-      <section className="py-40 relative z-10 bg-[#0a0f16] border-b border-white/5">
+      <section className="py-40 relative z-10 bg-[#f8f9fa] border-b border-black/5">
         <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="mb-24">
             <h2 className="text-4xl md:text-6xl font-serif font-light tracking-tight mb-4">Project Cycle</h2>
-            <p className="text-gray-400 font-light text-lg max-w-2xl">The fundamental lifecycle of our enterprise projects.</p>
+            <p className="text-gray-600 font-light text-lg max-w-2xl">The fundamental lifecycle of our enterprise projects.</p>
           </motion.div>
 
           {/* Interactive Cycle Cards */}
@@ -91,17 +91,17 @@ export default function ProcessPage() {
                 onMouseEnter={() => setActiveCycle(i)}
                 className={`relative p-8 border transition-all duration-700 cursor-pointer overflow-hidden ${
                   activeCycle === i 
-                    ? "bg-white/5 border-[#b89b72]/50 scale-[1.02] shadow-2xl" 
-                    : "bg-transparent border-white/10 hover:border-white/30"
+                    ? "bg-black/5 border-[#60A5FA]/50 scale-[1.02] shadow-2xl" 
+                    : "bg-transparent border-black/10 hover:border-black/30"
                 }`}
               >
                 {/* Motion Line */}
-                <div className={`absolute top-0 left-0 h-1 transition-all duration-700 ${activeCycle === i ? "w-full bg-[#b89b72]" : "w-0 bg-transparent"}`} />
+                <div className={`absolute top-0 left-0 h-1 transition-all duration-700 ${activeCycle === i ? "w-full bg-[#60A5FA]" : "w-0 bg-transparent"}`} />
                 
-                <div className={`text-4xl font-serif mb-6 transition-colors duration-500 ${activeCycle === i ? "text-[#b89b72]" : "text-gray-700"}`}>
+                <div className={`text-4xl font-serif mb-6 transition-colors duration-500 ${activeCycle === i ? "text-[#60A5FA]" : "text-gray-700"}`}>
                   {stage.id}
                 </div>
-                <h3 className={`text-xl font-serif font-light mb-4 transition-colors duration-500 ${activeCycle === i ? "text-white" : "text-gray-400"}`}>
+                <h3 className={`text-xl font-serif font-light mb-4 transition-colors duration-500 ${activeCycle === i ? "text-black" : "text-gray-600"}`}>
                   {stage.title}
                 </h3>
                 
@@ -111,7 +111,7 @@ export default function ProcessPage() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="text-sm font-light text-gray-400 leading-relaxed"
+                      className="text-sm font-light text-gray-600 leading-relaxed"
                     >
                       {stage.desc}
                     </motion.p>
@@ -124,11 +124,11 @@ export default function ProcessPage() {
           {/* Process Flow Timeline (Horizontal Auto-Scrolling Marquee) */}
           <motion.div 
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-            className="pt-16 border-t border-white/10 overflow-hidden pb-8 relative w-full flex"
+            className="pt-16 border-t border-black/10 overflow-hidden pb-8 relative w-full flex"
           >
             {/* Left and right gradient masks for a smooth fade effect */}
-            <div className="absolute top-0 left-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#0a0f16] to-transparent z-10 pointer-events-none" />
-            <div className="absolute top-0 right-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#0a0f16] to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 left-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#f8f9fa] to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 right-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#f8f9fa] to-transparent z-10 pointer-events-none" />
             
             <motion.div
               animate={{ x: ["0%", "-50%"] }}
@@ -138,13 +138,13 @@ export default function ProcessPage() {
               {[...FLOW_STEPS, ...FLOW_STEPS].map((step, idx) => (
                 <div key={idx} className="flex items-center gap-8 group px-4">
                   <div className="flex flex-col items-center gap-4">
-                    <div className="w-4 h-4 rounded-full border-2 border-white/20 bg-[#070b11] group-hover:border-[#b89b72] group-hover:bg-[#b89b72]/20 transition-all duration-500" />
-                    <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-gray-500 group-hover:text-white transition-colors duration-500 text-center w-32">
+                    <div className="w-4 h-4 rounded-full border-2 border-black/20 bg-[#ffffff] group-hover:border-[#60A5FA] group-hover:bg-[#60A5FA]/20 transition-all duration-500" />
+                    <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-gray-500 group-hover:text-black transition-colors duration-500 text-center w-32">
                       {step}
                     </span>
                   </div>
                   <div className="w-16 md:w-32 h-[1px] bg-gradient-to-r from-white/10 via-white/30 to-white/10 relative">
-                    <div className="absolute top-1/2 -translate-y-1/2 right-0 w-2 h-2 border-t border-r border-white/30 transform rotate-45" />
+                    <div className="absolute top-1/2 -translate-y-1/2 right-0 w-2 h-2 border-t border-r border-black/30 transform rotate-45" />
                   </div>
                 </div>
               ))}
@@ -155,7 +155,7 @@ export default function ProcessPage() {
 
       {/* SECTION 2 — ADMIRE PROJECT PROCESS (Horizontal Scroll) */}
       <div className="hidden md:block relative z-10">
-        <section ref={horizontalScrollRef} className="relative h-[400vh] bg-[#070b11]">
+        <section ref={horizontalScrollRef} className="relative h-[400vh] bg-[#ffffff]">
           <div className="sticky top-0 flex h-screen items-center overflow-hidden">
             
             <div className="absolute top-32 left-24 z-20">
@@ -168,28 +168,28 @@ export default function ProcessPage() {
                 <div key={i} className="w-[500px] flex-shrink-0 relative group">
                   
                   {/* Background architectural grid line */}
-                  <div className="absolute top-8 left-0 w-full h-[1px] bg-white/10 z-0" />
+                  <div className="absolute top-8 left-0 w-full h-[1px] bg-black/10 z-0" />
                   
                   <div className="relative z-10">
-                    <div className="w-16 h-16 rounded-full border border-white/20 bg-[#0a0f16] flex items-center justify-center text-xl font-serif text-[#b89b72] mb-16 group-hover:bg-[#b89b72] group-hover:text-black group-hover:border-[#b89b72] transition-colors duration-500 shadow-xl">
+                    <div className="w-16 h-16 rounded-full border border-black/20 bg-[#f8f9fa] flex items-center justify-center text-xl font-serif text-[#60A5FA] mb-16 group-hover:bg-[#60A5FA] group-hover:text-white group-hover:border-[#60A5FA] transition-colors duration-500 shadow-xl">
                       {stage.num}
                     </div>
                     
-                    <div className="p-12 border border-white/10 bg-[#0a0f16]/80 backdrop-blur-md hover:border-[#b89b72]/50 transition-all duration-700 h-[450px] flex flex-col justify-between overflow-hidden relative">
+                    <div className="p-12 border border-black/10 bg-[#f8f9fa]/80 backdrop-blur-md hover:border-[#60A5FA]/50 transition-all duration-700 h-[450px] flex flex-col justify-between overflow-hidden relative">
                       {/* Subtle hover gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#b89b72]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#60A5FA]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                       
                       <div className="relative z-10">
-                        <div className="text-3xl text-gray-600 mb-6 group-hover:text-[#b89b72] transition-colors duration-500">
+                        <div className="text-3xl text-gray-600 mb-6 group-hover:text-[#60A5FA] transition-colors duration-500">
                           {stage.icon}
                         </div>
-                        <h3 className="text-3xl font-serif font-light mb-10 text-white group-hover:text-[#b89b72] transition-colors duration-500">{stage.title}</h3>
+                        <h3 className="text-3xl font-serif font-light mb-10 text-black group-hover:text-[#60A5FA] transition-colors duration-500">{stage.title}</h3>
                         
                         <div className="space-y-6">
                           {stage.metrics.map((metric, idx) => (
                             <div key={idx} className="flex items-center gap-4 group/item">
-                              <div className="w-6 h-[1px] bg-white/20 group-hover/item:bg-[#b89b72] group-hover/item:w-10 transition-all duration-500" />
-                              <span className="text-sm font-light tracking-wide text-gray-300 group-hover/item:text-white transition-colors duration-300">{metric}</span>
+                              <div className="w-6 h-[1px] bg-black/20 group-hover/item:bg-[#60A5FA] group-hover/item:w-10 transition-all duration-500" />
+                              <span className="text-sm font-light tracking-wide text-gray-700 group-hover/item:text-black transition-colors duration-300">{metric}</span>
                             </div>
                           ))}
                         </div>
@@ -201,9 +201,9 @@ export default function ProcessPage() {
               
               {/* Bottom Description Card at the end */}
               <div className="w-[500px] flex-shrink-0 relative flex items-center justify-center">
-                <div className="p-12 border border-white/10 bg-[#0a0f16] text-center">
-                  <FiCheckCircle className="mx-auto text-4xl text-[#b89b72] mb-8" />
-                  <p className="text-xl font-serif font-light leading-relaxed text-gray-300">
+                <div className="p-12 border border-black/10 bg-[#f8f9fa] text-center">
+                  <FiCheckCircle className="mx-auto text-4xl text-[#60A5FA] mb-8" />
+                  <p className="text-xl font-serif font-light leading-relaxed text-gray-700">
                     "Tasks in each stage are defined as part of the process and are followed. Our process is flexible to take care of changes and adjustments."
                   </p>
                 </div>
@@ -215,9 +215,9 @@ export default function ProcessPage() {
       </div>
 
       {/* Mobile Vertical Timeline for ADMIRE PROCESS */}
-      <div className="md:hidden py-32 px-6 bg-[#070b11] relative z-10">
+      <div className="md:hidden py-32 px-6 bg-[#ffffff] relative z-10">
         <h2 className="text-4xl font-serif font-light tracking-tight mb-20 text-center">Admire Process</h2>
-        <div className="space-y-24 border-l border-white/20 pl-8 relative ml-4">
+        <div className="space-y-24 border-l border-black/20 pl-8 relative ml-4">
           {ADMIRE_PROCESS.map((stage, i) => (
             <motion.div 
               key={i}
@@ -225,23 +225,23 @@ export default function ProcessPage() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeUp}
-              className="relative p-6 border border-white/10 bg-[#0a0f16]"
+              className="relative p-6 border border-black/10 bg-[#f8f9fa]"
             >
-              <div className="absolute w-4 h-4 rounded-full bg-[#070b11] border-2 border-[#b89b72] -left-[42px] top-8" />
-              <div className="text-3xl font-serif text-[#b89b72] mb-4">{stage.num}</div>
-              <h3 className="text-2xl font-serif font-light mb-6 text-white">{stage.title}</h3>
+              <div className="absolute w-4 h-4 rounded-full bg-[#ffffff] border-2 border-[#60A5FA] -left-[42px] top-8" />
+              <div className="text-3xl font-serif text-[#60A5FA] mb-4">{stage.num}</div>
+              <h3 className="text-2xl font-serif font-light mb-6 text-black">{stage.title}</h3>
               <div className="space-y-4">
                 {stage.metrics.map((metric, idx) => (
                   <div key={idx} className="flex items-center gap-3">
-                    <div className="w-4 h-[1px] bg-white/20" />
-                    <span className="text-sm font-light text-gray-300">{metric}</span>
+                    <div className="w-4 h-[1px] bg-black/20" />
+                    <span className="text-sm font-light text-gray-700">{metric}</span>
                   </div>
                 ))}
               </div>
             </motion.div>
           ))}
-          <motion.div variants={fadeUp} className="p-8 border border-[#b89b72]/30 bg-[#b89b72]/5 mt-10">
-            <p className="text-base font-serif font-light leading-relaxed text-gray-300 italic text-center">
+          <motion.div variants={fadeUp} className="p-8 border border-[#60A5FA]/30 bg-[#60A5FA]/5 mt-10">
+            <p className="text-base font-serif font-light leading-relaxed text-gray-700 italic text-center">
               "Tasks in each stage are defined as part of the process and are followed. Our process is flexible to take care of changes and adjustments."
             </p>
           </motion.div>
@@ -249,12 +249,12 @@ export default function ProcessPage() {
       </div>
 
       {/* SECTION 3 — ORGANIZATION CHART */}
-      <section className="py-40 bg-[#0a0f16] border-t border-white/5 relative z-10 overflow-hidden">
+      <section className="py-40 bg-[#f8f9fa] border-t border-black/5 relative z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="mb-24 text-center">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-[#b89b72] mb-4">Command Structure</div>
-            <h2 className="text-4xl md:text-6xl font-serif font-light tracking-tight text-white mb-6">Organizational Hierarchy</h2>
-            <p className="text-gray-400 font-light text-lg max-w-2xl mx-auto">A streamlined enterprise command chain ensuring absolute accountability and zero-tolerance execution.</p>
+            <div className="text-[10px] uppercase tracking-[0.3em] text-[#60A5FA] mb-4">Command Structure</div>
+            <h2 className="text-4xl md:text-6xl font-serif font-light tracking-tight text-black mb-6">Organizational Hierarchy</h2>
+            <p className="text-gray-600 font-light text-lg max-w-2xl mx-auto">A streamlined enterprise command chain ensuring absolute accountability and zero-tolerance execution.</p>
           </motion.div>
 
           {/* Interactive Org Chart */}
@@ -265,17 +265,17 @@ export default function ProcessPage() {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="relative z-20 border border-[#b89b72] bg-[#070b11] px-12 py-6 mb-16 shadow-[0_0_40px_rgba(184,155,114,0.1)] text-center cursor-default hover:bg-[#b89b72]/10 transition-colors duration-500"
+              className="relative z-20 border border-[#60A5FA] bg-[#ffffff] px-12 py-6 mb-16 shadow-[0_0_40px_rgba(184,155,114,0.1)] text-center cursor-default hover:bg-[#60A5FA]/10 transition-colors duration-500"
             >
-              <FiUsers className="mx-auto text-2xl text-[#b89b72] mb-2" />
-              <h3 className="text-xl font-medium tracking-wide uppercase text-white">{ORG_CHART.head}</h3>
+              <FiUsers className="mx-auto text-2xl text-[#60A5FA] mb-2" />
+              <h3 className="text-xl font-medium tracking-wide uppercase text-black">{ORG_CHART.head}</h3>
               
               {/* Vertical line connecting to branches */}
-              <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-px h-16 bg-white/20" />
+              <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-px h-16 bg-black/20" />
             </motion.div>
 
             {/* Horizontal Branch Line (Desktop only) */}
-            <div className="hidden md:block w-3/4 h-px bg-white/20 relative z-10" />
+            <div className="hidden md:block w-3/4 h-px bg-black/20 relative z-10" />
 
             {/* Departments Row */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 w-full mt-0 md:mt-16 relative z-20">
@@ -287,7 +287,7 @@ export default function ProcessPage() {
                   onMouseLeave={() => setHoveredOrgDept(null)}
                 >
                   {/* Vertical line from horizontal branch to department head (Desktop) */}
-                  <div className="hidden md:block absolute -top-16 left-1/2 -translate-x-1/2 w-px h-16 bg-white/20" />
+                  <div className="hidden md:block absolute -top-16 left-1/2 -translate-x-1/2 w-px h-16 bg-black/20" />
                   
                   <motion.div 
                     initial={{ opacity: 0, y: 20 }}
@@ -295,17 +295,17 @@ export default function ProcessPage() {
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.2 }}
                     className={`border px-8 py-5 text-center w-full max-w-xs transition-all duration-500 relative ${
-                      hoveredOrgDept === i ? "border-[#b89b72] bg-[#b89b72]/5" : "border-white/10 bg-[#0a0f16]"
+                      hoveredOrgDept === i ? "border-[#60A5FA] bg-[#60A5FA]/5" : "border-black/10 bg-[#f8f9fa]"
                     }`}
                   >
-                    <h4 className={`text-sm uppercase tracking-widest transition-colors duration-500 ${hoveredOrgDept === i ? "text-[#b89b72]" : "text-gray-300"}`}>
+                    <h4 className={`text-sm uppercase tracking-widest transition-colors duration-500 ${hoveredOrgDept === i ? "text-[#60A5FA]" : "text-gray-700"}`}>
                       {dept.name}
                     </h4>
-                    <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-[#b89b72] transition-all duration-500 ${hoveredOrgDept === i ? "opacity-100" : "opacity-0"}`} />
+                    <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-[#60A5FA] transition-all duration-500 ${hoveredOrgDept === i ? "opacity-100" : "opacity-0"}`} />
                   </motion.div>
 
                   {/* Vertical line to sub roles */}
-                  <div className={`w-px h-10 transition-colors duration-500 ${hoveredOrgDept === i ? "bg-[#b89b72]/50" : "bg-white/10"}`} />
+                  <div className={`w-px h-10 transition-colors duration-500 ${hoveredOrgDept === i ? "bg-[#60A5FA]/50" : "bg-black/10"}`} />
 
                   {/* Sub Roles List */}
                   <motion.div 
@@ -314,13 +314,13 @@ export default function ProcessPage() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 + (i * 0.2) }}
                     className={`flex flex-col gap-3 w-full max-w-xs border transition-colors duration-500 p-6 ${
-                      hoveredOrgDept === i ? "border-[#b89b72]/30 bg-[#070b11]/80 shadow-2xl" : "border-white/5 bg-[#070b11]"
+                      hoveredOrgDept === i ? "border-[#60A5FA]/30 bg-[#ffffff]/80 shadow-2xl" : "border-black/5 bg-[#ffffff]"
                     }`}
                   >
                     {dept.roles.map((role, idx) => (
                       <div key={idx} className="flex items-center gap-3 group">
-                        <div className={`w-1.5 h-1.5 rounded-full transition-colors duration-500 ${hoveredOrgDept === i ? "bg-[#b89b72]" : "bg-white/20"}`} />
-                        <span className={`text-sm font-light transition-colors duration-300 ${hoveredOrgDept === i ? "text-white" : "text-gray-400 group-hover:text-white"}`}>{role}</span>
+                        <div className={`w-1.5 h-1.5 rounded-full transition-colors duration-500 ${hoveredOrgDept === i ? "bg-[#60A5FA]" : "bg-black/20"}`} />
+                        <span className={`text-sm font-light transition-colors duration-300 ${hoveredOrgDept === i ? "text-black" : "text-gray-600 group-hover:text-black"}`}>{role}</span>
                       </div>
                     ))}
                   </motion.div>
@@ -334,18 +334,18 @@ export default function ProcessPage() {
       </section>
 
       {/* TEAMWORK MESSAGE */}
-      <section className="py-40 bg-[#070b11] relative z-10 flex items-center justify-center border-t border-white/5">
+      <section className="py-40 bg-[#ffffff] relative z-10 flex items-center justify-center border-t border-black/5">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <FiUsers className="mx-auto text-5xl text-[#b89b72] mb-12 opacity-50" />
+            <FiUsers className="mx-auto text-5xl text-[#60A5FA] mb-12 opacity-50" />
             <div className="space-y-8">
-              <h3 className="text-2xl md:text-4xl font-serif font-light text-white leading-relaxed">
+              <h3 className="text-2xl md:text-4xl font-serif font-light text-black leading-relaxed">
                 "For every project, we assign these set of people to work as a unified team."
               </h3>
-              <h3 className="text-2xl md:text-4xl font-serif font-light text-white leading-relaxed">
-                "We always believe that teamwork will <span className="italic text-[#b89b72]">always succeed in work.</span>"
+              <h3 className="text-2xl md:text-4xl font-serif font-light text-black leading-relaxed">
+                "We always believe that teamwork will <span className="italic text-[#60A5FA]">always succeed in work.</span>"
               </h3>
-              <h3 className="text-xl md:text-2xl font-light text-gray-400 leading-relaxed mt-12 max-w-2xl mx-auto">
+              <h3 className="text-xl md:text-2xl font-light text-gray-600 leading-relaxed mt-12 max-w-2xl mx-auto">
                 "All information is shared systematically to maintain the same wavelength across the entire enterprise."
               </h3>
             </div>

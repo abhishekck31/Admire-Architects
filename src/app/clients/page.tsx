@@ -38,7 +38,7 @@ export default function ClientsPage() {
       </section>
 
       {/* Infinite Marquee Logo Wall */}
-      <section className="py-24 border-b border-border overflow-hidden bg-[#070b11] text-[#fafaf9] flex flex-col justify-center gap-12">
+      <section className="py-24 border-b border-border overflow-hidden bg-[#ffffff] text-[#000000] flex flex-col justify-center gap-12">
         {/* Row 1 - Moves Left */}
         <div className="relative w-full flex overflow-hidden">
           <motion.div 

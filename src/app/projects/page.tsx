@@ -186,10 +186,10 @@ export default function ProjectsShowcase() {
   };
 
   return (
-    <div className="min-h-screen bg-[#070b11] text-[#fafaf9] font-sans flex flex-col md:flex-row relative">
+    <div className="min-h-screen bg-[#ffffff] text-[#000000] font-sans flex flex-col md:flex-row relative">
       
       {/* LEFT SIDE - VISUAL SHOWCASE (Sticky) */}
-      <div className="w-full md:w-1/2 h-[50vh] md:h-screen md:sticky top-0 overflow-hidden relative border-r border-white/5 order-1 md:order-none z-10">
+      <div className="w-full md:w-1/2 h-[50vh] md:h-screen md:sticky top-0 overflow-hidden relative border-r border-black/5 order-1 md:order-none z-10">
         <AnimatePresence mode="popLayout">
           <motion.div
             key={activeProject.id}
@@ -207,12 +207,12 @@ export default function ProjectsShowcase() {
               priority
             />
             {/* Architectural Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#070b11]/90 via-[#070b11]/30 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#070b11]/50 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#ffffff]/90 via-[#ffffff]/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#ffffff]/50 via-transparent to-transparent" />
             
             {/* Premium Corner Frame */}
-            <div className="absolute top-8 left-8 w-16 h-16 border-t border-l border-[#b89b72]/40" />
-            <div className="absolute bottom-8 right-8 w-16 h-16 border-b border-r border-[#b89b72]/40" />
+            <div className="absolute top-8 left-8 w-16 h-16 border-t border-l border-[#60A5FA]/40" />
+            <div className="absolute bottom-8 right-8 w-16 h-16 border-b border-r border-[#60A5FA]/40" />
             
             {/* Cinematic Info Overlay */}
             <div className="absolute bottom-10 left-10 md:bottom-16 md:left-16 max-w-lg z-20">
@@ -222,14 +222,14 @@ export default function ProjectsShowcase() {
                 transition={{ delay: 0.4, duration: 0.8 }}
                 className="flex items-center gap-4 mb-4"
               >
-                <div className="w-8 h-[1px] bg-[#b89b72]" />
-                <span className="text-[10px] uppercase tracking-[0.3em] text-[#b89b72] font-medium">{activeProject.category}</span>
+                <div className="w-8 h-[1px] bg-[#60A5FA]" />
+                <span className="text-[10px] uppercase tracking-[0.3em] text-[#60A5FA] font-medium">{activeProject.category}</span>
               </motion.div>
               <motion.h2 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
-                className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-white leading-[1.1] mb-6"
+                className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-black leading-[1.1] mb-6"
               >
                 {activeProject.title}
               </motion.h2>
@@ -242,11 +242,11 @@ export default function ProjectsShowcase() {
               >
                 <div className="flex flex-col">
                   <span className="text-[9px] uppercase tracking-[0.2em] text-gray-500 mb-1">Location</span>
-                  <span className="text-sm font-light text-white">{activeProject.location}</span>
+                  <span className="text-sm font-light text-black">{activeProject.location}</span>
                 </div>
                 <div className="flex flex-col">
                   <span className="text-[9px] uppercase tracking-[0.2em] text-gray-500 mb-1">Scale</span>
-                  <span className="text-sm font-light text-white">{activeProject.area}</span>
+                  <span className="text-sm font-light text-black">{activeProject.area}</span>
                 </div>
               </motion.div>
             </div>
@@ -255,8 +255,8 @@ export default function ProjectsShowcase() {
 
         {/* View Details Floating Button */}
         <div className="absolute top-8 right-8 md:top-auto md:bottom-16 md:right-16 z-30">
-          <Link href={`/projects/${activeProject.id}`} className="group relative flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-black/20 backdrop-blur-md border border-white/20 hover:bg-[#b89b72] hover:border-[#b89b72] transition-all duration-700 overflow-hidden cursor-pointer">
-            <FiMaximize2 className="text-white group-hover:scale-110 transition-transform duration-500 relative z-10" />
+          <Link href={`/projects/${activeProject.id}`} className="group relative flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/20 backdrop-blur-md border border-black/20 hover:bg-[#60A5FA] hover:border-[#60A5FA] transition-all duration-700 overflow-hidden cursor-pointer">
+            <FiMaximize2 className="text-black group-hover:scale-110 transition-transform duration-500 relative z-10" />
           </Link>
         </div>
       </div>
@@ -266,8 +266,8 @@ export default function ProjectsShowcase() {
         
         {/* Header & Search */}
         <div className="mb-12">
-          <h1 className="text-4xl md:text-6xl font-serif font-light tracking-tight text-white mb-6">
-            Enterprise <span className="italic text-[#b89b72]">Showcase</span>
+          <h1 className="text-4xl md:text-6xl font-serif font-light tracking-tight text-black mb-6">
+            Enterprise <span className="italic text-[#60A5FA]">Showcase</span>
           </h1>
           
           <div className="relative mb-8">
@@ -277,21 +277,21 @@ export default function ProjectsShowcase() {
               placeholder="Search by project name, client, or city..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-white/5 border border-white/10 rounded-full py-4 pl-12 pr-6 text-white text-sm font-light focus:outline-none focus:border-[#b89b72] transition-colors"
+              className="w-full bg-black/5 border border-black/10 rounded-full py-4 pl-12 pr-6 text-black text-sm font-light focus:outline-none focus:border-[#60A5FA] transition-colors"
             />
           </div>
         </div>
 
         {/* Category Filters (Sticky) */}
-        <div className="flex flex-wrap gap-3 mb-10 border-b border-white/10 pb-6 sticky top-0 bg-[#070b11]/90 backdrop-blur-xl z-30 pt-6 -mx-2 px-2">
+        <div className="flex flex-wrap gap-3 mb-10 border-b border-black/10 pb-6 sticky top-0 bg-[#ffffff]/90 backdrop-blur-xl z-30 pt-6 -mx-2 px-2">
           {CATEGORIES.map(category => (
             <button
               key={category}
               onClick={() => handleCategoryChange(category)}
               className={`text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-medium px-5 py-3 border transition-all duration-500 rounded-full ${
                 activeCategory === category 
-                  ? "bg-[#b89b72] border-[#b89b72] text-black" 
-                  : "bg-transparent border-white/20 text-gray-400 hover:border-white/60 hover:text-white"
+                  ? "bg-[#60A5FA] border-[#60A5FA] text-white" 
+                  : "bg-transparent border-black/20 text-gray-600 hover:border-black/60 hover:text-black"
               }`}
             >
               {category}
@@ -325,7 +325,7 @@ export default function ProjectsShowcase() {
                   exit={{ opacity: 0, scale: 0.98, transition: { duration: 0.2 } }}
                   transition={{ duration: 0.6, delay: i * 0.02 }}
                   key={project.id}
-                  className={`border border-white/5 overflow-hidden transition-colors duration-500 ${isExpanded ? "bg-[#0a0f16]" : "bg-transparent hover:border-white/20"}`}
+                  className={`border border-black/5 overflow-hidden transition-colors duration-500 ${isExpanded ? "bg-[#f8f9fa]" : "bg-transparent hover:border-black/20"}`}
                 >
                   {/* Accordion Header */}
                   <button
@@ -333,14 +333,14 @@ export default function ProjectsShowcase() {
                     className="w-full px-6 py-6 md:py-8 flex items-center justify-between group"
                   >
                     <div className="flex items-center gap-6">
-                      <div className={`text-[10px] font-serif italic transition-colors duration-500 ${isExpanded ? "text-[#b89b72]" : "text-gray-600"}`}>
+                      <div className={`text-[10px] font-serif italic transition-colors duration-500 ${isExpanded ? "text-[#60A5FA]" : "text-gray-600"}`}>
                         {(i + 1).toString().padStart(2, '0')}
                       </div>
-                      <h3 className={`text-xl md:text-2xl font-serif font-light text-left transition-colors duration-500 ${isExpanded ? "text-white" : "text-gray-400 group-hover:text-white"}`}>
+                      <h3 className={`text-xl md:text-2xl font-serif font-light text-left transition-colors duration-500 ${isExpanded ? "text-black" : "text-gray-600 group-hover:text-black"}`}>
                         {project.title}
                       </h3>
                     </div>
-                    <div className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-500 flex-shrink-0 ${isExpanded ? "border-[#b89b72] bg-[#b89b72]/10 text-[#b89b72]" : "border-white/10 text-gray-500 group-hover:border-white/30 group-hover:text-white"}`}>
+                    <div className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-500 flex-shrink-0 ${isExpanded ? "border-[#60A5FA] bg-[#60A5FA]/10 text-[#60A5FA]" : "border-black/10 text-gray-500 group-hover:border-black/30 group-hover:text-black"}`}>
                       {isExpanded ? <FiMinus size={12} /> : <FiPlus size={12} />}
                     </div>
                   </button>
@@ -355,31 +355,31 @@ export default function ProjectsShowcase() {
                         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                         className="px-6 pb-8"
                       >
-                        <div className="pt-6 border-t border-white/5">
-                          <p className="text-gray-400 font-light leading-relaxed mb-8 text-sm md:text-base">
+                        <div className="pt-6 border-t border-black/5">
+                          <p className="text-gray-600 font-light leading-relaxed mb-8 text-sm md:text-base">
                             {project.description}
                           </p>
                           
                           {/* Project Meta Grid */}
                           <div className="grid grid-cols-2 gap-y-6 gap-x-4 mb-8">
                             <div>
-                              <div className="flex items-center gap-2 text-[#b89b72] mb-1">
+                              <div className="flex items-center gap-2 text-[#60A5FA] mb-1">
                                 <FiMapPin size={12} />
                                 <span className="text-[9px] uppercase tracking-[0.2em] font-medium">Location</span>
                               </div>
-                              <div className="text-sm font-light text-white">{project.location}</div>
+                              <div className="text-sm font-light text-black">{project.location}</div>
                             </div>
                             <div>
-                              <div className="flex items-center gap-2 text-[#b89b72] mb-1">
+                              <div className="flex items-center gap-2 text-[#60A5FA] mb-1">
                                 <FiBox size={12} />
                                 <span className="text-[9px] uppercase tracking-[0.2em] font-medium">Scale</span>
                               </div>
-                              <div className="text-sm font-light text-white">{project.area}</div>
+                              <div className="text-sm font-light text-black">{project.area}</div>
                             </div>
                           </div>
 
                           {/* Action Button */}
-                          <Link href={`/projects/${project.id}`} className="inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] border-b border-[#b89b72] pb-1 text-white hover:text-[#b89b72] transition-colors duration-500 group">
+                          <Link href={`/projects/${project.id}`} className="inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] border-b border-[#60A5FA] pb-1 text-black hover:text-[#60A5FA] transition-colors duration-500 group">
                             Explore Case Study <FiArrowRight className="transform group-hover:translate-x-1 transition-transform" />
                           </Link>
                         </div>

@@ -40,15 +40,18 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-[100] px-6 md:px-16 py-6 flex justify-between items-center mix-blend-difference text-white pointer-events-auto">
-        <Link href="/" className="text-xl md:text-2xl tracking-[0.2em] font-light uppercase z-[101]">
-          Admire <span className="font-medium">Architects</span>
+      <nav className="fixed top-0 left-0 right-0 z-[100] px-6 md:px-16 py-6 flex justify-between items-center pointer-events-auto">
+        <Link href="/" className="flex items-center gap-4 z-[101]">
+          <Image src="/logo.png" alt="Admire Architects Logo" width={80} height={80} className="object-contain mix-blend-multiply" />
+          <span className="text-xl md:text-2xl tracking-[0.2em] font-light uppercase mix-blend-difference text-white">
+            Admire <span className="font-medium">Architects</span>
+          </span>
         </Link>
 
         {/* Mobile & Desktop Hamburger */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="relative z-[101] text-3xl w-12 h-12 flex items-center justify-center hover:scale-110 transition-transform touch-manipulation"
+          className="relative z-[101] text-3xl w-12 h-12 flex items-center justify-center hover:scale-110 transition-transform touch-manipulation mix-blend-difference text-white"
           aria-label="Toggle Menu"
         >
           {isOpen ? <FiX /> : <FiMenu />}
@@ -62,17 +65,17 @@ export default function Navigation() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[90] bg-[#070b11] overflow-y-auto"
+            className="fixed inset-0 z-[90] bg-[#ffffff] overflow-y-auto"
             data-lenis-prevent
           >
             {/* Top Gradient Mask to hide text smoothly before it hits the logo */}
-            <div className="fixed top-0 left-0 right-0 h-40 bg-gradient-to-b from-[#070b11] via-[#070b11]/90 to-transparent z-[95] pointer-events-none" />
+            <div className="fixed top-0 left-0 right-0 h-40 bg-gradient-to-b from-[#ffffff] via-[#ffffff]/90 to-transparent z-[95] pointer-events-none" />
 
             {/* Bottom Gradient Mask */}
-            <div className="fixed bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#070b11] to-transparent z-[95] pointer-events-none" />
+            <div className="fixed bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#ffffff] to-transparent z-[95] pointer-events-none" />
 
             {/* Ambient Background Grid */}
-            <div className="fixed inset-0 opacity-[0.02] pointer-events-none z-0" style={{ backgroundImage: 'linear-gradient(#FAFAF9 1px, transparent 1px), linear-gradient(90deg, #FAFAF9 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+            <div className="fixed inset-0 opacity-[0.02] pointer-events-none z-0" style={{ backgroundImage: 'linear-gradient(#000000 1px, transparent 1px), linear-gradient(90deg, #000000 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
             {/* Hover Image Preview (Desktop Only) */}
             <div className="hidden md:block fixed top-0 right-0 w-[45vw] h-screen z-0">
@@ -93,7 +96,7 @@ export default function Navigation() {
                     priority
                   />
                   {/* Fade mask for the image to blend into the menu */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#070b11] via-[#070b11]/50 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#ffffff] via-[#ffffff]/50 to-transparent" />
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -110,22 +113,22 @@ export default function Navigation() {
                       animate={{ opacity: 1, y: 0, rotate: 0 }}
                       exit={{ opacity: 0, y: 20 }}
                       transition={{ duration: 0.8, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
-                      className="border-b border-white/5 last:border-none"
+                      className="border-b border-black/5 last:border-none"
                     >
                       <Link
                         href={link.href}
                         onMouseEnter={() => setHoveredLink(link.href)}
-                        className="group flex items-center justify-between text-4xl md:text-5xl lg:text-7xl font-serif font-light text-[#fafaf9] hover:text-[#b89b72] transition-colors duration-500 tracking-tighter leading-none py-6 md:py-8"
+                        className="group flex items-center justify-between text-4xl md:text-5xl lg:text-7xl font-serif font-light text-[#000000] hover:text-[#60A5FA] transition-colors duration-500 tracking-tighter leading-none py-6 md:py-8"
                       >
                         <div className="flex items-center gap-6 md:gap-10">
-                          <span className={`text-[10px] md:text-xs uppercase tracking-widest font-sans font-medium transition-colors duration-500 ${isActive ? "text-[#b89b72]" : "text-gray-600 group-hover:text-gray-400"}`}>
+                          <span className={`text-[10px] md:text-xs uppercase tracking-widest font-sans font-medium transition-colors duration-500 ${isActive ? "text-[#60A5FA]" : "text-gray-600 group-hover:text-gray-600"}`}>
                             0{i + 1}
                           </span>
                           <span className="group-hover:translate-x-4 transition-transform duration-500">
                             {link.label}
                           </span>
                         </div>
-                        <FiArrowRight className={`text-3xl transition-all duration-500 transform ${isActive ? "text-[#b89b72] translate-x-0 opacity-100" : "text-transparent -translate-x-8 opacity-0 group-hover:text-[#b89b72] group-hover:translate-x-0 group-hover:opacity-100"}`} />
+                        <FiArrowRight className={`text-3xl transition-all duration-500 transform ${isActive ? "text-[#60A5FA] translate-x-0 opacity-100" : "text-transparent -translate-x-8 opacity-0 group-hover:text-[#60A5FA] group-hover:translate-x-0 group-hover:opacity-100"}`} />
                       </Link>
                     </motion.li>
                   );
@@ -136,26 +139,26 @@ export default function Navigation() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0.5 }}
-                className="mt-16 md:mt-0 md:w-1/3 text-[#fafaf9] flex flex-col gap-10 md:pl-20 pt-8 md:pt-0"
+                className="mt-16 md:mt-0 md:w-1/3 text-[#000000] flex flex-col gap-10 md:pl-20 pt-8 md:pt-0"
               >
                 <div>
-                  <h4 className="text-[10px] uppercase tracking-[0.3em] text-[#b89b72] mb-4">Global Headquarters</h4>
-                  <p className="font-light text-sm md:text-base leading-relaxed text-gray-300">
+                  <h4 className="text-[10px] uppercase tracking-[0.3em] text-[#60A5FA] mb-4">Global Headquarters</h4>
+                  <p className="font-light text-sm md:text-base leading-relaxed text-gray-700">
                     1853, 17th Main, 30th B Cross<br />
                     5th Block, HBR Layout<br />
                     Bangalore - 560043
                   </p>
                 </div>
                 <div>
-                  <h4 className="text-[10px] uppercase tracking-[0.3em] text-[#b89b72] mb-4">Inquiries</h4>
-                  <a href="mailto:contact@admirearchitects.com" className="font-light text-sm md:text-base text-gray-300 hover:text-[#b89b72] transition-colors relative inline-block group">
+                  <h4 className="text-[10px] uppercase tracking-[0.3em] text-[#60A5FA] mb-4">Inquiries</h4>
+                  <a href="mailto:contact@admirearchitects.com" className="font-light text-sm md:text-base text-gray-700 hover:text-[#60A5FA] transition-colors relative inline-block group">
                     contact@admirearchitects.com
-                    <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#b89b72] group-hover:w-full transition-all duration-500" />
+                    <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#60A5FA] group-hover:w-full transition-all duration-500" />
                   </a>
                 </div>
                 <div className="flex gap-6 mt-4">
                   {["Instagram", "LinkedIn", "Twitter"].map(social => (
-                    <a key={social} href="#" className="text-[10px] uppercase tracking-[0.2em] text-gray-500 hover:text-white transition-colors">
+                    <a key={social} href="#" className="text-[10px] uppercase tracking-[0.2em] text-gray-500 hover:text-black transition-colors">
                       {social}
                     </a>
                   ))}

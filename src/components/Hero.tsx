@@ -45,7 +45,7 @@ export default function Hero() {
   return (
     <section 
       ref={containerRef} 
-      className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-[#070b11]"
+      className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-[#ffffff]"
     >
       {/* Background Image Container with both Scroll and Mouse Parallax */}
       <motion.div 
@@ -65,8 +65,8 @@ export default function Hero() {
             priority
           />
           {/* Heavy cinematic gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#070b11] via-[#070b11]/60 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#070b11] via-transparent to-[#070b11]/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#ffffff] via-[#ffffff]/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#ffffff] via-transparent to-[#ffffff]/30" />
         </motion.div>
       </motion.div>
 
@@ -83,9 +83,9 @@ export default function Hero() {
               animate={{ opacity: 1, clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
               transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             >
-              <h1 className="text-5xl md:text-7xl lg:text-[6.5rem] font-serif font-light text-[#fafaf9] tracking-tighter leading-[1.05] mb-8">
+              <h1 className="text-5xl md:text-7xl lg:text-[6.5rem] font-serif font-light text-[#000000] tracking-tighter leading-[1.05] mb-8">
                 Modern Workspaces. <br />
-                <span className="italic text-[#b89b72]">Timeless Execution.</span>
+                <span className="italic text-[#60A5FA]">Timeless Execution.</span>
               </h1>
             </motion.div>
 
@@ -93,7 +93,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-lg md:text-xl text-gray-300 font-light tracking-wide max-w-2xl"
+              className="text-lg md:text-xl text-gray-700 font-light tracking-wide max-w-2xl"
             >
               We shape the physical environment of global enterprises through relentless engineering, absolute minimalism, and visionary design.
             </motion.p>
@@ -107,14 +107,14 @@ export default function Hero() {
           >
             <button 
               onClick={() => router.push('/projects')}
-              className="group flex items-center justify-between gap-8 border border-white/20 bg-white/5 backdrop-blur-md px-8 py-5 hover:bg-white hover:text-black transition-all duration-700 w-64"
+              className="group flex items-center justify-between gap-8 border border-black/20 bg-black/5 backdrop-blur-md px-8 py-5 hover:bg-black hover:text-white transition-all duration-700 w-64"
             >
               <span className="uppercase tracking-[0.2em] text-xs font-medium">Explore Projects</span>
               <FiArrowRight className="transform group-hover:translate-x-1 transition-transform" />
             </button>
             <button 
               onClick={() => setShowVideo(true)}
-              className="group flex items-center justify-between gap-8 border border-white/20 bg-white/5 backdrop-blur-md px-8 py-5 hover:bg-[#b89b72] hover:border-[#b89b72] hover:text-black transition-all duration-700 w-64"
+              className="group flex items-center justify-between gap-8 border border-black/20 bg-black/5 backdrop-blur-md px-8 py-5 hover:bg-[#60A5FA] hover:border-[#60A5FA] hover:text-white transition-all duration-700 w-64"
             >
               <span className="uppercase tracking-[0.2em] text-xs font-medium">Watch Showreel</span>
               <FiPlay className="transform transition-transform" />
@@ -131,9 +131,9 @@ export default function Hero() {
         className="absolute top-1/4 right-10 md:right-32 z-20"
         style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]) }}
       >
-        <div className="glass p-6 border-l border-t border-white/20 shadow-2xl backdrop-blur-xl bg-white/5 max-w-[200px]">
-          <div className="text-4xl font-serif text-white mb-2">150<span className="text-[#b89b72]">+</span></div>
-          <div className="text-[10px] uppercase tracking-[0.2em] text-gray-400 leading-relaxed">
+        <div className="glass p-6 border-l border-t border-black/20 shadow-2xl backdrop-blur-xl bg-black/5 max-w-[200px]">
+          <div className="text-4xl font-serif text-black mb-2">150<span className="text-[#60A5FA]">+</span></div>
+          <div className="text-[10px] uppercase tracking-[0.2em] text-gray-600 leading-relaxed">
             Enterprise HQs <br /> Delivered Globally
           </div>
         </div>
@@ -146,10 +146,10 @@ export default function Hero() {
         transition={{ duration: 1, delay: 2 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-20"
       >
-        <span className="text-[9px] uppercase tracking-[0.3em] text-gray-400">Scroll</span>
-        <div className="w-[1px] h-16 bg-white/20 relative overflow-hidden">
+        <span className="text-[9px] uppercase tracking-[0.3em] text-gray-600">Scroll</span>
+        <div className="w-[1px] h-16 bg-black/20 relative overflow-hidden">
           <motion.div 
-            className="absolute top-0 left-0 w-full h-1/2 bg-white"
+            className="absolute top-0 left-0 w-full h-1/2 bg-black"
             animate={{ y: ["-100%", "200%"] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
           />
@@ -163,11 +163,11 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-white/90 backdrop-blur-sm"
           >
             <button 
               onClick={() => setShowVideo(false)}
-              className="absolute top-10 right-10 text-white hover:text-[#b89b72] transition-colors p-2"
+              className="absolute top-10 right-10 text-black hover:text-[#60A5FA] transition-colors p-2"
             >
               <FiX className="w-8 h-8" />
             </button>
@@ -177,7 +177,7 @@ export default function Hero() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ delay: 0.1 }}
-              className="w-full max-w-5xl aspect-video bg-black rounded-lg overflow-hidden border border-white/10"
+              className="w-full max-w-5xl aspect-video bg-black overflow-hidden border border-black/10"
             >
               <video 
                 src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" 

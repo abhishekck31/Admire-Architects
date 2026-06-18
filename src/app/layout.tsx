@@ -11,6 +11,9 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfa
 export const metadata: Metadata = {
   title: "ADMIRE ARCHITECTS PVT LTD | Modern Luxury Architecture",
   description: "World-class corporate architecture firm specializing in modern, luxury minimalism.",
+  icons: {
+    icon: '/logo.png',
+  },
 };
 
 export default function RootLayout({
@@ -19,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} dark`}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body className="antialiased bg-background text-foreground font-sans">
         <CustomCursor />
         <Navigation />

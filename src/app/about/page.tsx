@@ -31,7 +31,7 @@ export default function AboutPage() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <div className="relative min-h-screen bg-[#070b11] text-[#fafaf9] overflow-clip font-sans">
+    <div className="relative min-h-screen bg-[#ffffff] text-[#000000] overflow-clip font-sans">
       
       {/* SECTION 1 — HERO SECTION */}
       <section ref={containerRef} className="relative h-screen w-full flex items-center justify-center overflow-hidden">
@@ -43,7 +43,7 @@ export default function AboutPage() {
             className="object-cover scale-105 opacity-50 grayscale"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#070b11]/80 via-[#070b11]/50 to-[#070b11]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#ffffff]/80 via-[#ffffff]/50 to-[#ffffff]" />
         </motion.div>
         
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 lg:px-24 flex flex-col items-center text-center mt-20">
@@ -53,18 +53,18 @@ export default function AboutPage() {
             variants={staggerContainer}
             className="max-w-5xl"
           >
-            <motion.div variants={fadeUp} className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-[#b89b72] mb-8">
+            <motion.div variants={fadeUp} className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-[#60A5FA] mb-8">
               Admire Architects Pvt Ltd
             </motion.div>
-            <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl lg:text-[6rem] font-serif font-light text-white tracking-tighter leading-[1.05] mb-10">
-              Designing Enterprise Spaces with <br className="hidden md:block" /><span className="italic text-[#b89b72]">Precision & Vision</span>
+            <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl lg:text-[6rem] font-serif font-light text-black tracking-tighter leading-[1.05] mb-10">
+              Designing Enterprise Spaces with <br className="hidden md:block" /><span className="italic text-[#60A5FA]">Precision & Vision</span>
             </motion.h1>
-            <motion.p variants={fadeUp} className="text-lg md:text-xl text-gray-400 font-light max-w-3xl mx-auto leading-relaxed mb-16">
+            <motion.p variants={fadeUp} className="text-lg md:text-xl text-gray-600 font-light max-w-3xl mx-auto leading-relaxed mb-16">
               ADMIRE ARCHITECTS PVT LTD is a multidisciplinary consultancy firm delivering architecture, interiors, project management, and turnkey solutions for global enterprises.
             </motion.p>
             
             <motion.div variants={fadeUp} className="flex justify-center">
-              <Link href="#introduction" className="group flex items-center gap-6 border border-white/20 bg-white/5 backdrop-blur-md px-10 py-5 hover:bg-[#b89b72] hover:border-[#b89b72] hover:text-black transition-all duration-700">
+              <Link href="#introduction" className="group flex items-center gap-6 border border-black/20 bg-black/5 backdrop-blur-md px-10 py-5 hover:bg-[#60A5FA] hover:border-[#60A5FA] hover:text-white transition-all duration-700">
                 <span className="uppercase tracking-[0.2em] text-xs font-medium">Discover Our Story</span>
                 <FiArrowRight className="transform group-hover:translate-x-1 transition-transform" />
               </Link>
@@ -80,9 +80,9 @@ export default function AboutPage() {
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-20 pointer-events-none"
         >
           <span className="text-[9px] uppercase tracking-[0.3em] text-gray-500">Scroll</span>
-          <div className="w-[1px] h-16 bg-white/10 relative overflow-hidden">
+          <div className="w-[1px] h-16 bg-black/10 relative overflow-hidden">
             <motion.div 
-              className="absolute top-0 left-0 w-full h-1/2 bg-[#b89b72]"
+              className="absolute top-0 left-0 w-full h-1/2 bg-[#60A5FA]"
               animate={{ y: ["-100%", "200%"] }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
             />
@@ -91,8 +91,8 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 2 — COMPANY INTRODUCTION */}
-      <section id="introduction" className="py-32 md:py-48 bg-[#070b11] relative border-b border-white/5">
-        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'linear-gradient(#FAFAF9 1px, transparent 1px), linear-gradient(90deg, #FAFAF9 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+      <section id="introduction" className="py-32 md:py-48 bg-[#ffffff] relative border-b border-black/5">
+        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'linear-gradient(#000000 1px, transparent 1px), linear-gradient(90deg, #000000 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
         
         <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
@@ -104,14 +104,14 @@ export default function AboutPage() {
               variants={staggerContainer}
               className="space-y-8"
             >
-              <motion.div variants={fadeUp} className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#b89b72] mb-4">
+              <motion.div variants={fadeUp} className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#60A5FA] mb-4">
                 The Consultancy
               </motion.div>
-              <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-serif font-light leading-tight text-white mb-8">
+              <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-serif font-light leading-tight text-black mb-8">
                 A Multi-Disciplinary Approach to <span className="italic">Spatial Engineering.</span>
               </motion.h2>
               
-              <div className="space-y-6 text-gray-400 font-light leading-relaxed text-base md:text-lg">
+              <div className="space-y-6 text-gray-600 font-light leading-relaxed text-base md:text-lg">
                 <motion.p variants={fadeUp}>
                   The Admire Group is a multi-disciplinary consultancy firm offering services in Architecture, Interiors, Project Management, and Design Build & Turnkey Solutions.
                 </motion.p>
@@ -124,7 +124,7 @@ export default function AboutPage() {
                 <motion.p variants={fadeUp}>
                   The focus of our practice is to manage projects with the active involvement of experienced senior personnel supported by computer-based systems for programming facility requirements, cost and time control, CAD documentation and asset management.
                 </motion.p>
-                <motion.p variants={fadeUp} className="text-white border-l-2 border-[#b89b72] pl-6 italic mt-8">
+                <motion.p variants={fadeUp} className="text-black border-l-2 border-[#60A5FA] pl-6 italic mt-8">
                   We desire to deliver projects on time and within allotted budget that represent the best value for the client’s expenditure.
                 </motion.p>
               </div>
@@ -137,8 +137,8 @@ export default function AboutPage() {
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="relative h-[60vh] md:h-[80vh] w-full"
             >
-              <div className="absolute inset-0 bg-[#b89b72]/5 translate-x-4 translate-y-4 md:translate-x-6 md:translate-y-6 border border-[#b89b72]/20" />
-              <div className="relative h-full w-full bg-[#0a0f16] overflow-hidden group">
+              <div className="absolute inset-0 bg-[#60A5FA]/5 translate-x-4 translate-y-4 md:translate-x-6 md:translate-y-6 border border-[#60A5FA]/20" />
+              <div className="relative h-full w-full bg-[#f8f9fa] overflow-hidden group">
                 <Image 
                   src="/project_2_1779118501379.png" 
                   alt="Corporate Architecture" 
@@ -159,10 +159,10 @@ export default function AboutPage() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.5 + (i * 0.2), duration: 0.8 }}
-                      className="bg-black/60 backdrop-blur-md border border-white/10 px-4 md:px-6 py-3 flex items-center gap-3 w-max"
+                      className="bg-white/60 backdrop-blur-md border border-black/10 px-4 md:px-6 py-3 flex items-center gap-3 w-max"
                     >
-                      <FiCheckCircle className="text-[#b89b72]" />
-                      <span className="text-[10px] md:text-xs uppercase tracking-[0.1em] text-white font-medium">{badge}</span>
+                      <FiCheckCircle className="text-[#60A5FA]" />
+                      <span className="text-[10px] md:text-xs uppercase tracking-[0.1em] text-black font-medium">{badge}</span>
                     </motion.div>
                   ))}
                 </div>
@@ -173,14 +173,14 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 3 — LEADERSHIP MESSAGE */}
-      <section className="py-40 md:py-56 bg-[#0a0f16] relative flex items-center justify-center overflow-hidden">
+      <section className="py-40 md:py-56 bg-[#f8f9fa] relative flex items-center justify-center overflow-hidden">
         {/* Subtle background architecture lines */}
         <div className="absolute top-0 left-0 w-full h-full opacity-10">
            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <pattern id="archGrid" width="100" height="100" patternUnits="userSpaceOnUse">
-                  <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#b89b72" strokeWidth="0.5" />
-                  <path d="M 0 100 L 100 0" fill="none" stroke="#b89b72" strokeWidth="0.5" />
+                  <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#60A5FA" strokeWidth="0.5" />
+                  <path d="M 0 100 L 100 0" fill="none" stroke="#60A5FA" strokeWidth="0.5" />
                 </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#archGrid)" />
@@ -194,36 +194,36 @@ export default function AboutPage() {
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
           >
-            <motion.div variants={fadeUp} className="text-[8rem] md:text-[12rem] font-serif text-[#b89b72] leading-none opacity-20 absolute -top-16 md:-top-24 left-1/2 -translate-x-1/2">
+            <motion.div variants={fadeUp} className="text-[8rem] md:text-[12rem] font-serif text-[#60A5FA] leading-none opacity-20 absolute -top-16 md:-top-24 left-1/2 -translate-x-1/2">
               &ldquo;
             </motion.div>
-            <motion.h3 variants={fadeUp} className="text-3xl md:text-5xl lg:text-7xl font-serif font-light leading-[1.2] text-white tracking-wide mb-16 relative z-10 uppercase">
+            <motion.h3 variants={fadeUp} className="text-3xl md:text-5xl lg:text-7xl font-serif font-light leading-[1.2] text-black tracking-wide mb-16 relative z-10 uppercase">
               "If we build the people, <br className="hidden md:block" />
               they will build the business"
             </motion.h3>
             <motion.div variants={fadeUp}>
-              <div className="font-serif text-3xl md:text-4xl text-[#b89b72] mb-3">M. Palani</div>
-              <div className="text-[10px] uppercase tracking-[0.3em] text-gray-400">Managing Director</div>
+              <div className="font-serif text-3xl md:text-4xl text-[#60A5FA] mb-3">M. Palani</div>
+              <div className="text-[10px] uppercase tracking-[0.3em] text-gray-600">Managing Director</div>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* SECTION 4 — OUR STRATEGY */}
-      <section className="py-32 md:py-48 bg-[#070b11] border-y border-white/5">
+      <section className="py-32 md:py-48 bg-[#ffffff] border-y border-black/5">
         <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="mb-24 flex flex-col md:flex-row justify-between items-start md:items-end gap-10 border-b border-white/10 pb-12"
+            className="mb-24 flex flex-col md:flex-row justify-between items-start md:items-end gap-10 border-b border-black/10 pb-12"
           >
             <div>
-              <div className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#b89b72] mb-6">Methodology</div>
-              <h2 className="text-5xl md:text-7xl font-serif font-light text-white tracking-tight">Our Strategy</h2>
+              <div className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#60A5FA] mb-6">Methodology</div>
+              <h2 className="text-5xl md:text-7xl font-serif font-light text-black tracking-tight">Our Strategy</h2>
             </div>
-            <p className="max-w-md text-gray-400 font-light text-lg md:text-xl">
+            <p className="max-w-md text-gray-600 font-light text-lg md:text-xl">
               Five core pillars that define our approach to delivering world-class corporate environments.
             </p>
           </motion.div>
@@ -242,16 +242,16 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="group p-10 bg-[#0a0f16] border border-white/5 hover:border-[#b89b72]/50 transition-colors duration-500 relative overflow-hidden flex flex-col justify-between min-h-[320px]"
+                className="group p-10 bg-[#f8f9fa] border border-black/5 hover:border-[#60A5FA]/50 transition-colors duration-500 relative overflow-hidden flex flex-col justify-between min-h-[320px]"
               >
                 {/* Minimal Architectural Visual Line */}
-                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#b89b72]/0 via-[#b89b72]/40 to-[#b89b72]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#60A5FA]/0 via-[#60A5FA]/40 to-[#60A5FA]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 
                 <div>
-                  <div className="text-[#b89b72] text-sm font-medium tracking-widest mb-8 font-serif">{pillar.num}</div>
-                  <h3 className="text-2xl font-serif font-light text-white mb-6 group-hover:text-[#b89b72] transition-colors duration-500">{pillar.title}</h3>
+                  <div className="text-[#60A5FA] text-sm font-medium tracking-widest mb-8 font-serif">{pillar.num}</div>
+                  <h3 className="text-2xl font-serif font-light text-black mb-6 group-hover:text-[#60A5FA] transition-colors duration-500">{pillar.title}</h3>
                 </div>
-                <p className="text-gray-400 font-light leading-relaxed">{pillar.desc}</p>
+                <p className="text-gray-600 font-light leading-relaxed">{pillar.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -259,7 +259,7 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 5 — COMPANY APPROACH */}
-      <section className="py-40 md:py-56 bg-[#0a0f16] relative overflow-hidden">
+      <section className="py-40 md:py-56 bg-[#f8f9fa] relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image src="/hero_arch_1779118409602.png" alt="Approach Texture" fill className="object-cover opacity-[0.03] grayscale" />
         </div>
@@ -270,11 +270,11 @@ export default function AboutPage() {
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
           >
-            <motion.div variants={fadeUp} className="w-px h-32 bg-gradient-to-b from-transparent via-[#b89b72]/50 to-transparent mx-auto mb-16" />
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-5xl lg:text-6xl font-serif font-light text-white leading-[1.3] mb-12 tracking-wide">
-              "Our multidisciplinary approach enables us to integrate all aspects of the project’s requirements into a <span className="italic text-[#b89b72]">comprehensive solution.</span>"
+            <motion.div variants={fadeUp} className="w-px h-32 bg-gradient-to-b from-transparent via-[#60A5FA]/50 to-transparent mx-auto mb-16" />
+            <motion.h2 variants={fadeUp} className="text-3xl md:text-5xl lg:text-6xl font-serif font-light text-black leading-[1.3] mb-12 tracking-wide">
+              "Our multidisciplinary approach enables us to integrate all aspects of the project’s requirements into a <span className="italic text-[#60A5FA]">comprehensive solution.</span>"
             </motion.h2>
-            <motion.p variants={fadeUp} className="text-lg md:text-xl text-gray-400 font-light leading-relaxed max-w-3xl mx-auto">
+            <motion.p variants={fadeUp} className="text-lg md:text-xl text-gray-600 font-light leading-relaxed max-w-3xl mx-auto">
               Our team consisting of architects and project managers has the experience to execute and manage projects to produce solutions responsive to the client’s time, budgetary and aesthetic requirements.
             </motion.p>
           </motion.div>
@@ -282,7 +282,7 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 6 — COMPANY HIGHLIGHTS */}
-      <section className="py-32 md:py-40 bg-[#070b11] border-t border-white/5 relative z-10">
+      <section className="py-32 md:py-40 bg-[#ffffff] border-t border-black/5 relative z-10">
         <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
@@ -299,9 +299,9 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: i * 0.1 }}
-                className="p-8 md:p-16 border border-white/5 bg-white/[0.01] backdrop-blur-md flex flex-col items-center justify-center text-center group hover:bg-[#b89b72]/5 hover:border-[#b89b72]/30 transition-all duration-700"
+                className="p-8 md:p-16 border border-black/5 bg-black/[0.01] backdrop-blur-md flex flex-col items-center justify-center text-center group hover:bg-[#60A5FA]/5 hover:border-[#60A5FA]/30 transition-all duration-700"
               >
-                <div className="text-3xl md:text-6xl font-serif text-white mb-4 md:mb-6 group-hover:text-[#b89b72] transition-colors duration-700">{stat.value}</div>
+                <div className="text-3xl md:text-6xl font-serif text-black mb-4 md:mb-6 group-hover:text-[#60A5FA] transition-colors duration-700">{stat.value}</div>
                 <div className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-gray-500 font-medium">{stat.label}</div>
               </motion.div>
             ))}
@@ -310,19 +310,19 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 7 — WHY ADMIRE */}
-      <section className="py-32 md:py-48 bg-[#0a0f16]">
+      <section className="py-32 md:py-48 bg-[#f8f9fa]">
         <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="mb-24 text-center md:text-left flex flex-col md:flex-row justify-between items-end gap-8 border-b border-white/10 pb-12"
+            className="mb-24 text-center md:text-left flex flex-col md:flex-row justify-between items-end gap-8 border-b border-black/10 pb-12"
           >
             <div>
-              <h2 className="text-4xl md:text-6xl font-serif font-light text-white tracking-tight mb-4">Why Admire?</h2>
+              <h2 className="text-4xl md:text-6xl font-serif font-light text-black tracking-tight mb-4">Why Admire?</h2>
             </div>
-            <p className="text-gray-400 font-light text-lg max-w-md md:text-right">
+            <p className="text-gray-600 font-light text-lg max-w-md md:text-right">
               The inherent advantages of partnering with a holistic architectural enterprise.
             </p>
           </motion.div>
@@ -344,10 +344,10 @@ export default function AboutPage() {
                 transition={{ duration: 0.8, delay: i * 0.1 }}
                 className="flex flex-col items-center text-center space-y-6 group"
               >
-                <div className="w-20 h-20 rounded-full border border-white/10 flex items-center justify-center group-hover:border-[#b89b72] bg-[#070b11] group-hover:bg-[#b89b72]/10 transition-all duration-700 shadow-xl">
-                  <FiCheckCircle className="text-gray-500 group-hover:text-[#b89b72] transition-colors duration-700 text-2xl" />
+                <div className="w-20 h-20 rounded-full border border-black/10 flex items-center justify-center group-hover:border-[#60A5FA] bg-[#ffffff] group-hover:bg-[#60A5FA]/10 transition-all duration-700 shadow-xl">
+                  <FiCheckCircle className="text-gray-500 group-hover:text-[#60A5FA] transition-colors duration-700 text-2xl" />
                 </div>
-                <h4 className="text-base md:text-xl font-light text-white tracking-wide">{feature}</h4>
+                <h4 className="text-base md:text-xl font-light text-black tracking-wide">{feature}</h4>
               </motion.div>
             ))}
           </div>
@@ -355,10 +355,10 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 8 — CALL TO ACTION */}
-      <section className="py-40 md:py-56 relative bg-[#070b11] flex items-center justify-center text-center overflow-hidden">
+      <section className="py-40 md:py-56 relative bg-[#ffffff] flex items-center justify-center text-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image src="/project_1_1779118457708.png" alt="Let's Build" fill className="object-cover opacity-20 grayscale" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#070b11] via-transparent to-[#070b11]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#ffffff] via-transparent to-[#ffffff]" />
         </div>
         
         <div className="relative z-10 max-w-4xl mx-auto px-6">
@@ -368,18 +368,18 @@ export default function AboutPage() {
             viewport={{ once: true }}
             variants={staggerContainer}
           >
-            <motion.h2 variants={fadeUp} className="text-5xl md:text-[6rem] font-serif font-light text-white mb-8 leading-[1.1]">
+            <motion.h2 variants={fadeUp} className="text-5xl md:text-[6rem] font-serif font-light text-black mb-8 leading-[1.1]">
               Let’s Build the Future <br className="hidden md:block" />
-              <span className="italic text-[#b89b72]">Together.</span>
+              <span className="italic text-[#60A5FA]">Together.</span>
             </motion.h2>
-            <motion.p variants={fadeUp} className="text-lg md:text-2xl text-gray-400 font-light mb-16 max-w-2xl mx-auto">
+            <motion.p variants={fadeUp} className="text-lg md:text-2xl text-gray-600 font-light mb-16 max-w-2xl mx-auto">
               Creating intelligent, efficient, and inspiring spaces for modern enterprises.
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Link href="/projects" className="w-full sm:w-auto px-10 py-5 bg-white text-black text-xs uppercase tracking-[0.2em] font-medium hover:bg-[#b89b72] hover:text-white transition-colors duration-500">
+              <Link href="/projects" className="w-full sm:w-auto px-10 py-5 bg-black text-white text-xs uppercase tracking-[0.2em] font-medium hover:bg-[#60A5FA] hover:text-black transition-colors duration-500">
                 View Projects
               </Link>
-              <Link href="/contact" className="w-full sm:w-auto px-10 py-5 border border-white/20 text-white text-xs uppercase tracking-[0.2em] font-medium hover:bg-white/10 transition-colors duration-500 backdrop-blur-sm">
+              <Link href="/contact" className="w-full sm:w-auto px-10 py-5 border border-black/20 text-black text-xs uppercase tracking-[0.2em] font-medium hover:bg-black/10 transition-colors duration-500 backdrop-blur-sm">
                 Contact Us
               </Link>
             </motion.div>

@@ -83,11 +83,11 @@ export default function ServiceDetail({ params }: { params: Promise<{ slug: stri
       </section>
 
       {/* The Methodology / Process */}
-      <section className="py-32 bg-[#070b11] text-[#fafaf9]">
+      <section className="py-32 bg-[#ffffff] text-[#000000]">
         <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="mb-24">
-            <h2 className="text-4xl md:text-6xl font-serif font-light tracking-tight text-white mb-6">Execution Methodology</h2>
-            <p className="text-gray-400 max-w-2xl font-light text-lg">A systematic, risk-mitigated approach to bringing massive structures from concept to physical reality.</p>
+            <h2 className="text-4xl md:text-6xl font-serif font-light tracking-tight text-black mb-6">Execution Methodology</h2>
+            <p className="text-gray-600 max-w-2xl font-light text-lg">A systematic, risk-mitigated approach to bringing massive structures from concept to physical reality.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32">
@@ -110,9 +110,9 @@ export default function ServiceDetail({ params }: { params: Promise<{ slug: stri
                   transition={{ duration: 1, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
                   className="group"
                 >
-                  <div className="text-[10px] uppercase tracking-[0.2em] text-[#b89b72] mb-2">{step.phase}</div>
-                  <h4 className="text-2xl font-serif font-light mb-3 text-white">{step.title}</h4>
-                  <p className="text-gray-400 font-light">{step.desc}</p>
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-[#60A5FA] mb-2">{step.phase}</div>
+                  <h4 className="text-2xl font-serif font-light mb-3 text-black">{step.title}</h4>
+                  <p className="text-gray-600 font-light">{step.desc}</p>
                 </motion.div>
               ))}
             </div>
