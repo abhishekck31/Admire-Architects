@@ -126,7 +126,12 @@ function parseProject(str: string, category: string, index: number) {
     area = "Rs.7.5 Crore to 10 Crore";
   }
 
-  const images = ["/project_1_1779118457708.png", "/project_2_1779118501379.png", "/hero_arch_1779118409602.png"];
+  const images = [
+    "/heroSectionImgs/CEOofficeHero.png",
+    "/heroSectionImgs/CorporateMeetingHero.png",
+    "/heroSectionImgs/LoungeHero.png",
+    "/heroSectionImgs/OpenPlanHero.png"
+  ];
 
   return {
     id: `${category.toLowerCase().replace(/[^a-z]/g, '')}-${index}`,
@@ -207,8 +212,8 @@ export default function ProjectsShowcase() {
               priority
             />
             {/* Architectural Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#ffffff]/90 via-[#ffffff]/30 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#ffffff]/50 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-transparent" />
             
             {/* Premium Corner Frame */}
             <div className="absolute top-8 left-8 w-16 h-16 border-t border-l border-[#60A5FA]/40" />
@@ -229,7 +234,7 @@ export default function ProjectsShowcase() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
-                className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-black leading-[1.1] mb-6"
+                className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-white leading-[1.1] mb-6 drop-shadow-md"
               >
                 {activeProject.title}
               </motion.h2>
@@ -241,12 +246,12 @@ export default function ProjectsShowcase() {
                 className="flex flex-wrap gap-6"
               >
                 <div className="flex flex-col">
-                  <span className="text-[9px] uppercase tracking-[0.2em] text-gray-500 mb-1">Location</span>
-                  <span className="text-sm font-light text-black">{activeProject.location}</span>
+                  <span className="text-[9px] uppercase tracking-[0.2em] text-gray-300 mb-1">Location</span>
+                  <span className="text-sm font-light text-white drop-shadow-sm">{activeProject.location}</span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-[9px] uppercase tracking-[0.2em] text-gray-500 mb-1">Scale</span>
-                  <span className="text-sm font-light text-black">{activeProject.area}</span>
+                  <span className="text-[9px] uppercase tracking-[0.2em] text-gray-300 mb-1">Scale</span>
+                  <span className="text-sm font-light text-white drop-shadow-sm">{activeProject.area}</span>
                 </div>
               </motion.div>
             </div>

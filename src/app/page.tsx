@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useScroll, useTransform, AnimatePresence, Variants } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence, Variants, useInView, useMotionValue, animate } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { FiArrowRight, FiMenu } from "react-icons/fi";
 import Hero from "@/components/Hero";
@@ -20,6 +20,33 @@ const staggerContainer: Variants = {
   }
 };
 
+function AnimatedCounter({ value, label }: { value: string, label: string }) {
+  const numMatch = value.match(/\d+/);
+  const suffix = value.replace(/\d+/g, '');
+  const targetNumber = numMatch ? parseInt(numMatch[0], 10) : 0;
+
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, Math.round);
+
+  useEffect(() => {
+    if (isInView) {
+      animate(count, targetNumber, { duration: 2.5, ease: "easeOut" });
+    }
+  }, [isInView, count, targetNumber]);
+
+  return (
+    <motion.div ref={ref} variants={fadeUp} className="flex flex-col items-center justify-center">
+      <div className="text-5xl md:text-6xl font-serif font-light text-primary mb-4 flex items-center">
+        <motion.span>{rounded}</motion.span>
+        <span>{suffix}</span>
+      </div>
+      <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground text-center">{label}</div>
+    </motion.div>
+  );
+}
+
 export default function Home() {
   return (
     <div className="relative min-h-screen bg-background text-foreground overflow-clip font-sans">
@@ -36,17 +63,14 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
-            className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center md:text-left"
+            className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center items-center justify-center"
           >
             {[
               { number: "20+", label: "Years of Excellence" },
               { number: "150+", label: "Global HQ Built" },
               { number: "12", label: "Industry Awards" }
             ].map((stat, i) => (
-              <motion.div key={i} variants={fadeUp}>
-                <div className="text-5xl md:text-6xl font-serif font-light text-primary mb-4">{stat.number}</div>
-                <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{stat.label}</div>
-              </motion.div>
+              <AnimatedCounter key={i} value={stat.number} label={stat.label} />
             ))}
           </motion.div>
         </div>
@@ -60,7 +84,7 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="text-xs uppercase tracking-[0.2em] text-muted-foreground text-center md:text-left mb-12"
+            className="text-lg md:text-xl uppercase tracking-[0.2em] text-muted-foreground text-center md:text-left mb-12"
           >
             Trusted by Industry Leaders
           </motion.h3>
@@ -69,12 +93,34 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="flex flex-wrap justify-center md:justify-between items-center gap-12 md:gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-1000"
+            className="flex flex-wrap justify-center items-center gap-10 md:gap-16 transition-all duration-1000"
           >
-            {/* Cinematic text representing client logos for elegance */}
-            {["GENPACT", "SCHNEIDER ELECTRIC", "COGNIZANT", "DELL", "MERCEDES-BENZ"].map((client, i) => (
-              <motion.div key={i} variants={fadeUp} className="text-xl md:text-2xl font-serif tracking-wider font-medium text-foreground">
-                {client}
+            {[
+              { name: "Airtel", src: "/ClientLogosImgs/airtel.png" },
+              { name: "Blueprint", src: "/ClientLogosImgs/blueprint.png" },
+              { name: "Cisco", src: "/ClientLogosImgs/cisco.png" },
+              { name: "Concentrix", src: "/ClientLogosImgs/concentrix.png" },
+              { name: "Cognizant", src: "/ClientLogosImgs/congizant.png" },
+              { name: "Daimler Truck", src: "/ClientLogosImgs/daimlertruck.png" },
+              { name: "Dell", src: "/ClientLogosImgs/dell.png" },
+              { name: "Emids", src: "/ClientLogosImgs/emids.png" },
+              { name: "Genpact", src: "/ClientLogosImgs/genpact.png" },
+              { name: "Goldman Sachs", src: "/ClientLogosImgs/goldmnSachs.png" },
+              { name: "HP", src: "/ClientLogosImgs/hp.png" },
+              { name: "IBM", src: "/ClientLogosImgs/ibm.png" },
+              { name: "Mercedes-Benz", src: "/ClientLogosImgs/mercedesbenz.png" },
+              { name: "Nexxer", src: "/ClientLogosImgs/nexxer.png" },
+              { name: "Nokia", src: "/ClientLogosImgs/nokia.png" },
+              { name: "ParentPay", src: "/ClientLogosImgs/parentpay.png" },
+              { name: "Quickplay", src: "/ClientLogosImgs/quickplay.png" },
+              { name: "Schneider Electric", src: "/ClientLogosImgs/schneiderelectric.png" },
+              { name: "Table Space", src: "/ClientLogosImgs/tablespace.png" },
+              { name: "Target", src: "/ClientLogosImgs/target.png" },
+              { name: "Wipro", src: "/ClientLogosImgs/wipro.png" },
+              { name: "Zitro", src: "/ClientLogosImgs/zitro.png" },
+            ].map((client, i) => (
+              <motion.div key={i} variants={fadeUp} className="relative w-36 h-16 md:w-48 md:h-24 group hover:scale-105 transition-transform duration-300">
+                <Image src={client.src} alt={client.name} fill className="object-contain" />
               </motion.div>
             ))}
           </motion.div>
@@ -139,7 +185,7 @@ export default function Home() {
           >
             <div className="relative h-[80vh] w-full overflow-hidden mb-8 bg-secondary">
               <Image
-                src="/project_1_1779118457708.png"
+                src="/heroSectionImgs/CEOofficeHero.png"
                 alt="TARGET Services India"
                 fill
                 className="object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
@@ -162,7 +208,7 @@ export default function Home() {
           >
             <div className="relative h-[80vh] w-full overflow-hidden mb-8 bg-secondary">
               <Image
-                src="/project_2_1779118501379.png"
+                src="/heroSectionImgs/CorporateMeetingHero.png"
                 alt="DELL Hyderabad"
                 fill
                 className="object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"

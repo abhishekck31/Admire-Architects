@@ -1,89 +1,90 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
-import { FiArrowRight, FiPlay, FiMousePointer, FiX } from "react-icons/fi";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { FiArrowRight, FiPlay, FiX } from "react-icons/fi";
 import { useRouter } from "next/navigation";
+
+const heroImages = [
+  "/heroSectionImgs/CEOofficeHero.png",
+  "/heroSectionImgs/CorporateMeetingHero.png",
+  "/heroSectionImgs/LoungeHero.png",
+  "/heroSectionImgs/OpenPlanHero.png"
+];
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const [showVideo, setShowVideo] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
+  // Image slider effect - changes every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   // Scroll Parallax
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
   });
   
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "80%"]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-
-  // Mouse Parallax
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  
-  // Smooth out the mouse values
-  const smoothX = useSpring(mouseX, { damping: 50, stiffness: 400 });
-  const smoothY = useSpring(mouseY, { damping: 50, stiffness: 400 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      // Normalize between -1 and 1
-      const x = (e.clientX / window.innerWidth) * 2 - 1;
-      const y = (e.clientY / window.innerHeight) * 2 - 1;
-      mouseX.set(x * 15); // max pixel shift
-      mouseY.set(y * 15);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY]);
 
   return (
     <section 
       ref={containerRef} 
-      className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-[#ffffff]"
+      className="relative h-screen w-full bg-white p-3 pt-20 md:p-5 md:pt-[5.5rem] flex flex-col"
     >
-      {/* Background Image Container with both Scroll and Mouse Parallax */}
-      <motion.div 
-        style={{ 
-          y: bgY, 
-          x: smoothX,
-          opacity 
-        }} 
-        className="absolute inset-[-5%] z-0"
-      >
-        <motion.div style={{ y: smoothY }} className="relative w-full h-full">
-          <Image
-            src="/hero_arch_1779118409602.png"
-            alt="Modern Enterprise Architecture"
-            fill
-            className="object-cover scale-105"
-            priority
-          />
-          {/* Heavy cinematic gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#ffffff] via-[#ffffff]/60 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#ffffff] via-transparent to-[#ffffff]/30" />
-        </motion.div>
-      </motion.div>
-
-      {/* Main Content */}
-      <motion.div 
-        style={{ y: textY, opacity }} 
-        className="relative z-10 w-full max-w-[90rem] mx-auto px-6 md:px-16 lg:px-24 flex flex-col justify-end h-full pb-32"
-      >
-        <div className="flex flex-col md:flex-row justify-between items-end gap-12">
-          
-          <div className="max-w-4xl">
+      {/* Capsule Container for Hero Images */}
+      <div className="relative w-full h-full rounded-[2rem] overflow-hidden shadow-2xl bg-black">
+        
+        {/* Background Image Slider */}
+        <motion.div 
+          style={{ y: bgY, opacity }} 
+          className="absolute inset-0 z-0 bg-black"
+        >
+          {heroImages.map((src, index) => (
             <motion.div
-              initial={{ opacity: 0, clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)" }}
-              animate={{ opacity: 1, clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
-              transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+              key={src}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ 
+                opacity: index === currentImageIndex ? 1 : 0,
+                scale: index === currentImageIndex ? 1 : 1.05
+              }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+              className="absolute inset-0"
             >
-              <h1 className="text-5xl md:text-7xl lg:text-[6.5rem] font-serif font-light text-[#000000] tracking-tighter leading-[1.05] mb-8">
+              <Image
+                src={src}
+                alt={`Modern Enterprise Architecture Space ${index + 1}`}
+                fill
+                className="object-cover"
+                priority={index === 0}
+              />
+            </motion.div>
+          ))}
+          {/* Subtle dark gradient overlays to ensure text readability without washing out the image */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/60 z-10 pointer-events-none" />
+        </motion.div>
+
+        {/* Main Content inside the capsule */}
+        <motion.div 
+          style={{ opacity }} 
+          className="relative z-20 w-full max-w-[90rem] mx-auto px-6 md:px-16 lg:px-24 flex flex-col justify-center h-full"
+        >
+          <div className="max-w-3xl text-white">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <h1 className="text-3xl md:text-5xl lg:text-[4.5rem] font-serif font-light tracking-tighter leading-[1.05] mb-5 drop-shadow-lg">
                 Modern Workspaces. <br />
                 <span className="italic text-[#60A5FA]">Timeless Execution.</span>
               </h1>
@@ -92,69 +93,54 @@ export default function Hero() {
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-lg md:text-xl text-gray-700 font-light tracking-wide max-w-2xl"
+              transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="text-sm md:text-base text-gray-200 font-light tracking-wide max-w-xl mb-8 drop-shadow-md"
             >
               We shape the physical environment of global enterprises through relentless engineering, absolute minimalism, and visionary design.
             </motion.p>
-          </div>
-
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 1.2 }}
-            className="flex flex-col gap-6"
-          >
-            <button 
-              onClick={() => router.push('/projects')}
-              className="group flex items-center justify-between gap-8 border border-black/20 bg-black/5 backdrop-blur-md px-8 py-5 hover:bg-black hover:text-white transition-all duration-700 w-64"
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.4 }}
+              className="flex flex-wrap items-center gap-4"
             >
-              <span className="uppercase tracking-[0.2em] text-xs font-medium">Explore Projects</span>
-              <FiArrowRight className="transform group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button 
-              onClick={() => setShowVideo(true)}
-              className="group flex items-center justify-between gap-8 border border-black/20 bg-black/5 backdrop-blur-md px-8 py-5 hover:bg-[#60A5FA] hover:border-[#60A5FA] hover:text-white transition-all duration-700 w-64"
-            >
-              <span className="uppercase tracking-[0.2em] text-xs font-medium">Watch Showreel</span>
-              <FiPlay className="transform transition-transform" />
-            </button>
-          </motion.div>
-        </div>
-      </motion.div>
-
-      {/* Floating Glassmorphism Element */}
-      <motion.div 
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.5, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute top-1/4 right-10 md:right-32 z-20"
-        style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]) }}
-      >
-        <div className="glass p-6 border-l border-t border-black/20 shadow-2xl backdrop-blur-xl bg-black/5 max-w-[200px]">
-          <div className="text-4xl font-serif text-black mb-2">150<span className="text-[#60A5FA]">+</span></div>
-          <div className="text-[10px] uppercase tracking-[0.2em] text-gray-600 leading-relaxed">
-            Enterprise HQs <br /> Delivered Globally
+              <button 
+                onClick={() => router.push('/projects')}
+                className="group flex items-center gap-3 bg-white text-black px-6 py-3 hover:bg-[#60A5FA] hover:text-white transition-colors duration-500 rounded-full shadow-lg"
+              >
+                <span className="uppercase tracking-[0.2em] text-[9px] md:text-[10px] font-medium">Explore Projects</span>
+                <FiArrowRight className="transform group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button 
+                onClick={() => setShowVideo(true)}
+                className="group flex items-center gap-3 border border-white/40 bg-black/30 backdrop-blur-sm text-white px-6 py-3 hover:border-white transition-colors duration-500 rounded-full"
+              >
+                <span className="uppercase tracking-[0.2em] text-[9px] md:text-[10px] font-medium">Watch Showreel</span>
+                <FiPlay className="transform group-hover:scale-110 transition-transform" />
+              </button>
+            </motion.div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
 
-      {/* Scroll Indicator */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-20"
-      >
-        <span className="text-[9px] uppercase tracking-[0.3em] text-gray-600">Scroll</span>
-        <div className="w-[1px] h-16 bg-black/20 relative overflow-hidden">
-          <motion.div 
-            className="absolute top-0 left-0 w-full h-1/2 bg-black"
-            animate={{ y: ["-100%", "200%"] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-          />
-        </div>
-      </motion.div>
+        {/* Stats/Metrics Element - Reduced size and minimalistic */}
+        <motion.div 
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute bottom-12 right-6 md:right-16 lg:right-24 z-20 flex-col gap-6 text-right hidden md:flex text-white"
+        >
+          <div>
+            <div className="text-2xl md:text-3xl font-serif mb-1 drop-shadow-lg">150<span className="text-[#60A5FA]">+</span></div>
+            <div className="text-[8px] md:text-[9px] uppercase tracking-[0.2em] text-gray-300">Enterprise HQs</div>
+          </div>
+          <div>
+            <div className="text-2xl md:text-3xl font-serif mb-1 drop-shadow-lg">20<span className="text-[#60A5FA]">+</span></div>
+            <div className="text-[8px] md:text-[9px] uppercase tracking-[0.2em] text-gray-300">Years Experience</div>
+          </div>
+        </motion.div>
+
+      </div> {/* End Capsule Container */}
 
       {/* Video Modal */}
       <AnimatePresence>
@@ -163,11 +149,11 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-white/90 backdrop-blur-sm"
+            className="fixed inset-0 z-[200] flex items-center justify-center bg-black/95 backdrop-blur-md"
           >
             <button 
               onClick={() => setShowVideo(false)}
-              className="absolute top-10 right-10 text-black hover:text-[#60A5FA] transition-colors p-2"
+              className="absolute top-10 right-10 text-white hover:text-[#60A5FA] transition-colors p-2"
             >
               <FiX className="w-8 h-8" />
             </button>
@@ -177,7 +163,7 @@ export default function Hero() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ delay: 0.1 }}
-              className="w-full max-w-5xl aspect-video bg-black overflow-hidden border border-black/10"
+              className="w-full max-w-5xl aspect-video bg-black overflow-hidden border border-white/10 rounded-2xl shadow-2xl"
             >
               <video 
                 src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" 

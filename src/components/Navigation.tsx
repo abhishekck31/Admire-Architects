@@ -8,18 +8,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX, FiArrowRight } from "react-icons/fi";
 
 const navLinks = [
-  { href: "/", label: "Home", image: "/hero_arch_1779118409602.png" },
-  { href: "/about", label: "About", image: "/project_1_1779118457708.png" },
-  { href: "/projects", label: "Projects", image: "/project_2_1779118501379.png" },
-  { href: "/services", label: "Services", image: "/hero_arch_1779118409602.png" },
-  { href: "/process", label: "Process", image: "/project_1_1779118457708.png" },
-  { href: "/clients", label: "Clients", image: "/project_2_1779118501379.png" },
-  { href: "/contact", label: "Contact", image: "/hero_arch_1779118409602.png" },
+  { href: "/", label: "Home", image: "/heroSectionImgs/CEOofficeHero.png" },
+  { href: "/about", label: "About", image: "/heroSectionImgs/CorporateMeetingHero.png" },
+  { href: "/projects", label: "Projects", image: "/heroSectionImgs/LoungeHero.png" },
+  { href: "/services", label: "Services", image: "/heroSectionImgs/OpenPlanHero.png" },
+  { href: "/process", label: "Process", image: "/heroSectionImgs/CEOofficeHero.png" },
+  { href: "/clients", label: "Clients", image: "/heroSectionImgs/CorporateMeetingHero.png" },
+  { href: "/contact", label: "Contact", image: "/heroSectionImgs/LoungeHero.png" },
 ];
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [hoveredLink, setHoveredLink] = useState(navLinks[0].href);
+  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
   // Close menu on route change
@@ -36,26 +37,55 @@ export default function Navigation() {
     }
   }, [isOpen]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const activeImage = navLinks.find(link => link.href === hoveredLink)?.image || navLinks[0].image;
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-[100] px-6 md:px-16 py-6 flex justify-between items-center pointer-events-auto">
-        <Link href="/" className="flex items-center gap-4 z-[101]">
-          <Image src="/logo.png" alt="Admire Architects Logo" width={80} height={80} className="object-contain mix-blend-multiply" />
-          <span className="text-xl md:text-2xl tracking-[0.2em] font-light uppercase mix-blend-difference text-white">
+      <nav 
+        className={`fixed top-4 left-4 right-4 md:left-10 md:right-10 z-[100] px-6 md:px-10 transition-all duration-500 flex justify-between items-center pointer-events-auto rounded-[2rem] ${
+          isScrolled ? "py-2 bg-white/95 backdrop-blur-md shadow-lg border border-black/5" : "py-3 md:py-4 bg-transparent"
+        }`}
+      >
+        <Link href="/" className="flex items-center gap-3 z-[101] group">
+          <Image src="/logo.png" alt="Admire Architects Logo" width={32} height={32} className="object-contain mix-blend-multiply transition-transform group-hover:scale-105" />
+          <span className="text-base md:text-lg tracking-[0.2em] font-light uppercase text-black">
             Admire <span className="font-medium">Architects</span>
           </span>
         </Link>
 
-        {/* Mobile & Desktop Hamburger */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="relative z-[101] text-3xl w-12 h-12 flex items-center justify-center hover:scale-110 transition-transform touch-manipulation mix-blend-difference text-white"
-          aria-label="Toggle Menu"
-        >
-          {isOpen ? <FiX /> : <FiMenu />}
-        </button>
+        {/* Action Buttons and Hamburger */}
+        <div className="flex items-center gap-6 z-[101]">
+          <div className={`hidden md:flex items-center gap-5 mr-1 transition-all duration-300 ${isOpen ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
+            <Link 
+              href="/projects" 
+              className="text-[9px] md:text-[10px] uppercase tracking-widest font-medium text-black hover:text-[#60A5FA] transition-colors"
+            >
+              Projects
+            </Link>
+            <Link 
+              href="/contact" 
+              className="text-[9px] md:text-[10px] uppercase tracking-widest font-medium px-5 py-2 rounded-full bg-black text-white hover:bg-[#60A5FA] transition-colors shadow-sm"
+            >
+              Contact
+            </Link>
+          </div>
+
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="relative text-xl md:text-2xl w-10 h-10 flex items-center justify-center hover:scale-110 transition-transform touch-manipulation text-black"
+            aria-label="Toggle Menu"
+          >
+            {isOpen ? <FiX /> : <FiMenu />}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -79,7 +109,7 @@ export default function Navigation() {
 
             {/* Hover Image Preview (Desktop Only) */}
             <div className="hidden md:block fixed top-0 right-0 w-[45vw] h-screen z-0">
-              <AnimatePresence mode="wait">
+               <AnimatePresence mode="wait">
                 <motion.div
                   key={hoveredLink}
                   initial={{ opacity: 0, scale: 1.05 }}
