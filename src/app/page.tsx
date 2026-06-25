@@ -362,20 +362,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-16 border-t border-black/10 bg-[#ffffff] text-[#000000] px-6 md:px-16 flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
-        <div className="flex items-center gap-6">
-          <Image src="/logo.png" alt="Admire Architects Logo" width={80} height={80} className="object-contain mix-blend-multiply" />
-          <div className="text-[10px] uppercase tracking-[0.2em] text-gray-500">
-            &copy; {new Date().getFullYear()} Admire Architects Pvt Ltd. All rights reserved.
-          </div>
-        </div>
-        <div className="flex gap-10 text-[10px] uppercase tracking-[0.2em] text-gray-500">
-          <a href="#" className="hover:text-black transition-colors">Instagram</a>
-          <a href="#" className="hover:text-black transition-colors">LinkedIn</a>
-          <a href="#" className="hover:text-black transition-colors">Behance</a>
-        </div>
-      </footer>
+
     </div>
   );
 }
