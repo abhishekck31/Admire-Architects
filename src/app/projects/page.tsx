@@ -126,12 +126,43 @@ function parseProject(str: string, category: string, index: number) {
     area = "Rs.7.5 Crore to 10 Crore";
   }
 
-  const images = [
-    "/heroSectionImgs/CEOofficeHero.png",
-    "/heroSectionImgs/CorporateMeetingHero.png",
-    "/heroSectionImgs/LoungeHero.png",
-    "/heroSectionImgs/OpenPlanHero.png"
-  ];
+  // Map to project images
+  let projectImages: string[] = [];
+  const lowerTitle = title.toLowerCase();
+  
+  if (lowerTitle.includes("dell") && location.toLowerCase().includes("chennai")) {
+    projectImages = [
+      "/Projects/DellChn/delldlf1.png", "/Projects/DellChn/delldlf2.png", 
+      "/Projects/DellChn/delldlf3.png", "/Projects/DellChn/delldlf4.png", 
+      "/Projects/DellChn/delldlf5.png"
+    ];
+  } else if (lowerTitle.includes("ibm") && (lowerTitle.includes("lab") || lowerTitle.includes("research") || lowerTitle.includes("food court"))) {
+    projectImages = [
+      "/Projects/IBMLabBlr/ibmlab1.png", "/Projects/IBMLabBlr/ibmlab2.png", 
+      "/Projects/IBMLabBlr/ibmlab3.png", "/Projects/IBMLabBlr/ibmlab4.png", 
+      "/Projects/IBMLabBlr/ibmlab5.png", "/Projects/IBMLabBlr/ibmlab6.png"
+    ];
+  } else if (lowerTitle.includes("quickplay")) {
+    projectImages = [
+      "/Projects/QuickPlay/quickplay1.png", "/Projects/QuickPlay/quickplay2.png", 
+      "/Projects/QuickPlay/quickplay3.png", "/Projects/QuickPlay/quickplay4.png", 
+      "/Projects/QuickPlay/quickplay5.png", "/Projects/QuickPlay/quickplay6.png"
+    ];
+  } else if (lowerTitle.includes("schneider")) {
+    projectImages = [
+      "/Projects/SchneiderBlr/SEBLR1.png", "/Projects/SchneiderBlr/SEBLR2.png", 
+      "/Projects/SchneiderBlr/SEBLR3.png", "/Projects/SchneiderBlr/SEBLR4.png", 
+      "/Projects/SchneiderBlr/SEBLR5.png"
+    ];
+  } else if (lowerTitle.includes("truven")) {
+    projectImages = [
+      "/Projects/TruvenHealthImages/TruvenHealth1.png", "/Projects/TruvenHealthImages/TruvenHealth2.png", 
+      "/Projects/TruvenHealthImages/TruvenHealth3.png", "/Projects/TruvenHealthImages/TruvenHealth6.png", 
+      "/Projects/TruvenHealthImages/TruvenHealth14.png", "/Projects/TruvenHealthImages/TruvenHealth15.png"
+    ];
+  }
+
+  const mainImage = projectImages.length > 0 ? projectImages[0] : null;
 
   return {
     id: `${category.toLowerCase().replace(/[^a-z]/g, '')}-${index}`,
@@ -139,7 +170,8 @@ function parseProject(str: string, category: string, index: number) {
     location,
     area,
     category,
-    image: images[index % images.length],
+    image: mainImage,
+    allImages: projectImages,
     description: `Enterprise-scale corporate architecture and interior project located in ${location}. Delivered by Admire Architects Pvt Ltd focusing on high-efficiency workspace design and structural precision.`
   }
 }
@@ -204,13 +236,21 @@ export default function ProjectsShowcase() {
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="absolute inset-0 w-full h-full"
           >
-            <Image
-              src={activeProject.image}
-              alt={activeProject.title}
-              fill
-              className="object-cover"
-              priority
-            />
+            {activeProject.image ? (
+              <Image
+                src={activeProject.image}
+                alt={activeProject.title}
+                fill
+                className="object-cover"
+                priority
+              />
+            ) : (
+              <div className="absolute inset-0 bg-gray-900 flex flex-col items-center justify-center">
+                <div className="w-16 h-16 border-t border-l border-[#60A5FA]/40 rounded-tl-xl mb-4 opacity-50" />
+                <span className="text-gray-400 uppercase tracking-[0.3em] font-light text-sm z-10">Images Coming Soon</span>
+                <div className="w-16 h-16 border-b border-r border-[#60A5FA]/40 rounded-br-xl mt-4 opacity-50" />
+              </div>
+            )}
             {/* Architectural Overlays */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-transparent" />

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { FiArrowRight, FiPlay, FiX } from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 
 const heroImages = [
@@ -16,7 +16,6 @@ const heroImages = [
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
-  const [showVideo, setShowVideo] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
   // Image slider effect - changes every 4 seconds
@@ -76,9 +75,9 @@ export default function Hero() {
         {/* Main Content inside the capsule */}
         <motion.div 
           style={{ opacity }} 
-          className="relative z-20 w-full max-w-[90rem] mx-auto px-6 md:px-16 lg:px-24 flex flex-col justify-center h-full"
+          className="relative z-20 w-full max-w-[90rem] mx-auto px-6 md:px-16 lg:px-24 flex flex-col lg:flex-row justify-center lg:justify-between items-center h-full"
         >
-          <div className="max-w-3xl text-white">
+          <div className="max-w-3xl text-white lg:w-1/2">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -112,13 +111,39 @@ export default function Hero() {
                 <span className="uppercase tracking-[0.2em] text-[9px] md:text-[10px] font-medium">Explore Projects</span>
                 <FiArrowRight className="transform group-hover:translate-x-1 transition-transform" />
               </button>
-              <button 
-                onClick={() => setShowVideo(true)}
-                className="group flex items-center gap-3 border border-white/40 bg-black/30 backdrop-blur-sm text-white px-6 py-3 hover:border-white transition-colors duration-500 rounded-full"
-              >
-                <span className="uppercase tracking-[0.2em] text-[9px] md:text-[10px] font-medium">Watch Showreel</span>
-                <FiPlay className="transform group-hover:scale-110 transition-transform" />
-              </button>
+            </motion.div>
+          </div>
+
+          {/* Animated Project Showcase Cluster */}
+          <div className="hidden lg:flex relative w-1/2 h-full items-center justify-center pointer-events-none">
+            <motion.div
+               animate={{ y: [0, -15, 0] }}
+               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+               className="absolute z-10 -ml-40 mt-10"
+            >
+              <div className="relative w-64 h-80 rounded-2xl overflow-hidden border border-white/20 shadow-2xl">
+                <Image src="/heroSectionImgs/LoungeHero.png" fill className="object-cover" alt="Project 1" />
+              </div>
+            </motion.div>
+            
+            <motion.div
+               animate={{ y: [0, 15, 0] }}
+               transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+               className="absolute z-20"
+            >
+              <div className="relative w-72 h-96 rounded-2xl overflow-hidden border border-white/30 shadow-2xl">
+                <Image src="/heroSectionImgs/OpenPlanHero.png" fill className="object-cover" alt="Project 2" />
+              </div>
+            </motion.div>
+            
+            <motion.div
+               animate={{ y: [0, -10, 0] }}
+               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+               className="absolute z-10 ml-48 -mt-20"
+            >
+              <div className="relative w-56 h-72 rounded-2xl overflow-hidden border border-white/20 shadow-2xl">
+                <Image src="/heroSectionImgs/CEOofficeHero.png" fill className="object-cover" alt="Project 3" />
+              </div>
             </motion.div>
           </div>
         </motion.div>
@@ -142,39 +167,7 @@ export default function Hero() {
 
       </div> {/* End Capsule Container */}
 
-      {/* Video Modal */}
-      <AnimatePresence>
-        {showVideo && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] flex items-center justify-center bg-black/95 backdrop-blur-md"
-          >
-            <button 
-              onClick={() => setShowVideo(false)}
-              className="absolute top-10 right-10 text-white hover:text-[#60A5FA] transition-colors p-2"
-            >
-              <FiX className="w-8 h-8" />
-            </button>
-            
-            <motion.div 
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ delay: 0.1 }}
-              className="w-full max-w-5xl aspect-video bg-black overflow-hidden border border-white/10 rounded-2xl shadow-2xl"
-            >
-              <video 
-                src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" 
-                controls 
-                autoPlay 
-                className="w-full h-full object-cover"
-              />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
     </section>
   );
 }
