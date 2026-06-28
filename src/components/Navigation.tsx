@@ -55,7 +55,7 @@ export default function Navigation() {
         }`}
       >
         <Link href="/" className="flex items-center gap-3 z-[101] group">
-          <Image src="/logo.png" alt="Admire Architects Logo" width={32} height={32} className="object-contain mix-blend-multiply transition-transform group-hover:scale-105" />
+          {/* <Image src="/logo.png" alt="Admire Architects Logo" width={32} height={32} className="object-contain mix-blend-multiply transition-transform group-hover:scale-105" /> */}
           <span className="text-base md:text-lg tracking-[0.2em] font-light uppercase text-black">
             Admire <span className="font-medium">Architects</span>
           </span>
@@ -118,13 +118,13 @@ export default function Navigation() {
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                   className="absolute inset-0"
                 >
-                  <Image
+                  {/* <Image
                     src={activeImage}
                     alt="Preview"
                     fill
                     className="object-cover grayscale opacity-30 mix-blend-screen"
                     priority
-                  />
+                  /> */}
                   {/* Fade mask for the image to blend into the menu */}
                   <div className="absolute inset-0 bg-gradient-to-r from-[#ffffff] via-[#ffffff]/50 to-transparent" />
                 </motion.div>

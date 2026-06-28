@@ -4,183 +4,9 @@ import { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiArrowRight, FiPlus, FiMinus, FiMaximize2, FiMapPin, FiBox, FiSearch, FiFilter } from "react-icons/fi";
+import { FiArrowRight, FiPlus, FiMinus, FiMaximize2, FiMapPin, FiBox, FiSearch, FiFilter, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
-const CATEGORIES = ["Design & PMC", "Turnkey Projects", "Latest Projects"];
-
-const RAW_DESIGN_PMC = [
-  "DELL, Hyderabad (40,000 SFT)",
-  "TARGET Services India, Bangalore (1,50,000 SFT)",
-  "CISCO SYSTEMS, Cafeteria, Bannerghatta Road, Bangalore (13,000 SFT)",
-  "CORPORATE OFFICE FOR M/S.SCDC, Bangalore (60,000 SFT)",
-  "INTEGRATED TOWNSHIP, Mysore (70 Acres)",
-  "Integrated Township, Mysore (200 Acres) – With KHB",
-  "First source, Millers Road, Bangalore (20,000 SFT)",
-  "CGI Information Systems, Electronic City, Bangalore (1,000,000 SFT)",
-  "DELL, Domlur (1,10,000 SFT)",
-  "Dell, LAB (6000 SFT)",
-  "Dell – CV Raman Nagar (55,000 SFT)",
-  "IBM India Research Laboratory (4500 SFT)",
-  "IBM, Client Briefing Centre, EGL, Bangalore – 7,500 SFT",
-  "IBM Sterling Commerce (70,000 SFT)",
-  "eMIDS Bangalore (55,000 SFT)",
-  "Aruba Networks Bangalore (36,000 SFT)",
-  "Synchronoss Technologies Bangalore (40,000 SFT)",
-  "Collabera (33,000 SFT)",
-  "Symphony Teleca Bangalore (3,00,000 SFT)",
-  "Dell DLF Chennai (50,000 SFT)",
-  "Dell Ambit Tech Park (50,000 SFT)",
-  "IBM D1&D4 Retro Fit Works (25,000 SFT)",
-  "IBM Food Court & LAB (20,000 SFT)",
-  "Quickplay Chennai (10,000 SFT)"
-];
-
-const RAW_TURNKEY = [
-  "IBM Collaboration Centre, Bangalore",
-  "Genpact India, Pritech Park, Bangalore (50,000 SFT)",
-  "Firstsource, Pritech Park, Bangalore (25,000 SFT)",
-  "Genpact, DLF Hyderabad (50,000 SFT)",
-  "Genpact, Pocharam Hyderabad (30,000 SFT)",
-  "InMobi Bangalore (75,000 SFT)",
-  "Retro-fit Projects (Project Value Rs.7.5 Crore to 10 Crore)",
-  "Quickplay Chennai (10,000 SFT)",
-  "Airtel Data Centre Mysore (1000 SFT)",
-  "IBM Prince Info City Chennai (30,000 SFT)",
-  "UBQ Technologies Bangalore (11,000 SFT)",
-  "Thought Focus Bangalore (25,000 SFT)",
-  "Concentrix Pune (6500 SFT)",
-  "Concentrix Bangalore (7000 SFT)",
-  "IBM Food Court Bangalore (15,000 SFT)",
-  "Truven Health Analytics Hyderabad (32,000 SFT)",
-  "Truven Health Analytics Hyderabad (16,000 SFT)",
-  "Concentrix Hyderabad (8000 SFT)",
-  "Firstsource Chennai (25,000 SFT)",
-  "Cognizant Bangalore (50,000 SFT)",
-  "Cognizant Chennai (12,000 SFT)",
-  "Schneider Electric Hyderabad (25,000 SFT)",
-  "Schneider, Attibele Bangalore (45,000 SFT)",
-  "Schneider, Marathahalli Bangalore (50,000 SFT)",
-  "IBM Automation Lab (5000 SFT)"
-];
-
-const RAW_LATEST = [
-  "SJR Union City, Whitefield, Bangalore",
-  "Black Hawk, Domlur, Bangalore",
-  "Genpact, Surya Park, Electronic City, Bangalore",
-  "Genpact, SEZ Bellandur, Bangalore",
-  "Blueprint Technologies, Manyata Tech Park, Bangalore",
-  "Everest, Manyata Tech Park, Bangalore",
-  "ZS Technologies, Manyata Tech Park, Bangalore",
-  "Daimler Truck, Whitefield, Bangalore",
-  "Mercedes Benz, Whitefield, Bangalore",
-  "Nexer, Manyata Tech Park, Bangalore",
-  "ParentPay, Manyata Tech Park, Bangalore",
-  "Zitro India, Whitefield, Bangalore",
-  "Prestige Golfshire Villa, Nandi Hills, Bangalore",
-  "Google Millennium, 1 Shobha, Bangalore",
-  "Elastic Technologies, Domlur, Bangalore",
-  "Maximus, SJR Primeco, Arekere, Bangalore",
-  "Resillion, SJR Primeco, Arekere, Bangalore",
-  "Rocketlane, Perungudi, Chennai",
-  "Brillio, Perungudi, Chennai",
-  "Faiser, Perungudi, Chennai",
-  "ZS, Perungudi, Chennai",
-  "GIP, Common Area, Perungudi, Chennai",
-  "HealthMinds @ Yeshwanthpur, Bangalore",
-  "GIP 13th Floor, Chennai",
-  "Celonis @ Table Space Tower, Bangalore",
-  "PWC, Elnath Building, PTP, Bangalore",
-  "Table Space Office, Bangalore",
-  "Green Space Office @ Yeshwanthpur, Bangalore",
-  "Green Space Factory @ Nelamangala, Bangalore"
-];
-
-function parseProject(str: string, category: string, index: number) {
-  let title = str;
-  let area = "Undisclosed";
-  let location = "Multiple Locations";
-  
-  // Extract area if present in parentheses
-  const areaMatch = str.match(/\(([^)]+)\)/);
-  if (areaMatch) {
-    area = areaMatch[1];
-    title = title.replace(`(${area})`, '').trim();
-  }
-  
-  // Extract location if present after comma
-  const parts = title.split(',');
-  if (parts.length > 1) {
-    location = parts.pop()?.trim() || "";
-    title = parts.join(',').trim();
-  } else {
-    // If no comma, check if Bangalore/Chennai/Hyderabad is in the title
-    if (title.toLowerCase().includes("bangalore")) { location = "Bangalore"; title = title.replace(/bangalore/i, "").trim(); }
-    else if (title.toLowerCase().includes("chennai")) { location = "Chennai"; title = title.replace(/chennai/i, "").trim(); }
-    else if (title.toLowerCase().includes("hyderabad")) { location = "Hyderabad"; title = title.replace(/hyderabad/i, "").trim(); }
-  }
-  
-  // Clean up stray hyphens or commas at the end
-  title = title.replace(/[-,\s]+$/, '');
-  
-  if (location === "Multiple Locations" && title === "Retro-fit Projects") {
-    area = "Rs.7.5 Crore to 10 Crore";
-  }
-
-  // Map to project images
-  let projectImages: string[] = [];
-  const lowerTitle = title.toLowerCase();
-  
-  if (lowerTitle.includes("dell") && location.toLowerCase().includes("chennai")) {
-    projectImages = [
-      "/Projects/DellChn/delldlf1.png", "/Projects/DellChn/delldlf2.png", 
-      "/Projects/DellChn/delldlf3.png", "/Projects/DellChn/delldlf4.png", 
-      "/Projects/DellChn/delldlf5.png"
-    ];
-  } else if (lowerTitle.includes("ibm") && (lowerTitle.includes("lab") || lowerTitle.includes("research") || lowerTitle.includes("food court"))) {
-    projectImages = [
-      "/Projects/IBMLabBlr/ibmlab1.png", "/Projects/IBMLabBlr/ibmlab2.png", 
-      "/Projects/IBMLabBlr/ibmlab3.png", "/Projects/IBMLabBlr/ibmlab4.png", 
-      "/Projects/IBMLabBlr/ibmlab5.png", "/Projects/IBMLabBlr/ibmlab6.png"
-    ];
-  } else if (lowerTitle.includes("quickplay")) {
-    projectImages = [
-      "/Projects/QuickPlay/quickplay1.png", "/Projects/QuickPlay/quickplay2.png", 
-      "/Projects/QuickPlay/quickplay3.png", "/Projects/QuickPlay/quickplay4.png", 
-      "/Projects/QuickPlay/quickplay5.png", "/Projects/QuickPlay/quickplay6.png"
-    ];
-  } else if (lowerTitle.includes("schneider")) {
-    projectImages = [
-      "/Projects/SchneiderBlr/SEBLR1.png", "/Projects/SchneiderBlr/SEBLR2.png", 
-      "/Projects/SchneiderBlr/SEBLR3.png", "/Projects/SchneiderBlr/SEBLR4.png", 
-      "/Projects/SchneiderBlr/SEBLR5.png"
-    ];
-  } else if (lowerTitle.includes("truven")) {
-    projectImages = [
-      "/Projects/TruvenHealthImages/TruvenHealth1.png", "/Projects/TruvenHealthImages/TruvenHealth2.png", 
-      "/Projects/TruvenHealthImages/TruvenHealth3.png", "/Projects/TruvenHealthImages/TruvenHealth6.png", 
-      "/Projects/TruvenHealthImages/TruvenHealth14.png", "/Projects/TruvenHealthImages/TruvenHealth15.png"
-    ];
-  }
-
-  const mainImage = projectImages.length > 0 ? projectImages[0] : null;
-
-  return {
-    id: `${category.toLowerCase().replace(/[^a-z]/g, '')}-${index}`,
-    title,
-    location,
-    area,
-    category,
-    image: mainImage,
-    allImages: projectImages,
-    description: `Enterprise-scale corporate architecture and interior project located in ${location}. Delivered by Admire Architects Pvt Ltd focusing on high-efficiency workspace design and structural precision.`
-  }
-}
-
-const PROJECTS_DATA = [
-  ...RAW_DESIGN_PMC.map((p, i) => parseProject(p, "Design & PMC", i)),
-  ...RAW_TURNKEY.map((p, i) => parseProject(p, "Turnkey Projects", i)),
-  ...RAW_LATEST.map((p, i) => parseProject(p, "Latest Projects", i)),
-];
+import { CATEGORIES, PROJECTS_DATA } from "@/data/projects";
 
 export default function ProjectsShowcase() {
   const [activeCategory, setActiveCategory] = useState(CATEGORIES[0]);
@@ -197,17 +23,25 @@ export default function ProjectsShowcase() {
     });
   }, [activeCategory, searchQuery]);
 
-  const [activeProject, setActiveProject] = useState(PROJECTS_DATA[0]);
-  const [expandedId, setExpandedId] = useState<string | null>(PROJECTS_DATA[0].id);
+  const projectsWithImages = filteredProjects.filter(p => p.image);
+  const projectsWithoutImages = filteredProjects.filter(p => !p.image);
+
+  // Find initial project with image
+  const initialDefaultProject = PROJECTS_DATA.find(p => p.category === CATEGORIES[0] && p.image) || PROJECTS_DATA[0];
+
+  const [activeProject, setActiveProject] = useState(initialDefaultProject);
+  const [expandedId, setExpandedId] = useState<string | null>(initialDefaultProject.id);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Handle Category Change
   const handleCategoryChange = (category: string) => {
     setActiveCategory(category);
-    // Find first project in new filtered list (wait for re-render, so calculate it here)
-    const firstProject = PROJECTS_DATA.find(p => p.category === category);
+    // Find first project in new category that has an image, fallback to any project in category
+    const firstProject = PROJECTS_DATA.find(p => p.category === category && p.image) || PROJECTS_DATA.find(p => p.category === category);
     if (firstProject) {
       setActiveProject(firstProject);
       setExpandedId(firstProject.id);
+      setCurrentImageIndex(0);
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -216,10 +50,11 @@ export default function ProjectsShowcase() {
   const handleProjectClick = (project: typeof PROJECTS_DATA[0]) => {
     if (expandedId === project.id) {
       setExpandedId(null);
-      return; 
+    } else {
+      setExpandedId(project.id);
+      setActiveProject(project);
+      setCurrentImageIndex(0);
     }
-    setExpandedId(project.id);
-    setActiveProject(project);
   };
 
   return (
@@ -236,14 +71,64 @@ export default function ProjectsShowcase() {
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="absolute inset-0 w-full h-full"
           >
-            {activeProject.image ? (
-              <Image
-                src={activeProject.image}
-                alt={activeProject.title}
-                fill
-                className="object-cover"
-                priority
-              />
+            {activeProject.allImages && activeProject.allImages.length > 0 ? (
+              <div className="absolute inset-0 group/carousel">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentImageIndex}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="absolute inset-0 w-full h-full"
+                  >
+                    <Image
+                      src={activeProject.allImages[currentImageIndex]}
+                      alt={activeProject.title}
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                  </motion.div>
+                </AnimatePresence>
+                
+                {/* Carousel Controls */}
+                {activeProject.allImages.length > 1 && (
+                  <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 flex justify-between px-4 z-30 opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
+                    <button 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setCurrentImageIndex(prev => prev === 0 ? activeProject.allImages.length - 1 : prev - 1);
+                      }}
+                      className="w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-[#60A5FA] transition-colors"
+                    >
+                      <FiChevronLeft size={24} />
+                    </button>
+                    <button 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setCurrentImageIndex(prev => prev === activeProject.allImages.length - 1 ? 0 : prev + 1);
+                      }}
+                      className="w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-[#60A5FA] transition-colors"
+                    >
+                      <FiChevronRight size={24} />
+                    </button>
+                  </div>
+                )}
+                {/* Dots indicator */}
+                {activeProject.allImages.length > 1 && (
+                  <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-2 z-30">
+                    {activeProject.allImages.map((_, idx) => (
+                      <div 
+                        key={idx}
+                        className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${idx === currentImageIndex ? 'bg-[#60A5FA] w-4' : 'bg-white/50'}`}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
             ) : (
               <div className="absolute inset-0 bg-gray-900 flex flex-col items-center justify-center">
                 <div className="w-16 h-16 border-t border-l border-[#60A5FA]/40 rounded-tl-xl mb-4 opacity-50" />
@@ -359,7 +244,7 @@ export default function ProjectsShowcase() {
               </motion.div>
             )}
             
-            {filteredProjects.map((project, i) => {
+            {projectsWithImages.map((project, i) => {
               const isExpanded = expandedId === project.id;
               
               return (
@@ -425,7 +310,7 @@ export default function ProjectsShowcase() {
 
                           {/* Action Button */}
                           <Link href={`/projects/${project.id}`} className="inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] border-b border-[#60A5FA] pb-1 text-black hover:text-[#60A5FA] transition-colors duration-500 group">
-                            Explore Case Study <FiArrowRight className="transform group-hover:translate-x-1 transition-transform" />
+                            View full project <FiArrowRight className="transform group-hover:translate-x-1 transition-transform" />
                           </Link>
                         </div>
                       </motion.div>
@@ -436,6 +321,21 @@ export default function ProjectsShowcase() {
             })}
           </AnimatePresence>
         </div>
+
+        {/* Other Projects List */}
+        {projectsWithoutImages.length > 0 && (
+          <div className="mt-20 pt-12 border-t border-black/10">
+            <h2 className="text-2xl font-serif font-light mb-8 text-black">Other Projects</h2>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {projectsWithoutImages.map((project) => (
+                <li key={project.id} className="text-sm font-light text-gray-600 flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 mt-1.5 flex-shrink-0 rounded-full bg-[#60A5FA]/60"></span>
+                  <span className="leading-relaxed">{project.title}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
       </div>
 

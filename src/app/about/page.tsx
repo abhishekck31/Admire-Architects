@@ -36,13 +36,13 @@ export default function AboutPage() {
       {/* SECTION 1 — HERO SECTION */}
       <section ref={containerRef} className="relative h-screen w-full flex items-center justify-center overflow-hidden">
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="absolute inset-[-5%] z-0">
-          <Image
+          {/* <Image
             src="/hero_arch_1779118409602.png"
             alt="Cinematic Architecture"
             fill
             className="object-cover scale-105 opacity-50 grayscale"
             priority
-          />
+          /> */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#ffffff]/80 via-[#ffffff]/50 to-[#ffffff]" />
         </motion.div>
         
@@ -139,12 +139,12 @@ export default function AboutPage() {
             >
               <div className="absolute inset-0 bg-[#60A5FA]/5 translate-x-4 translate-y-4 md:translate-x-6 md:translate-y-6 border border-[#60A5FA]/20" />
               <div className="relative h-full w-full bg-[#f8f9fa] overflow-hidden group">
-                <Image 
+                {/* <Image 
                   src="/project_2_1779118501379.png" 
                   alt="Corporate Architecture" 
                   fill 
                   className="object-cover grayscale group-hover:scale-105 transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] opacity-70" 
-                />
+                /> */}
                 
                 {/* Floating Badges */}
                 <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 flex flex-col gap-3 md:gap-4 z-10">
@@ -261,7 +261,7 @@ export default function AboutPage() {
       {/* SECTION 5 — COMPANY APPROACH */}
       <section className="py-40 md:py-56 bg-[#f8f9fa] relative overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image src="/hero_arch_1779118409602.png" alt="Approach Texture" fill className="object-cover opacity-[0.03] grayscale" />
+          {/* <Image src="/hero_arch_1779118409602.png" alt="Approach Texture" fill className="object-cover opacity-[0.03] grayscale" /> */}
         </div>
         <div className="max-w-4xl mx-auto px-6 md:px-16 text-center relative z-10">
           <motion.div
@@ -357,7 +357,7 @@ export default function AboutPage() {
       {/* SECTION 8 — CALL TO ACTION */}
       <section className="py-40 md:py-56 relative bg-[#ffffff] flex items-center justify-center text-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image src="/project_1_1779118457708.png" alt="Let's Build" fill className="object-cover opacity-20 grayscale" />
+          {/* <Image src="/project_1_1779118457708.png" alt="Let's Build" fill className="object-cover opacity-20 grayscale" /> */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#ffffff] via-transparent to-[#ffffff]" />
         </div>
         

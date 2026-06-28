@@ -61,13 +61,13 @@ export default function ServicesIndex() {
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="absolute inset-0"
           >
-            <Image
+            {/* <Image
               src={activeService.image}
               alt={activeService.title}
               fill
               className="object-cover grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-1000"
               priority
-            />
+            /> */}
             {/* Cinematic Gradient Mask */}
             <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
           </motion.div>

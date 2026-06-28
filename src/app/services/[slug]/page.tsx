@@ -39,7 +39,7 @@ export default function ServiceDetail({ params }: { params: Promise<{ slug: stri
             className="hidden md:block relative w-1/3 h-[40vh]"
           >
              {/* A subtle, architectural structural image */}
-             <Image src="/hero_arch_1779118409602.png" alt="Architecture" fill className="object-cover grayscale" priority />
+             {/* <Image src="/hero_arch_1779118409602.png" alt="Architecture" fill className="object-cover grayscale" priority /> */}
           </motion.div>
         </div>
       </section>
@@ -92,7 +92,7 @@ export default function ServiceDetail({ params }: { params: Promise<{ slug: stri
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32">
             <div className="relative h-[60vh] bg-secondary hidden md:block">
-              <Image src="/project_1_1779118457708.png" alt="Methodology" fill className="object-cover opacity-60" />
+              {/* <Image src="/project_1_1779118457708.png" alt="Methodology" fill className="object-cover opacity-60" /> */}
             </div>
 
             <div className="flex flex-col justify-center space-y-12">

@@ -122,7 +122,7 @@ export default function Hero() {
                className="absolute z-10 -ml-40 mt-10"
             >
               <div className="relative w-64 h-80 rounded-2xl overflow-hidden border border-white/20 shadow-2xl">
-                <Image src="/heroSectionImgs/LoungeHero.png" fill className="object-cover" alt="Project 1" />
+                {/* <Image src="/heroSectionImgs/LoungeHero.png" fill className="object-cover" alt="Project 1" /> */}
               </div>
             </motion.div>
             
@@ -132,7 +132,7 @@ export default function Hero() {
                className="absolute z-20"
             >
               <div className="relative w-72 h-96 rounded-2xl overflow-hidden border border-white/30 shadow-2xl">
-                <Image src="/heroSectionImgs/OpenPlanHero.png" fill className="object-cover" alt="Project 2" />
+                {/* <Image src="/heroSectionImgs/OpenPlanHero.png" fill className="object-cover" alt="Project 2" /> */}
               </div>
             </motion.div>
             
@@ -142,7 +142,7 @@ export default function Hero() {
                className="absolute z-10 ml-48 -mt-20"
             >
               <div className="relative w-56 h-72 rounded-2xl overflow-hidden border border-white/20 shadow-2xl">
-                <Image src="/heroSectionImgs/CEOofficeHero.png" fill className="object-cover" alt="Project 3" />
+                {/* <Image src="/heroSectionImgs/CEOofficeHero.png" fill className="object-cover" alt="Project 3" /> */}
               </div>
             </motion.div>
           </div>

@@ -20,7 +20,7 @@ const CLIENT_LOGOS = [
   { name: "Dell", src: "/ClientLogosImgs/dell.png" },
   { name: "Emids", src: "/ClientLogosImgs/emids.png" },
   { name: "Genpact", src: "/ClientLogosImgs/genpact.png" },
-  { name: "Goldman Sachs", src: "/ClientLogosImgs/goldmnSachs.png" },
+  { name: "Goldman Sachs", src: "/ClientLogosImgs/goldmanSachs.png" },
   { name: "HP", src: "/ClientLogosImgs/hp.png" },
   { name: "IBM", src: "/ClientLogosImgs/ibm.png" },
   { name: "Mercedes-Benz", src: "/ClientLogosImgs/mercedesbenz.png" },
@@ -168,12 +168,12 @@ export default function ClientsPage() {
               className="group"
             >
               <div className="relative h-[60vh] w-full overflow-hidden mb-8 bg-secondary">
-                <Image
+                {/* <Image
                   src="/heroSectionImgs/CEOofficeHero.png"
                   alt="IBM Global Campus"
                   fill
                   className="object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-                />
+                /> */}
               </div>
               <div className="flex justify-between items-start">
                 <div>
@@ -197,12 +197,12 @@ export default function ClientsPage() {
               className="group md:mt-24"
             >
               <div className="relative h-[60vh] w-full overflow-hidden mb-8 bg-secondary">
-                <Image
+                {/* <Image
                   src="/heroSectionImgs/CorporateMeetingHero.png"
                   alt="Mercedes-Benz R&D"
                   fill
                   className="object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-                />
+                /> */}
               </div>
               <div className="flex justify-between items-start">
                 <div>

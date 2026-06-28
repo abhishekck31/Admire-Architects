@@ -43,13 +43,13 @@ export default function RevealImage({ src, alt, className }: { src: string, alt:
 
   return (
     <div ref={containerRef} className={`relative overflow-hidden ${className}`}>
-      <Image
+      {/* <Image
         ref={imageRef}
         src={src}
         alt={alt}
         fill
         className="object-cover"
-      />
+      /> */}
     </div>
   );
 }

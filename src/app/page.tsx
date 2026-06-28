@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform, AnimatePresence, Variants, useInView, 
 import { useRef, useEffect, useState } from "react";
 import { FiArrowRight, FiMenu } from "react-icons/fi";
 import Hero from "@/components/Hero";
+import { PROJECTS_DATA } from "@/data/projects";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -105,7 +106,7 @@ export default function Home() {
               { name: "Dell", src: "/ClientLogosImgs/dell.png" },
               { name: "Emids", src: "/ClientLogosImgs/emids.png" },
               { name: "Genpact", src: "/ClientLogosImgs/genpact.png" },
-              { name: "Goldman Sachs", src: "/ClientLogosImgs/goldmnSachs.png" },
+              { name: "Goldman Sachs", src: "/ClientLogosImgs/goldmanSachs.png" },
               { name: "HP", src: "/ClientLogosImgs/hp.png" },
               { name: "IBM", src: "/ClientLogosImgs/ibm.png" },
               { name: "Mercedes-Benz", src: "/ClientLogosImgs/mercedesbenz.png" },
@@ -176,51 +177,35 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-32 px-6 md:px-16 lg:px-24">
-          <motion.div 
-            initial={{ opacity: 0, y: 100 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-            className="group cursor-pointer"
-          >
-            <div className="relative h-[80vh] w-full overflow-hidden mb-8 bg-secondary">
-              <Image
-                src="/heroSectionImgs/CEOofficeHero.png"
-                alt="TARGET Services India"
-                fill
-                className="object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-              />
-            </div>
-            <div className="flex justify-between items-start">
-              <div>
-                <h3 className="text-3xl font-serif font-light mb-3">TARGET Services India</h3>
-                <p className="text-muted-foreground uppercase tracking-[0.2em] text-xs">Bangalore / 1,50,000 SFT</p>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 100 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="group cursor-pointer md:mt-48"
-          >
-            <div className="relative h-[80vh] w-full overflow-hidden mb-8 bg-secondary">
-              <Image
-                src="/heroSectionImgs/CorporateMeetingHero.png"
-                alt="DELL Hyderabad"
-                fill
-                className="object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-              />
-            </div>
-            <div className="flex justify-between items-start">
-              <div>
-                <h3 className="text-3xl font-serif font-light mb-3">DELL Hyderabad Campus</h3>
-                <p className="text-muted-foreground uppercase tracking-[0.2em] text-xs">Hyderabad / 40,000 SFT</p>
-              </div>
-            </div>
-          </motion.div>
+          {Array.from(new Map(PROJECTS_DATA.filter(p => p.image).map(p => [p.title, p])).values()).slice(0, 2).map((project, index) => (
+            <Link href={`/projects/${project.id}`} key={project.id}>
+              <motion.div 
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: index % 2 === 0 ? 0 : 0.2 }}
+                className={`group cursor-pointer ${index % 2 !== 0 ? 'md:mt-48' : ''}`}
+              >
+                <div className="relative h-[60vh] md:h-[80vh] w-full overflow-hidden mb-8 bg-secondary rounded-xl">
+                  {project.image && (
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
+                </div>
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="text-2xl md:text-3xl font-serif font-light mb-3 text-black group-hover:text-[#60A5FA] transition-colors">{project.title}</h3>
+                    <p className="text-gray-500 uppercase tracking-[0.2em] text-xs">{project.location} / {project.area}</p>
+                  </div>
+                </div>
+              </motion.div>
+            </Link>
+          ))}
         </div>
       </section>
 
