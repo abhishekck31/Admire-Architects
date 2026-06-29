@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Blocks, Handshake, Scale, Webhook, CodeXml, CreditCard } from "lucide-react";
+import { Blocks, Handshake, Scale, Webhook, CodeXml, CreditCard, Mail, Phone } from "lucide-react";
 
 export const Footer = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => {
@@ -102,6 +102,18 @@ export const Footer = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTML
                     <a href="/contact" className="text-sm transition-all text-foreground/60 hover:text-foreground/90 group flex items-center">
                       <CreditCard className="inline stroke-2 h-4 w-4 mr-2 transition-all stroke-foreground/60 group-hover:stroke-foreground/90" />
                       Get in Touch
+                    </a>
+                  </li>
+                  <li>
+                    <a href="mailto:palani.m@admiregrp.in" className="text-sm transition-all text-foreground/60 hover:text-foreground/90 group flex items-center">
+                      <Mail className="inline stroke-2 h-4 w-4 mr-2 transition-all stroke-foreground/60 group-hover:stroke-foreground/90" />
+                      palani.m@admiregrp.in
+                    </a>
+                  </li>
+                  <li>
+                    <a href="tel:9448370989" className="text-sm transition-all text-foreground/60 hover:text-foreground/90 group flex items-center">
+                      <Phone className="inline stroke-2 h-4 w-4 mr-2 transition-all stroke-foreground/60 group-hover:stroke-foreground/90" />
+                      9448370989
                     </a>
                   </li>
                 </ul>
