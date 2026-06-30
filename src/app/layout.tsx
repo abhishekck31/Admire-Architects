@@ -13,8 +13,14 @@ export const metadata: Metadata = {
   title: "ADMIRE ARCHITECTS PVT LTD | Modern Luxury Architecture",
   description: "World-class corporate architecture firm specializing in modern, luxury minimalism.",
   icons: {
-    icon: '/logo.png',
+    icon: [
+      { url: '/favicon/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/favicon/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon/favicon.ico' },
+    ],
+    apple: '/favicon/apple-touch-icon.png',
   },
+  manifest: '/favicon/site.webmanifest',
 };
 
 export default function RootLayout({
