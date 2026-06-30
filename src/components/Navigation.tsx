@@ -181,10 +181,16 @@ export default function Navigation() {
                 </div>
                 <div>
                   <h4 className="text-[10px] uppercase tracking-[0.3em] text-[#60A5FA] mb-4">Inquiries</h4>
-                  <a href="mailto:contact@admirearchitects.com" className="font-light text-sm md:text-base text-gray-700 hover:text-[#60A5FA] transition-colors relative inline-block group">
-                    contact@admirearchitects.com
-                    <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#60A5FA] group-hover:w-full transition-all duration-500" />
-                  </a>
+                  <div className="flex flex-col gap-3">
+                    <a href="mailto:palani.m@admiregrp.in" className="font-light text-sm md:text-base text-gray-700 hover:text-[#60A5FA] transition-colors relative inline-block group self-start">
+                      palani.m@admiregrp.in
+                      <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#60A5FA] group-hover:w-full transition-all duration-500" />
+                    </a>
+                    <a href="tel:9448370989" className="font-light text-sm md:text-base text-gray-700 hover:text-[#60A5FA] transition-colors relative inline-block group self-start">
+                      9448370989
+                      <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#60A5FA] group-hover:w-full transition-all duration-500" />
+                    </a>
+                  </div>
                 </div>
                 <div className="flex gap-6 mt-4">
                   {["Instagram", "LinkedIn", "Twitter"].map(social => (

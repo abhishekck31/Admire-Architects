@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Blocks, Handshake, Scale, Webhook, CodeXml, CreditCard, Mail, Phone } from "lucide-react";
+import { Blocks, Handshake, Scale, Webhook, CodeXml, CreditCard, Mail, Phone, MapPin } from "lucide-react";
 
 export const Footer = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => {
@@ -122,7 +122,7 @@ export const Footer = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTML
           </div>
 
           <div className="mt-20 border-t border-border pt-6 pb-8">
-            <p className="text-xs text-foreground/55 text-center md:text-left">Admire Architects Pvt Ltd © 2024. All rights reserved.</p>
+            <p className="text-xs text-foreground/55 text-center md:text-left">Admire Architects Pvt Ltd © 2026. All rights reserved.</p>
           </div>
         </div>
       </div>

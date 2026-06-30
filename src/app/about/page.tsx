@@ -34,7 +34,7 @@ export default function AboutPage() {
     <div className="relative min-h-screen bg-[#ffffff] text-[#000000] overflow-clip font-sans">
       
       {/* SECTION 1 — HERO SECTION */}
-      <section ref={containerRef} className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+      <section ref={containerRef} className="relative pt-40 md:pt-56 pb-20 md:pb-32 w-full flex items-center justify-center overflow-hidden">
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="absolute inset-[-5%] z-0">
           {/* <Image
             src="/hero_arch_1779118409602.png"
@@ -46,7 +46,7 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#ffffff]/80 via-[#ffffff]/50 to-[#ffffff]" />
         </motion.div>
         
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 lg:px-24 flex flex-col items-center text-center mt-20">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 lg:px-24 flex flex-col items-center text-center">
           <motion.div
             initial="hidden"
             animate="visible"
@@ -59,39 +59,15 @@ export default function AboutPage() {
             <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl lg:text-[6rem] font-serif font-light text-black tracking-tighter leading-[1.05] mb-10">
               Designing Enterprise Spaces with <br className="hidden md:block" /><span className="italic text-[#60A5FA]">Precision & Vision</span>
             </motion.h1>
-            <motion.p variants={fadeUp} className="text-lg md:text-xl text-gray-600 font-light max-w-3xl mx-auto leading-relaxed mb-16">
+            <motion.p variants={fadeUp} className="text-lg md:text-xl text-gray-600 font-light max-w-3xl mx-auto leading-relaxed">
               ADMIRE ARCHITECTS PVT LTD is a multidisciplinary consultancy firm delivering architecture, interiors, project management, and turnkey solutions for global enterprises.
             </motion.p>
-            
-            <motion.div variants={fadeUp} className="flex justify-center">
-              <Link href="#introduction" className="group flex items-center gap-6 border border-black/20 bg-black/5 backdrop-blur-md px-10 py-5 hover:bg-[#60A5FA] hover:border-[#60A5FA] hover:text-white transition-all duration-700">
-                <span className="uppercase tracking-[0.2em] text-xs font-medium">Discover Our Story</span>
-                <FiArrowRight className="transform group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </motion.div>
           </motion.div>
         </div>
-
-        {/* Scroll Indicator */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-20 pointer-events-none"
-        >
-          <span className="text-[9px] uppercase tracking-[0.3em] text-gray-500">Scroll</span>
-          <div className="w-[1px] h-16 bg-black/10 relative overflow-hidden">
-            <motion.div 
-              className="absolute top-0 left-0 w-full h-1/2 bg-[#60A5FA]"
-              animate={{ y: ["-100%", "200%"] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-            />
-          </div>
-        </motion.div>
       </section>
 
       {/* SECTION 2 — COMPANY INTRODUCTION */}
-      <section id="introduction" className="py-32 md:py-48 bg-[#ffffff] relative border-b border-black/5">
+      <section id="introduction" className="py-20 md:py-32 bg-[#ffffff] relative border-b border-black/5">
         <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'linear-gradient(#000000 1px, transparent 1px), linear-gradient(90deg, #000000 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
         
         <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24 relative z-10">
@@ -210,7 +186,7 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 4 — OUR STRATEGY */}
-      <section className="py-32 md:py-48 bg-[#ffffff] border-y border-black/5">
+      <section className="pt-20 md:pt-32 pb-12 md:pb-16 bg-[#ffffff] border-y border-black/5">
         <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
           <motion.div
             initial="hidden"
@@ -259,7 +235,7 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 5 — COMPANY APPROACH */}
-      <section className="py-40 md:py-56 bg-[#f8f9fa] relative overflow-hidden">
+      <section className="pt-16 md:pt-24 pb-12 md:pb-16 bg-[#f8f9fa] relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           {/* <Image src="/hero_arch_1779118409602.png" alt="Approach Texture" fill className="object-cover opacity-[0.03] grayscale" /> */}
         </div>
@@ -270,7 +246,7 @@ export default function AboutPage() {
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
           >
-            <motion.div variants={fadeUp} className="w-px h-32 bg-gradient-to-b from-transparent via-[#60A5FA]/50 to-transparent mx-auto mb-16" />
+            <motion.div variants={fadeUp} className="w-px h-16 bg-gradient-to-b from-transparent via-[#60A5FA]/50 to-transparent mx-auto mb-8" />
             <motion.h2 variants={fadeUp} className="text-3xl md:text-5xl lg:text-6xl font-serif font-light text-black leading-[1.3] mb-12 tracking-wide">
               "Our multidisciplinary approach enables us to integrate all aspects of the project’s requirements into a <span className="italic text-[#60A5FA]">comprehensive solution.</span>"
             </motion.h2>
@@ -282,7 +258,7 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 6 — COMPANY HIGHLIGHTS */}
-      <section className="py-32 md:py-40 bg-[#ffffff] border-t border-black/5 relative z-10">
+      <section className="pt-12 md:pt-16 pb-24 md:pb-32 bg-[#ffffff] border-t border-black/5 relative z-10">
         <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[

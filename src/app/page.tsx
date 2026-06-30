@@ -94,7 +94,7 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="flex flex-wrap justify-center items-center gap-10 md:gap-16 transition-all duration-1000"
+            className="grid grid-cols-4 gap-4 sm:gap-8 md:flex md:flex-wrap md:justify-center md:items-center md:gap-16 transition-all duration-1000"
           >
             {[
               { name: "Airtel", src: "/ClientLogosImgs/airtel.png" },
@@ -120,7 +120,7 @@ export default function Home() {
               { name: "Wipro", src: "/ClientLogosImgs/wipro.png" },
               { name: "Zitro", src: "/ClientLogosImgs/zitro.png" },
             ].map((client, i) => (
-              <motion.div key={i} variants={fadeUp} className="relative w-36 h-16 md:w-48 md:h-24 group hover:scale-105 transition-transform duration-300">
+              <motion.div key={i} variants={fadeUp} className="relative w-full h-10 sm:h-12 md:w-48 md:h-24 group hover:scale-105 transition-transform duration-300">
                 <Image src={client.src} alt={client.name} fill className="object-contain" />
               </motion.div>
             ))}

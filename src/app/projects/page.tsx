@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -57,8 +57,19 @@ export default function ProjectsShowcase() {
     }
   };
 
+  // Auto carousel effect
+  useEffect(() => {
+    if (!activeProject?.allImages || activeProject.allImages.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentImageIndex(prev => (prev + 1) % activeProject.allImages.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [activeProject]);
+
   return (
-    <div className="min-h-screen bg-[#ffffff] text-[#000000] font-sans flex flex-col md:flex-row relative">
+    <div className="min-h-screen bg-[#ffffff] text-[#000000] font-sans flex flex-col md:flex-row relative pt-24 md:pt-0">
       
       {/* LEFT SIDE - VISUAL SHOWCASE (Sticky) */}
       <div className="w-full md:w-1/2 h-[50vh] md:h-screen md:sticky top-0 overflow-hidden relative border-r border-black/5 order-1 md:order-none z-10">

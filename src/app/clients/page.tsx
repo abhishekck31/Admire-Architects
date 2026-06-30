@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
+import { PROJECTS_DATA } from "@/data/projects";
 
 const fadeUp: any = {
   hidden: { opacity: 0, y: 50 },
@@ -160,63 +161,37 @@ export default function ClientsPage() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            <motion.div 
-              initial="hidden" 
-              whileInView="visible" 
-              viewport={{ once: true, margin: "-100px" }} 
-              variants={fadeUp}
-              className="group"
-            >
-              <div className="relative h-[60vh] w-full overflow-hidden mb-8 bg-secondary">
-                {/* <Image
-                  src="/heroSectionImgs/CEOofficeHero.png"
-                  alt="IBM Global Campus"
-                  fill
-                  className="object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-                /> */}
-              </div>
-              <div className="flex justify-between items-start">
-                <div>
-                  <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2">Technology Sector</div>
-                  <h3 className="text-3xl font-serif font-light mb-3">TARGET Services India</h3>
-                  <p className="text-muted-foreground font-light mb-6 max-w-sm">
-                    A 1,50,000 sq ft workspace engineered for extreme collaboration and absolute data security.
-                  </p>
-                  <Link href="/projects" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-medium hover:text-accent transition-colors">
-                    View Case Study <FiArrowRight />
-                  </Link>
+            {PROJECTS_DATA.filter(p => p.image !== null).slice(0, 2).map((project, index) => (
+              <motion.div 
+                key={project.id}
+                initial="hidden" 
+                whileInView="visible" 
+                viewport={{ once: true, margin: "-100px" }} 
+                variants={fadeUp}
+                className={`group ${index % 2 !== 0 ? 'md:mt-24' : ''}`}
+              >
+                <div className="relative h-[60vh] w-full overflow-hidden mb-8 bg-secondary">
+                  <Image
+                    src={project.image!}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                  />
                 </div>
-              </div>
-            </motion.div>
-
-            <motion.div 
-              initial="hidden" 
-              whileInView="visible" 
-              viewport={{ once: true, margin: "-100px" }} 
-              variants={fadeUp}
-              className="group md:mt-24"
-            >
-              <div className="relative h-[60vh] w-full overflow-hidden mb-8 bg-secondary">
-                {/* <Image
-                  src="/heroSectionImgs/CorporateMeetingHero.png"
-                  alt="Mercedes-Benz R&D"
-                  fill
-                  className="object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-                /> */}
-              </div>
-              <div className="flex justify-between items-start">
-                <div>
-                  <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2">Automotive Sector</div>
-                  <h3 className="text-3xl font-serif font-light mb-3">Mercedes-Benz</h3>
-                  <p className="text-muted-foreground font-light mb-6 max-w-sm">
-                    A corporate workspace designed to reflect the precision and engineering heritage of the automotive giant.
-                  </p>
-                  <Link href="/projects" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-medium hover:text-accent transition-colors">
-                    View Case Study <FiArrowRight />
-                  </Link>
+                <div className="flex justify-between items-start">
+                  <div>
+                    <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2">{project.category}</div>
+                    <h3 className="text-3xl font-serif font-light mb-3">{project.title}</h3>
+                    <p className="text-muted-foreground font-light mb-6 max-w-sm">
+                      {project.description}
+                    </p>
+                    <Link href="/projects" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-medium hover:text-accent transition-colors">
+                      View All Projects <FiArrowRight />
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
