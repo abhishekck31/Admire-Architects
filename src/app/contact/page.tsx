@@ -1,4 +1,22 @@
+"use client";
+
+import { useState } from "react";
+
 export default function ContactPage() {
+  const [formData, setFormData] = useState({ name: "", email: "", project: "" });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.project) {
+      alert("Please fill out all fields.");
+      return;
+    }
+
+    const message = `Hello, my name is ${formData.name}. My email is ${formData.email}.\n\nProject Details:\n${formData.project}`;
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/919448370989?text=${encodedMessage}`, '_blank');
+  };
+
   return (
     <div className="min-h-screen pt-40 px-6 md:px-16 lg:px-24 bg-background text-foreground">
       <h1 className="text-5xl md:text-7xl font-serif font-light tracking-tight mb-8">Start a Conversation</h1>
@@ -8,10 +26,31 @@ export default function ContactPage() {
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl">
         <div>
-          <form className="flex flex-col gap-8">
-            <input type="text" placeholder="YOUR NAME" className="bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-light tracking-widest uppercase text-sm" />
-            <input type="email" placeholder="EMAIL ADDRESS" className="bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-light tracking-widest uppercase text-sm" />
-            <textarea placeholder="PROJECT DETAILS" rows={4} className="bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-light tracking-widest uppercase text-sm resize-none"></textarea>
+          <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
+            <input 
+              type="text" 
+              placeholder="YOUR NAME" 
+              required
+              value={formData.name}
+              onChange={(e) => setFormData({...formData, name: e.target.value})}
+              className="bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-light tracking-widest uppercase text-sm" 
+            />
+            <input 
+              type="email" 
+              placeholder="EMAIL ADDRESS" 
+              required
+              value={formData.email}
+              onChange={(e) => setFormData({...formData, email: e.target.value})}
+              className="bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-light tracking-widest uppercase text-sm" 
+            />
+            <textarea 
+              placeholder="PROJECT DETAILS" 
+              rows={4} 
+              required
+              value={formData.project}
+              onChange={(e) => setFormData({...formData, project: e.target.value})}
+              className="bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-light tracking-widest uppercase text-sm resize-none"
+            ></textarea>
             <button type="submit" className="self-start px-8 py-4 bg-primary text-primary-foreground uppercase tracking-widest text-sm hover:bg-secondary hover:text-secondary-foreground transition-colors">
               Submit Inquiry
             </button>
