@@ -12,19 +12,28 @@ export default function ContactPage() {
       return;
     }
 
-    const message = `Hello, my name is ${formData.name}. My email is ${formData.email}.\n\nProject Details:\n${formData.project}`;
-    const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/919448370989?text=${encodedMessage}`, '_blank');
+    const subject = `New Project Inquiry from ${formData.name}`;
+    const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nProject Details:\n${formData.project}`;
+    
+    // Direct Gmail compose link - redirecting in the same tab to ensure it isn't blocked
+    const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=palani.m@admiregrp.in&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = gmailLink;
   };
 
   return (
     <div className="min-h-screen pt-40 px-6 md:px-16 lg:px-24 bg-background text-foreground">
+      <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-muted-foreground font-semibold mb-4">
+        Our Motto: Modern Luxury Architecture
+      </p>
       <h1 className="text-5xl md:text-7xl font-serif font-light tracking-tight mb-8">Start a Conversation</h1>
       <p className="text-lg text-muted-foreground font-light max-w-2xl leading-relaxed mb-16">
         Whether you are planning a massive commercial complex or a bespoke residential space, our team is ready to listen.
       </p>
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl">
+      <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 max-w-6xl">
+        {/* Vertical Divider for Desktop */}
+        <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-[1px] bg-border -translate-x-1/2" />
+        
         <div>
           <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
             <input 

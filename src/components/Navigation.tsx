@@ -54,9 +54,9 @@ export default function Navigation() {
           isScrolled ? "py-2 bg-white/95 backdrop-blur-md shadow-lg border border-black/5" : "py-3 md:py-4 bg-transparent"
         }`}
       >
-        <Link href="/" className="flex items-center gap-3 z-[101] group">
-          <Image src="/favicon/favicon.svg" alt="Admire Architects Logo" width={32} height={32} className="object-contain mix-blend-multiply transition-transform group-hover:scale-105" />
-          <span className="text-base md:text-lg tracking-[0.2em] font-light uppercase text-black">
+        <Link href="/" className="flex items-center gap-5 z-[101] group">
+          <Image src="/favicon/favicon.svg" alt="Admire Architects Logo" width={56} height={56} className="object-contain mix-blend-multiply transition-transform group-hover:scale-105" />
+          <span className="text-2xl md:text-3xl tracking-[0.2em] font-light uppercase text-[#1a365d]">
             Admire <span className="font-medium">Architects</span>
           </span>
         </Link>

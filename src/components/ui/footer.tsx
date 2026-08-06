@@ -3,6 +3,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Blocks, Handshake, Scale, Webhook, CodeXml, CreditCard, Mail, Phone, MapPin } from "lucide-react";
+import { FiLinkedin, FiInstagram, FiTwitter } from "react-icons/fi";
 
 export const Footer = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => {
@@ -22,34 +23,35 @@ export const Footer = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTML
                 Shaping the physical environment of global enterprises through relentless engineering, absolute minimalism, and visionary design.
               </p>
 
-              <p className="text-sm font-light text-foreground/55 mt-6">
+              <div className="flex gap-4 mt-6">
                 <a
-                  className="hover:text-foreground/90 transition-colors"
+                  className="p-2 rounded-full bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                   target="_blank"
                   href="https://linkedin.com"
                   rel="noopener noreferrer"
+                  aria-label="LinkedIn"
                 >
-                  LinkedIn
+                  <FiLinkedin className="h-4 w-4" />
                 </a>
-                {" • "}
                 <a
-                  className="hover:text-foreground/90 transition-colors"
+                  className="p-2 rounded-full bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                   target="_blank"
                   href="https://instagram.com"
                   rel="noopener noreferrer"
+                  aria-label="Instagram"
                 >
-                  Instagram
+                  <FiInstagram className="h-4 w-4" />
                 </a>
-                {" • "}
                 <a
-                  className="hover:text-foreground/90 transition-colors"
+                  className="p-2 rounded-full bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                   target="_blank"
                   href="https://twitter.com"
                   rel="noopener noreferrer"
+                  aria-label="Twitter"
                 >
-                  Twitter
+                  <FiTwitter className="h-4 w-4" />
                 </a>
-              </p>
+              </div>
             </div>
 
             <div className="grid grid-cols-2 mt-16 md:grid-cols-3 lg:col-span-8 lg:justify-items-end lg:mt-0">
