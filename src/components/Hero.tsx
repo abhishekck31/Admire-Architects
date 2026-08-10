@@ -63,6 +63,8 @@ export default function Hero() {
                 src={src}
                 alt={`Modern Enterprise Architecture Space ${index + 1}`}
                 fill
+                sizes="100vw"
+                quality={90}
                 className="object-cover"
                 priority={index === 0}
               />

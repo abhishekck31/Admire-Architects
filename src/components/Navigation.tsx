@@ -11,6 +11,7 @@ const navLinks = [
   { href: "/", label: "Home", image: "/heroSectionImgs/CEOofficeHero.png" },
   { href: "/about", label: "About", image: "/heroSectionImgs/CorporateMeetingHero.png" },
   { href: "/projects", label: "Projects", image: "/heroSectionImgs/LoungeHero.png" },
+  { href: "/gallery", label: "Gallery", image: "/heroSectionImgs/OpenPlanHero.png" },
   { href: "/services", label: "Services", image: "/heroSectionImgs/OpenPlanHero.png" },
   { href: "/process", label: "Process", image: "/heroSectionImgs/CEOofficeHero.png" },
   { href: "/clients", label: "Clients", image: "/heroSectionImgs/CorporateMeetingHero.png" },
@@ -54,25 +55,37 @@ export default function Navigation() {
           isScrolled ? "py-2 bg-white/95 backdrop-blur-md shadow-lg border border-black/5" : "py-3 md:py-4 bg-transparent"
         }`}
       >
-        <Link href="/" className="flex items-center gap-5 z-[101] group">
+        <Link href="/" className="flex items-center gap-4 md:gap-5 z-[101] group cursor-pointer">
           <Image src="/favicon/favicon.svg" alt="Admire Architects Logo" width={56} height={56} className="object-contain mix-blend-multiply transition-transform group-hover:scale-105" />
-          <span className="text-2xl md:text-3xl tracking-[0.2em] font-light uppercase text-[#1a365d]">
-            Admire <span className="font-medium">Architects</span>
+          <span className="flex flex-col leading-none">
+            <span className="text-2xl md:text-3xl tracking-[0.2em] font-light uppercase text-brand-blue">
+              Admire <span className="font-medium">Architects</span>
+            </span>
+            {/* Company motto */}
+            <span className="mt-1.5 text-[8px] md:text-[9px] uppercase tracking-[0.35em] font-medium text-brand-blue-light">
+              Designing the Future
+            </span>
           </span>
         </Link>
 
         {/* Action Buttons and Hamburger */}
         <div className="flex items-center gap-6 z-[101]">
           <div className={`hidden md:flex items-center gap-5 mr-1 transition-all duration-300 ${isOpen ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
-            <Link 
-              href="/projects" 
-              className="text-[9px] md:text-[10px] uppercase tracking-widest font-medium text-black hover:text-[#60A5FA] transition-colors"
+            <Link
+              href="/projects"
+              className="text-[9px] md:text-[10px] uppercase tracking-widest font-medium text-black hover:text-[#60A5FA] transition-colors cursor-pointer"
             >
               Projects
             </Link>
-            <Link 
-              href="/contact" 
-              className="text-[9px] md:text-[10px] uppercase tracking-widest font-medium px-5 py-2 rounded-full bg-black text-white hover:bg-[#60A5FA] transition-colors shadow-sm"
+            <Link
+              href="/gallery"
+              className="text-[9px] md:text-[10px] uppercase tracking-widest font-medium text-black hover:text-[#60A5FA] transition-colors cursor-pointer"
+            >
+              Gallery
+            </Link>
+            <Link
+              href="/contact"
+              className="text-[9px] md:text-[10px] uppercase tracking-widest font-medium px-5 py-2 rounded-full bg-black text-white hover:bg-[#60A5FA] transition-colors shadow-sm cursor-pointer"
             >
               Contact
             </Link>
@@ -80,7 +93,7 @@ export default function Navigation() {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="relative text-xl md:text-2xl w-10 h-10 flex items-center justify-center hover:scale-110 transition-transform touch-manipulation text-black"
+            className="relative text-xl md:text-2xl w-10 h-10 flex items-center justify-center hover:scale-110 transition-transform touch-manipulation text-black cursor-pointer"
             aria-label="Toggle Menu"
           >
             {isOpen ? <FiX /> : <FiMenu />}

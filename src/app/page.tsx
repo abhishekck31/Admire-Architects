@@ -121,7 +121,7 @@ export default function Home() {
               { name: "Zitro", src: "/ClientLogosImgs/zitro.png" },
             ].map((client, i) => (
               <motion.div key={i} variants={fadeUp} className="relative w-full h-10 sm:h-12 md:w-48 md:h-24 group hover:scale-105 transition-transform duration-300">
-                <Image src={client.src} alt={client.name} fill className="object-contain" />
+                <Image src={client.src} alt={client.name} fill sizes="(max-width: 768px) 30vw, 192px" className="object-contain" />
               </motion.div>
             ))}
           </motion.div>
@@ -192,6 +192,8 @@ export default function Home() {
                       src={project.image}
                       alt={project.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      quality={90}
                       className="object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
                     />
                   )}

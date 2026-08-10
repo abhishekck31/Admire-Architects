@@ -97,6 +97,8 @@ export default function ProjectsShowcase() {
                       src={activeProject.allImages[currentImageIndex]}
                       alt={activeProject.title}
                       fill
+                      sizes="100vw"
+                      quality={90}
                       className="object-cover"
                       priority
                     />
