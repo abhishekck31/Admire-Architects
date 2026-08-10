@@ -55,6 +55,8 @@ export default function ProjectCaseStudyPage({ params }: { params: Promise<{ slu
               src={project.allImages[0]}
               alt={project.title}
               fill
+              sizes="100vw"
+              quality={90}
               className="object-cover opacity-80"
               priority
             />
@@ -143,10 +145,12 @@ export default function ProjectCaseStudyPage({ params }: { params: Promise<{ slu
                     className={`relative w-full ${spanClass} bg-gray-100 overflow-hidden group rounded-xl border border-black/5 shadow-sm hover:shadow-md transition-shadow duration-500`}
                   >
                     <Image 
-                      src={img} 
-                      alt={`${project.title} - Gallery Image ${index + 1}`} 
-                      fill 
-                      className="object-cover transition-transform duration-1000 group-hover:scale-105" 
+                      src={img}
+                      alt={`${project.title} - Gallery Image ${index + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      quality={90}
+                      className="object-cover transition-transform duration-1000 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
                   </motion.div>

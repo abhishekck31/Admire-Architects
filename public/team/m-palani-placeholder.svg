@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img" aria-label="Portrait placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8eefb" />
+      <stop offset="100%" stop-color="#c7d7f5" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)" />
+  <g fill="#1E3A8A" opacity="0.35">
+    <circle cx="200" cy="158" r="62" />
+    <path d="M200 236c-64 0-116 42-116 94v70h232v-70c0-52-52-94-116-94z" />
+  </g>
+  <text x="200" y="372" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" letter-spacing="4" fill="#1E3A8A" opacity="0.6">M. PALANI</text>
+</svg>

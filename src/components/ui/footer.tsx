@@ -2,8 +2,14 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Blocks, Handshake, Scale, Webhook, CodeXml, CreditCard, Mail, Phone, MapPin } from "lucide-react";
+import { Blocks, Handshake, Images, Scale, Webhook, CodeXml, CreditCard, Mail, Phone, MapPin } from "lucide-react";
 import { FiLinkedin, FiInstagram, FiTwitter } from "react-icons/fi";
+
+const SOCIAL_LINKS = [
+  { label: "LinkedIn", href: "https://linkedin.com", Icon: FiLinkedin, hoverClass: "hover:bg-[#0A66C2]" },
+  { label: "Instagram", href: "https://instagram.com", Icon: FiInstagram, hoverClass: "hover:bg-[#C13584]" },
+  { label: "Twitter", href: "https://twitter.com", Icon: FiTwitter, hoverClass: "hover:bg-[#1DA1F2]" },
+];
 
 export const Footer = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => {
@@ -24,33 +30,23 @@ export const Footer = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTML
               </p>
 
               <div className="flex gap-4 mt-6">
-                <a
-                  className="p-2 rounded-full bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                  target="_blank"
-                  href="https://linkedin.com"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                >
-                  <FiLinkedin className="h-4 w-4" />
-                </a>
-                <a
-                  className="p-2 rounded-full bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                  target="_blank"
-                  href="https://instagram.com"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                >
-                  <FiInstagram className="h-4 w-4" />
-                </a>
-                <a
-                  className="p-2 rounded-full bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                  target="_blank"
-                  href="https://twitter.com"
-                  rel="noopener noreferrer"
-                  aria-label="Twitter"
-                >
-                  <FiTwitter className="h-4 w-4" />
-                </a>
+                {SOCIAL_LINKS.map(({ label, href, Icon, hoverClass }) => (
+                  <a
+                    key={label}
+                    className={cn(
+                      "p-3 rounded-full bg-brand-blue text-white shadow-md ring-1 ring-brand-blue-light/40",
+                      "hover:-translate-y-0.5 hover:shadow-lg hover:ring-2 hover:ring-brand-blue-light",
+                      "transition-all duration-300 cursor-pointer",
+                      hoverClass
+                    )}
+                    target="_blank"
+                    href={href}
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                  >
+                    <Icon className="h-4 w-4" />
+                  </a>
+                ))}
               </div>
             </div>
 
@@ -62,6 +58,12 @@ export const Footer = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTML
                     <a href="/projects" className="text-sm transition-all text-foreground/60 hover:text-foreground/90 group flex items-center">
                       <Blocks className="inline stroke-2 h-4 w-4 mr-2 transition-all stroke-foreground/60 group-hover:stroke-foreground/90" />
                       Projects
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/gallery" className="text-sm transition-all text-foreground/60 hover:text-foreground/90 group flex items-center">
+                      <Images className="inline stroke-2 h-4 w-4 mr-2 transition-all stroke-foreground/60 group-hover:stroke-foreground/90" />
+                      Gallery
                     </a>
                   </li>
                   <li>

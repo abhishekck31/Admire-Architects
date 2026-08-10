@@ -43,7 +43,7 @@ export default function AboutPage() {
             className="object-cover scale-105 opacity-50 grayscale"
             priority
           /> */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#ffffff]/80 via-[#ffffff]/50 to-[#ffffff]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#60A5FA]/15 via-[#ffffff]/60 to-[#ffffff]" />
         </motion.div>
         
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 lg:px-24 flex flex-col items-center text-center">
@@ -53,14 +53,23 @@ export default function AboutPage() {
             variants={staggerContainer}
             className="max-w-5xl"
           >
-            <motion.div variants={fadeUp} className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-[#1E3A8A] font-bold mb-8">
-              Admire Architects Pvt Ltd
+            <motion.div variants={fadeUp} className="mb-8 flex justify-center">
+              <span className="inline-flex items-center gap-3 rounded-full bg-brand-blue px-6 py-2.5 text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold text-white shadow-lg shadow-brand-blue/20 ring-1 ring-brand-blue-light/50">
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" />
+                Admire Architects Pvt Ltd
+              </span>
             </motion.div>
             <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl lg:text-[6rem] font-serif font-light text-black tracking-tighter leading-[1.05] mb-10">
               Designing Enterprise Spaces with <br className="hidden md:block" /><span className="italic font-normal text-[#1E3A8A]">Precision & Vision</span>
             </motion.h1>
-            <motion.p variants={fadeUp} className="text-lg md:text-xl text-[#1E3A8A] font-medium max-w-3xl mx-auto leading-relaxed">
-              ADMIRE ARCHITECTS PVT LTD is a multidisciplinary consultancy firm delivering architecture, interiors, project management, and turnkey solutions for global enterprises.
+            <motion.p variants={fadeUp} className="text-lg md:text-xl text-gray-700 font-medium max-w-3xl mx-auto leading-relaxed">
+              <span className="font-bold text-brand-blue">ADMIRE ARCHITECTS PVT LTD</span> is a{" "}
+              <span className="bg-brand-blue-light/20 px-1.5 py-0.5 font-semibold text-brand-blue">multidisciplinary consultancy firm</span>{" "}
+              delivering <span className="font-semibold text-brand-blue">architecture</span>,{" "}
+              <span className="font-semibold text-brand-blue">interiors</span>,{" "}
+              <span className="font-semibold text-brand-blue">project management</span>, and{" "}
+              <span className="font-semibold text-brand-blue">turnkey solutions</span> for{" "}
+              <span className="border-b-2 border-brand-gold font-semibold text-[#8a7350]">global enterprises</span>.
             </motion.p>
           </motion.div>
         </div>
@@ -68,7 +77,7 @@ export default function AboutPage() {
 
       {/* SECTION 2 — COMPANY INTRODUCTION */}
       <section id="introduction" className="py-20 md:py-32 bg-[#ffffff] relative border-b border-black/5">
-        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'linear-gradient(#000000 1px, transparent 1px), linear-gradient(90deg, #000000 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+        <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'linear-gradient(#1E3A8A 1px, transparent 1px), linear-gradient(90deg, #1E3A8A 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
         
         <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
@@ -84,23 +93,23 @@ export default function AboutPage() {
                 The Consultancy
               </motion.div>
               <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-serif font-light leading-tight text-black mb-8">
-                A Multi-Disciplinary Approach to <span className="italic">Spatial Engineering.</span>
+                A Multi-Disciplinary Approach to <span className="italic text-brand-blue">Spatial Engineering.</span>
               </motion.h2>
-              
-              <div className="space-y-6 text-gray-600 font-light leading-relaxed text-base md:text-lg">
+
+              <div className="space-y-6 text-gray-700 font-light leading-relaxed text-base md:text-lg">
                 <motion.p variants={fadeUp}>
-                  The Admire Group is a multi-disciplinary consultancy firm offering services in Architecture, Interiors, Project Management, and Design Build & Turnkey Solutions.
+                  <span className="font-semibold text-brand-blue">The Admire Group</span> is a multi-disciplinary consultancy firm offering services in <span className="font-medium text-brand-blue">Architecture</span>, <span className="font-medium text-brand-blue">Interiors</span>, <span className="font-medium text-brand-blue">Project Management</span>, and <span className="font-medium text-brand-blue">Design Build &amp; Turnkey Solutions</span>.
                 </motion.p>
                 <motion.p variants={fadeUp}>
                   Coordinating the client’s requirements with the activities of consultants, contractors and vendors, project management during construction, time/budgetary control systems and post-occupancy facilities management.
                 </motion.p>
                 <motion.p variants={fadeUp}>
-                  Started operation in Bangalore in the year 2005 and presently registered in Karnataka, Tamil Nadu & Andhra Pradesh. Our firm is ISO 9001:2008 certified along with all necessary registrations like ESI, PF & employee insurance.
+                  Started operation in Bangalore in the year <span className="font-semibold text-brand-blue">2005</span> and presently registered in <span className="font-medium text-brand-blue">Karnataka</span>, <span className="font-medium text-brand-blue">Tamil Nadu</span> &amp; <span className="font-medium text-brand-blue">Andhra Pradesh</span>. Our firm is <span className="bg-brand-gold/20 px-1.5 py-0.5 font-semibold text-[#8a7350]">ISO 9001:2008 certified</span> along with all necessary registrations like ESI, PF &amp; employee insurance.
                 </motion.p>
                 <motion.p variants={fadeUp}>
                   The focus of our practice is to manage projects with the active involvement of experienced senior personnel supported by computer-based systems for programming facility requirements, cost and time control, CAD documentation and asset management.
                 </motion.p>
-                <motion.p variants={fadeUp} className="text-black border-l-2 border-[#60A5FA] pl-6 italic mt-8">
+                <motion.p variants={fadeUp} className="text-brand-blue border-l-4 border-brand-blue-light bg-brand-blue-light/10 py-4 pl-6 pr-4 italic mt-8">
                   We desire to deliver projects on time and within allotted budget that represent the best value for the client’s expenditure.
                 </motion.p>
               </div>
@@ -149,9 +158,9 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 3 — LEADERSHIP MESSAGE */}
-      <section className="py-40 md:py-56 bg-[#f8f9fa] relative flex items-center justify-center overflow-hidden">
+      <section className="py-40 md:py-56 bg-gradient-to-b from-[#eef4ff] via-[#f8f9fa] to-[#eef4ff] relative flex items-center justify-center overflow-hidden">
         {/* Subtle background architecture lines */}
-        <div className="absolute top-0 left-0 w-full h-full opacity-10">
+        <div className="absolute top-0 left-0 w-full h-full opacity-20">
            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <pattern id="archGrid" width="100" height="100" patternUnits="userSpaceOnUse">
@@ -170,20 +179,27 @@ export default function AboutPage() {
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
           >
-            <motion.div variants={fadeUp} className="text-[8rem] md:text-[12rem] font-serif text-[#60A5FA] leading-none opacity-20 absolute -top-16 md:-top-24 left-1/2 -translate-x-1/2">
+            <motion.div variants={fadeUp} className="text-[8rem] md:text-[12rem] font-serif text-[#60A5FA] leading-none opacity-30 absolute -top-16 md:-top-24 left-1/2 -translate-x-1/2">
               &ldquo;
             </motion.div>
             <motion.h3 variants={fadeUp} className="text-3xl md:text-5xl lg:text-7xl font-serif font-light leading-[1.2] text-black tracking-wide mb-16 relative z-10 uppercase">
-              "If we build the people, <br className="hidden md:block" />
-              they will build the business"
+              &ldquo;If we <span className="text-brand-blue">build the people</span>, <br className="hidden md:block" />
+              they will <span className="text-brand-blue">build the business</span>&rdquo;
             </motion.h3>
             <motion.div variants={fadeUp} className="flex flex-col items-center">
-              <div className="w-40 h-40 rounded-full border-4 border-white shadow-xl mb-6 relative overflow-hidden bg-gray-100 flex items-center justify-center">
-                {/* <Image src="/boss-photo.jpg" alt="M. Palani" fill className="object-cover" /> */}
-                <span className="text-xs text-gray-400 uppercase tracking-widest text-center px-4">Photo Placeholder</span>
+              {/* Managing Director portrait — swap the src for the real photo when available */}
+              <div className="w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-white ring-4 ring-brand-blue-light/30 shadow-xl mb-6 relative overflow-hidden bg-brand-blue-light/10">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/team/m-palani-placeholder.svg"
+                  alt="M. Palani - Managing Director"
+                  width={192}
+                  height={192}
+                  className="h-full w-full object-cover"
+                />
               </div>
-              <div className="font-serif text-3xl md:text-4xl text-[#1E3A8A] mb-3">M. Palani</div>
-              <div className="text-[10px] uppercase tracking-[0.3em] text-gray-600">Managing Director</div>
+              <div className="font-serif text-3xl md:text-4xl text-brand-blue mb-3">M. Palani</div>
+              <div className="text-[10px] uppercase tracking-[0.3em] text-brand-blue-light font-semibold">Managing Director</div>
             </motion.div>
           </motion.div>
         </div>
@@ -197,11 +213,11 @@ export default function AboutPage() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="mb-24 flex flex-col md:flex-row justify-between items-start md:items-end gap-10 border-b border-black/10 pb-12"
+            className="mb-24 flex flex-col md:flex-row justify-between items-start md:items-end gap-10 border-b-2 border-brand-blue-light/30 pb-12"
           >
             <div>
-              <div className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#60A5FA] mb-6">Methodology</div>
-              <h2 className="text-5xl md:text-7xl font-serif font-light text-black tracking-tight">Our Strategy</h2>
+              <div className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-brand-blue-light font-semibold mb-6">Methodology</div>
+              <h2 className="text-5xl md:text-7xl font-serif font-light text-black tracking-tight">Our <span className="text-brand-blue">Strategy</span></h2>
             </div>
             <p className="max-w-md text-gray-600 font-light text-lg md:text-xl">
               Five core pillars that define our approach to delivering world-class corporate environments.
@@ -210,11 +226,11 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
             {[
-              { num: "01", title: "Core Strength", desc: "Designing & managing interior fit outs for multinationals.", color: "bg-blue-50/50 border-blue-100" },
-              { num: "02", title: "Teamwork", desc: "Planning and execution of the project from concept to handover to achieve the highest value consistent with the client’s goals.", color: "bg-amber-50/50 border-amber-100" },
-              { num: "03", title: "Technology", desc: "Integration and coordination of technology installation is the central part of our design activities.", color: "bg-emerald-50/50 border-emerald-100" },
-              { num: "04", title: "Time", desc: "Importance of completing projects on time and within client budget.", color: "bg-purple-50/50 border-purple-100" },
-              { num: "05", title: "Focus", desc: "We view every project as an opportunity to establish long-term positive relationships resulting in repeat assignments.", color: "bg-rose-50/50 border-rose-100" }
+              { num: "01", title: "Core Strength", desc: "Designing & managing interior fit outs for multinationals.", card: "bg-blue-50 border-blue-200", bar: "bg-blue-500", num_: "text-blue-700", hoverTitle: "group-hover:text-blue-700" },
+              { num: "02", title: "Teamwork", desc: "Planning and execution of the project from concept to handover to achieve the highest value consistent with the client’s goals.", card: "bg-amber-50 border-amber-200", bar: "bg-amber-500", num_: "text-amber-700", hoverTitle: "group-hover:text-amber-700" },
+              { num: "03", title: "Technology", desc: "Integration and coordination of technology installation is the central part of our design activities.", card: "bg-emerald-50 border-emerald-200", bar: "bg-emerald-500", num_: "text-emerald-700", hoverTitle: "group-hover:text-emerald-700" },
+              { num: "04", title: "Time", desc: "Importance of completing projects on time and within client budget.", card: "bg-violet-50 border-violet-200", bar: "bg-violet-500", num_: "text-violet-700", hoverTitle: "group-hover:text-violet-700" },
+              { num: "05", title: "Focus", desc: "We view every project as an opportunity to establish long-term positive relationships resulting in repeat assignments.", card: "bg-rose-50 border-rose-200", bar: "bg-rose-500", num_: "text-rose-700", hoverTitle: "group-hover:text-rose-700" }
             ].map((pillar, i) => (
               <motion.div
                 key={i}
@@ -222,14 +238,14 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className={`group p-10 ${pillar.color} border hover:border-[#60A5FA]/50 transition-colors duration-500 relative overflow-hidden flex flex-col justify-between min-h-[320px]`}
+                className={`group p-10 ${pillar.card} border hover:-translate-y-1 hover:shadow-lg transition-all duration-500 relative overflow-hidden flex flex-col justify-between min-h-[320px]`}
               >
-                {/* Minimal Architectural Visual Line */}
-                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#60A5FA]/0 via-[#60A5FA]/40 to-[#60A5FA]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                
+                {/* Colour bar keys each pillar to its own accent */}
+                <div className={`absolute top-0 left-0 w-full h-[4px] ${pillar.bar}`} />
+
                 <div>
-                  <div className="text-[#1E3A8A] text-sm font-medium tracking-widest mb-8 font-serif">{pillar.num}</div>
-                  <h3 className="text-2xl font-serif font-light text-black mb-6 group-hover:text-[#1E3A8A] transition-colors duration-500">{pillar.title}</h3>
+                  <div className={`${pillar.num_} text-sm font-medium tracking-widest mb-8 font-serif`}>{pillar.num}</div>
+                  <h3 className={`text-2xl font-serif font-light text-black mb-6 ${pillar.hoverTitle} transition-colors duration-500`}>{pillar.title}</h3>
                 </div>
                 <p className="text-gray-700 font-light leading-relaxed">{pillar.desc}</p>
               </motion.div>
@@ -239,7 +255,7 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 5 — COMPANY APPROACH */}
-      <section className="pt-16 md:pt-24 pb-12 md:pb-16 bg-[#f8f9fa] relative overflow-hidden">
+      <section className="pt-16 md:pt-24 pb-12 md:pb-16 bg-gradient-to-br from-[#eef4ff] via-[#f8f9fa] to-[#fdf8f0] relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           {/* <Image src="/hero_arch_1779118409602.png" alt="Approach Texture" fill className="object-cover opacity-[0.03] grayscale" /> */}
         </div>
@@ -252,7 +268,11 @@ export default function AboutPage() {
           >
             <motion.div variants={fadeUp} className="w-px h-16 bg-gradient-to-b from-transparent via-[#60A5FA]/50 to-transparent mx-auto mb-8" />
             <motion.h2 variants={fadeUp} className="text-3xl md:text-5xl lg:text-6xl font-serif font-light text-black leading-[1.3] mb-12 tracking-wide">
-              "Our multidisciplinary approach enables us to integrate all aspects of the project’s requirements into a <span className="italic font-medium text-[#1E3A8A]">comprehensive solution.</span>"
+              &ldquo;Our multidisciplinary approach enables us to integrate all aspects of the project’s requirements into a{" "}
+              <span className="relative inline-block italic font-medium text-brand-blue">
+                <span className="relative z-10">comprehensive solution.</span>
+                <span aria-hidden className="absolute inset-x-0 bottom-1 z-0 h-[0.35em] bg-brand-gold/40" />
+              </span>&rdquo;
             </motion.h2>
             <motion.p variants={fadeUp} className="text-lg md:text-xl text-gray-600 font-light leading-relaxed max-w-3xl mx-auto">
               Our team consisting of architects and project managers has the experience to execute and manage projects to produce solutions responsive to the client’s time, budgetary and aesthetic requirements.
@@ -279,10 +299,10 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: i * 0.1 }}
-                className="p-8 md:p-16 border border-black/5 bg-black/[0.01] backdrop-blur-md flex flex-col items-center justify-center text-center group hover:bg-[#60A5FA]/5 hover:border-[#60A5FA]/30 transition-all duration-700"
+                className="p-8 md:p-16 border border-brand-blue-light/20 bg-brand-blue-light/[0.06] backdrop-blur-md flex flex-col items-center justify-center text-center group hover:bg-brand-blue-light/15 hover:border-brand-blue-light/50 transition-all duration-700"
               >
-                <div className="text-3xl md:text-6xl font-serif text-black mb-4 md:mb-6 group-hover:text-[#60A5FA] transition-colors duration-700">{stat.value}</div>
-                <div className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-gray-500 font-medium">{stat.label}</div>
+                <div className="text-3xl md:text-6xl font-serif text-brand-blue mb-4 md:mb-6 group-hover:text-brand-blue-light transition-colors duration-700">{stat.value}</div>
+                <div className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-gray-600 font-medium">{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -297,10 +317,10 @@ export default function AboutPage() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="mb-24 text-center md:text-left flex flex-col md:flex-row justify-between items-end gap-8 border-b border-black/10 pb-12"
+            className="mb-24 text-center md:text-left flex flex-col md:flex-row justify-between items-end gap-8 border-b-2 border-brand-blue-light/30 pb-12"
           >
             <div>
-              <h2 className="text-4xl md:text-6xl font-serif font-light text-black tracking-tight mb-4">Why Admire?</h2>
+              <h2 className="text-4xl md:text-6xl font-serif font-light text-black tracking-tight mb-4">Why <span className="text-brand-blue">Admire</span>?</h2>
             </div>
             <p className="text-gray-600 font-light text-lg max-w-md md:text-right">
               The inherent advantages of partnering with a holistic architectural enterprise.
@@ -324,8 +344,8 @@ export default function AboutPage() {
                 transition={{ duration: 0.8, delay: i * 0.1 }}
                 className="flex flex-col items-center text-center space-y-6 group"
               >
-                <div className="w-20 h-20 rounded-full border border-black/10 flex items-center justify-center group-hover:border-[#60A5FA] bg-[#ffffff] group-hover:bg-[#60A5FA]/10 transition-all duration-700 shadow-xl">
-                  <FiCheckCircle className="text-gray-500 group-hover:text-[#60A5FA] transition-colors duration-700 text-2xl" />
+                <div className="w-20 h-20 rounded-full border border-brand-blue-light/30 flex items-center justify-center group-hover:border-brand-blue bg-[#ffffff] group-hover:bg-brand-blue transition-all duration-700 shadow-xl">
+                  <FiCheckCircle className="text-brand-blue-light group-hover:text-white transition-colors duration-700 text-2xl" />
                 </div>
                 <h4 className="text-base md:text-xl font-light text-black tracking-wide">{feature}</h4>
               </motion.div>

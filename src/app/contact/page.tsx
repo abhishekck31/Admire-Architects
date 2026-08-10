@@ -22,17 +22,28 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen pt-40 px-6 md:px-16 lg:px-24 bg-background text-foreground">
-      <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-muted-foreground font-semibold mb-4">
+      <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-brand-blue-light font-semibold mb-4">
         Our Motto: Modern Luxury Architecture
       </p>
-      <h1 className="text-5xl md:text-7xl font-serif font-light tracking-tight mb-8">Start a Conversation</h1>
+      <h1 className="text-5xl md:text-7xl font-serif font-light tracking-tight mb-8">
+        <a
+          href="mailto:palani.m@admiregrp.in"
+          className="group relative inline-block cursor-pointer transition-colors hover:text-brand-blue"
+        >
+          Start a Conversation
+          <span className="absolute -bottom-2 left-0 h-[2px] w-0 bg-brand-blue-light transition-all duration-500 group-hover:w-full" />
+        </a>
+      </h1>
       <p className="text-lg text-muted-foreground font-light max-w-2xl leading-relaxed mb-16">
         Whether you are planning a massive commercial complex or a bespoke residential space, our team is ready to listen.
       </p>
       
       <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 max-w-6xl">
-        {/* Vertical Divider for Desktop */}
-        <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-[1px] bg-border -translate-x-1/2" />
+        {/* Vertical divider between the form and the contact details (desktop) */}
+        <div
+          aria-hidden
+          className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 bg-gradient-to-b from-transparent via-brand-blue-light to-transparent opacity-60"
+        />
         
         <div>
           <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
@@ -60,20 +71,21 @@ export default function ContactPage() {
               onChange={(e) => setFormData({...formData, project: e.target.value})}
               className="bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-light tracking-widest uppercase text-sm resize-none"
             ></textarea>
-            <button type="submit" className="self-start px-8 py-4 bg-primary text-primary-foreground uppercase tracking-widest text-sm hover:bg-secondary hover:text-secondary-foreground transition-colors">
+            <button type="submit" className="self-start px-8 py-4 bg-primary text-primary-foreground uppercase tracking-widest text-sm hover:bg-brand-blue hover:text-white transition-colors cursor-pointer">
               Submit Inquiry
             </button>
           </form>
         </div>
         
-        <div className="flex flex-col gap-12 lg:pl-12">
+        {/* Stacked layout gets the same separation as a top rule */}
+        <div className="flex flex-col gap-12 lg:pl-12 border-t border-brand-blue-light/40 pt-12 lg:border-t-0 lg:pt-0">
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider mb-4 text-muted-foreground">Email</h3>
-            <a href="mailto:palani.m@admiregrp.in" className="text-xl md:text-2xl font-light hover:text-muted-foreground transition-colors">palani.m@admiregrp.in</a>
+            <h3 className="text-sm font-semibold uppercase tracking-wider mb-4 text-brand-blue-light">Email</h3>
+            <a href="mailto:palani.m@admiregrp.in" className="text-xl md:text-2xl font-light hover:text-brand-blue transition-colors cursor-pointer">palani.m@admiregrp.in</a>
           </div>
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider mb-4 text-muted-foreground">Phone</h3>
-            <a href="tel:9448370989" className="text-xl md:text-2xl font-light hover:text-muted-foreground transition-colors">9448370989</a>
+            <h3 className="text-sm font-semibold uppercase tracking-wider mb-4 text-brand-blue-light">Phone</h3>
+            <a href="tel:9448370989" className="text-xl md:text-2xl font-light hover:text-brand-blue transition-colors cursor-pointer">9448370989</a>
           </div>
         </div>
       </div>

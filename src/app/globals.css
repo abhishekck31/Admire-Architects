@@ -25,6 +25,13 @@
   --input: #e2e8f0;
   --ring: #60A5FA;
   --radius: 0rem;
+
+  /* Brand palette — these are the blues/gold already used across the site,
+     promoted to tokens so pages stop hard-coding the hex values. */
+  --brand-blue: #1E3A8A;        /* deep brand blue: headings, emphasis */
+  --brand-blue-light: #60A5FA;  /* accent blue: eyebrows, hovers, rules */
+  --brand-blue-deep: #1a365d;   /* navy: wordmark */
+  --brand-gold: #b89b72;        /* gold: secondary contrast highlight */
 }
 
 .dark {
@@ -69,6 +76,10 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-blue-light: var(--brand-blue-light);
+  --color-brand-blue-deep: var(--brand-blue-deep);
+  --color-brand-gold: var(--brand-gold);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

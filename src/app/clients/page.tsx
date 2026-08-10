@@ -70,7 +70,7 @@ export default function ClientsPage() {
             {MARQUEE_ITEMS.map((client, i) => (
               <div key={i} className="flex items-center">
                 <div className="relative w-40 h-20 md:w-56 md:h-28 mx-12 transition-all duration-500 cursor-default">
-                  <Image src={client.src} alt={client.name} fill className="object-contain" />
+                  <Image src={client.src} alt={client.name} fill sizes="(max-width: 768px) 160px, 224px" className="object-contain" />
                 </div>
                 <span className="text-accent opacity-30 text-2xl">•</span>
               </div>
@@ -88,7 +88,7 @@ export default function ClientsPage() {
             {MARQUEE_ITEMS.map((client, i) => (
               <div key={i} className="flex items-center">
                 <div className="relative w-40 h-20 md:w-56 md:h-28 mx-12 transition-all duration-500 cursor-default">
-                  <Image src={client.src} alt={client.name} fill className="object-contain" />
+                  <Image src={client.src} alt={client.name} fill sizes="(max-width: 768px) 160px, 224px" className="object-contain" />
                 </div>
                 <span className="text-accent opacity-30 text-2xl">•</span>
               </div>
@@ -139,7 +139,7 @@ export default function ClientsPage() {
                 className="group relative h-48 border-r border-b border-border flex items-center justify-center overflow-hidden cursor-pointer bg-background hover:bg-secondary transition-colors duration-500 p-6"
               >
                 <div className="relative w-full h-full transition-transform duration-500 group-hover:scale-110">
-                  <Image src={client.src} alt={client.name} fill className="object-contain" />
+                  <Image src={client.src} alt={client.name} fill sizes="(max-width: 768px) 45vw, 25vw" className="object-contain" />
                 </div>
                 
                 {/* Reveal line on hover */}
@@ -175,6 +175,8 @@ export default function ClientsPage() {
                     src={project.image!}
                     alt={project.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    quality={90}
                     className="object-cover transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
                   />
                 </div>
