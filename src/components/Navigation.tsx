@@ -50,19 +50,18 @@ export default function Navigation() {
 
   return (
     <>
-      <nav 
-        className={`fixed top-4 left-4 right-4 md:left-10 md:right-10 z-[100] px-6 md:px-10 transition-all duration-500 flex justify-between items-center pointer-events-auto rounded-[2rem] ${
-          isScrolled ? "py-2 bg-white/95 backdrop-blur-md shadow-lg border border-black/5" : "py-3 md:py-4 bg-transparent"
-        }`}
+      <nav
+        className={`fixed top-4 left-4 right-4 md:left-10 md:right-10 z-[100] px-6 md:px-10 transition-all duration-500 flex justify-between items-center pointer-events-auto rounded-[2rem] ${isScrolled ? "py-2 bg-white/95 backdrop-blur-md shadow-lg border border-black/5" : "py-3 md:py-4 bg-transparent"
+          }`}
       >
         <Link href="/" className="flex items-center gap-4 md:gap-5 z-[101] group cursor-pointer">
-          <Image src="/favicon/favicon.svg" alt="Admire Architects Logo" width={56} height={56} className="object-contain mix-blend-multiply transition-transform group-hover:scale-105" />
+          <Image src="/favicon/favicon.svg" alt="Admire Architects Logo" width={56} height={56} className={`object-contain transition-transform group-hover:scale-105 ${isOpen ? "" : "mix-blend-multiply"}`} />
           <span className="flex flex-col leading-none">
-            <span className="text-2xl md:text-3xl tracking-[0.2em] font-light uppercase text-brand-blue">
+            <span className={`text-2xl md:text-3xl tracking-[0.2em] font-light uppercase transition-colors duration-300 ${isOpen ? "text-white" : "text-brand-blue"}`}>
               Admire <span className="font-medium">Architects</span>
             </span>
             {/* Company motto */}
-            <span className="mt-1.5 text-[8px] md:text-[9px] uppercase tracking-[0.35em] font-medium text-brand-blue-light">
+            <span className={`mt-1.5 text-[8px] md:text-[9px] uppercase tracking-[0.35em] font-medium transition-colors duration-300 ${isOpen ? "text-white/70" : "text-brand-blue-light"}`}>
               Designing the Future
             </span>
           </span>
@@ -93,7 +92,7 @@ export default function Navigation() {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="relative text-xl md:text-2xl w-10 h-10 flex items-center justify-center hover:scale-110 transition-transform touch-manipulation text-black cursor-pointer"
+            className={`relative text-xl md:text-2xl w-10 h-10 flex items-center justify-center hover:scale-110 transition-transform touch-manipulation cursor-pointer ${isOpen ? "text-white" : "text-black"}`}
             aria-label="Toggle Menu"
           >
             {isOpen ? <FiX /> : <FiMenu />}
@@ -108,21 +107,21 @@ export default function Navigation() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[90] bg-[#ffffff] overflow-y-auto"
+            className="fixed inset-0 z-[90] bg-[#1E3A8A] overflow-y-auto"
             data-lenis-prevent
           >
             {/* Top Gradient Mask to hide text smoothly before it hits the logo */}
-            <div className="fixed top-0 left-0 right-0 h-40 bg-gradient-to-b from-[#ffffff] via-[#ffffff]/90 to-transparent z-[95] pointer-events-none" />
+            <div className="fixed top-0 left-0 right-0 h-40 bg-gradient-to-b from-[#1E3A8A] via-[#1E3A8A]/90 to-transparent z-[95] pointer-events-none" />
 
             {/* Bottom Gradient Mask */}
-            <div className="fixed bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#ffffff] to-transparent z-[95] pointer-events-none" />
+            <div className="fixed bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#1E3A8A] to-transparent z-[95] pointer-events-none" />
 
             {/* Ambient Background Grid */}
-            <div className="fixed inset-0 opacity-[0.02] pointer-events-none z-0" style={{ backgroundImage: 'linear-gradient(#000000 1px, transparent 1px), linear-gradient(90deg, #000000 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+            <div className="fixed inset-0 opacity-[0.04] pointer-events-none z-0" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
             {/* Hover Image Preview (Desktop Only) */}
             <div className="hidden md:block fixed top-0 right-0 w-[45vw] h-screen z-0">
-               <AnimatePresence mode="wait">
+              <AnimatePresence mode="wait">
                 <motion.div
                   key={hoveredLink}
                   initial={{ opacity: 0, scale: 1.05 }}
@@ -139,7 +138,7 @@ export default function Navigation() {
                     priority
                   /> */}
                   {/* Fade mask for the image to blend into the menu */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#ffffff] via-[#ffffff]/50 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#1E3A8A] via-[#1E3A8A]/50 to-transparent" />
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -156,15 +155,15 @@ export default function Navigation() {
                       animate={{ opacity: 1, y: 0, rotate: 0 }}
                       exit={{ opacity: 0, y: 20 }}
                       transition={{ duration: 0.8, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
-                      className="border-b border-black/5 last:border-none"
+                      className="border-b border-white/10 last:border-none"
                     >
                       <Link
                         href={link.href}
                         onMouseEnter={() => setHoveredLink(link.href)}
-                        className="group flex items-center justify-between text-4xl md:text-5xl lg:text-7xl font-serif font-light text-[#000000] hover:text-[#60A5FA] transition-colors duration-500 tracking-tighter leading-none py-6 md:py-8"
+                        className="group flex items-center justify-between text-4xl md:text-5xl lg:text-7xl font-serif font-light text-white/80 hover:text-[#60A5FA] transition-colors duration-500 tracking-tighter leading-none py-6 md:py-8"
                       >
                         <div className="flex items-center gap-6 md:gap-10">
-                          <span className={`text-[10px] md:text-xs uppercase tracking-widest font-sans font-medium transition-colors duration-500 ${isActive ? "text-[#60A5FA]" : "text-gray-600 group-hover:text-gray-600"}`}>
+                          <span className={`text-[10px] md:text-xs uppercase tracking-widest font-sans font-medium transition-colors duration-500 ${isActive ? "text-[#60A5FA]" : "text-white/40 group-hover:text-white/60"}`}>
                             0{i + 1}
                           </span>
                           <span className="group-hover:translate-x-4 transition-transform duration-500">
@@ -182,11 +181,11 @@ export default function Navigation() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0.5 }}
-                className="mt-16 md:mt-0 md:w-1/3 text-[#000000] flex flex-col gap-10 md:pl-20 pt-8 md:pt-0"
+                className="mt-16 md:mt-0 md:w-1/3 text-white flex flex-col gap-10 md:pl-20 pt-8 md:pt-0"
               >
                 <div>
                   <h4 className="text-[10px] uppercase tracking-[0.3em] text-[#60A5FA] mb-4">Global Headquarters</h4>
-                  <p className="font-light text-sm md:text-base leading-relaxed text-gray-700">
+                  <p className="font-light text-sm md:text-base leading-relaxed text-white/50">
                     1853, 17th Main, 30th B Cross<br />
                     5th Block, HBR Layout<br />
                     Bangalore - 560043
@@ -195,11 +194,11 @@ export default function Navigation() {
                 <div>
                   <h4 className="text-[10px] uppercase tracking-[0.3em] text-[#60A5FA] mb-4">Inquiries</h4>
                   <div className="flex flex-col gap-3">
-                    <a href="mailto:palani.m@admiregrp.in" className="font-light text-sm md:text-base text-gray-700 hover:text-[#60A5FA] transition-colors relative inline-block group self-start">
+                    <a href="mailto:palani.m@admiregrp.in" className="font-light text-sm md:text-base text-white/50 hover:text-[#60A5FA] transition-colors relative inline-block group self-start">
                       palani.m@admiregrp.in
                       <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#60A5FA] group-hover:w-full transition-all duration-500" />
                     </a>
-                    <a href="tel:9448370989" className="font-light text-sm md:text-base text-gray-700 hover:text-[#60A5FA] transition-colors relative inline-block group self-start">
+                    <a href="tel:9448370989" className="font-light text-sm md:text-base text-white/50 hover:text-[#60A5FA] transition-colors relative inline-block group self-start">
                       9448370989
                       <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#60A5FA] group-hover:w-full transition-all duration-500" />
                     </a>
@@ -207,7 +206,7 @@ export default function Navigation() {
                 </div>
                 <div className="flex gap-6 mt-4">
                   {["Instagram", "LinkedIn", "Twitter"].map(social => (
-                    <a key={social} href="#" className="text-[10px] uppercase tracking-[0.2em] text-gray-500 hover:text-black transition-colors">
+                    <a key={social} href="#" className="text-[10px] uppercase tracking-[0.2em] text-white/30 hover:text-white transition-colors">
                       {social}
                     </a>
                   ))}

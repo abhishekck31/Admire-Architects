@@ -81,44 +81,57 @@ export default function ProcessPage() {
 
           {/* Interactive Cycle Cards */}
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-32">
-            {PROJECT_CYCLE.map((stage, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: i * 0.1 }}
-                onMouseEnter={() => setActiveCycle(i)}
-                className={`relative p-8 border transition-all duration-700 cursor-pointer overflow-hidden ${
-                  activeCycle === i 
-                    ? "bg-black/5 border-[#60A5FA]/50 scale-[1.02] shadow-2xl" 
-                    : "bg-transparent border-black/10 hover:border-black/30"
-                }`}
-              >
-                {/* Motion Line */}
-                <div className={`absolute top-0 left-0 h-1 transition-all duration-700 ${activeCycle === i ? "w-full bg-[#60A5FA]" : "w-0 bg-transparent"}`} />
-                
-                <div className={`text-4xl font-serif mb-6 transition-colors duration-500 ${activeCycle === i ? "text-[#60A5FA]" : "text-gray-700"}`}>
-                  {stage.id}
-                </div>
-                <h3 className={`text-xl font-serif font-light mb-4 transition-colors duration-500 ${activeCycle === i ? "text-black" : "text-gray-600"}`}>
-                  {stage.title}
-                </h3>
-                
-                <AnimatePresence>
-                  {activeCycle === i && (
-                    <motion.p
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="text-sm font-light text-gray-600 leading-relaxed"
-                    >
-                      {stage.desc}
-                    </motion.p>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            ))}
+            {PROJECT_CYCLE.map((stage, i) => {
+              const cardThemes = [
+                { bg: "bg-[#fdf6ee]", accent: "bg-[#d4a56a]", text: "text-[#c4924e]", hoverBg: "from-[#d4a56a]/10" },   // warm cream / gold
+                { bg: "bg-[#f0f5f0]", accent: "bg-[#7da87d]", text: "text-[#6b946b]", hoverBg: "from-[#7da87d]/10" },   // soft sage
+                { bg: "bg-[#eef4ff]", accent: "bg-[#60A5FA]", text: "text-[#4a90e2]", hoverBg: "from-[#60A5FA]/10" },   // pale sky blue
+                { bg: "bg-[#f4f0f8]", accent: "bg-[#9b8ec4]", text: "text-[#8a7db5]", hoverBg: "from-[#9b8ec4]/10" },   // lavender mist
+                { bg: "bg-[#fef0f0]", accent: "bg-[#d4837d]", text: "text-[#c4716a]", hoverBg: "from-[#d4837d]/10" },   // rose blush
+              ];
+              const theme = cardThemes[i];
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: i * 0.1 }}
+                  onMouseEnter={() => setActiveCycle(i)}
+                  className={`relative p-8 border rounded-lg transition-all duration-700 cursor-pointer overflow-hidden ${theme.bg} ${
+                    activeCycle === i 
+                      ? "border-transparent scale-[1.02] shadow-2xl" 
+                      : "border-black/5 hover:border-black/10 shadow-md"
+                  }`}
+                >
+                  {/* Top accent bar */}
+                  <div className={`absolute top-0 left-0 right-0 h-1 transition-all duration-700 ${activeCycle === i ? `${theme.accent} opacity-100` : `${theme.accent} opacity-40`}`} />
+                  
+                  {/* Subtle hover gradient overlay */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${theme.hoverBg} to-transparent transition-opacity duration-700 ${activeCycle === i ? "opacity-100" : "opacity-0"}`} />
+                  
+                  <div className={`relative z-10 text-4xl font-serif mb-6 transition-colors duration-500 ${activeCycle === i ? theme.text : "text-gray-400"}`}>
+                    {stage.id}
+                  </div>
+                  <h3 className={`relative z-10 text-xl font-serif font-light mb-4 transition-colors duration-500 ${activeCycle === i ? "text-black" : "text-gray-700"}`}>
+                    {stage.title}
+                  </h3>
+                  
+                  <AnimatePresence>
+                    {activeCycle === i && (
+                      <motion.p
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="relative z-10 text-sm font-light text-gray-600 leading-relaxed"
+                      >
+                        {stage.desc}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
           </div>
 
           {/* Process Flow Timeline (Horizontal Auto-Scrolling Marquee) */}
