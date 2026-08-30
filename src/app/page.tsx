@@ -51,7 +51,7 @@ function AnimatedCounter({ value, label }: { value: string, label: string }) {
 export default function Home() {
   return (
     <div className="relative min-h-screen bg-background text-foreground overflow-clip font-sans">
-      
+
 
 
       <Hero />
@@ -59,7 +59,7 @@ export default function Home() {
       {/* Statistics Section */}
       <section className="py-24 border-b border-border bg-card">
         <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
@@ -80,7 +80,7 @@ export default function Home() {
       {/* Enterprise Clients Showcase */}
       <section className="py-32 bg-background overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24 mb-16">
-          <motion.h3 
+          <motion.h3
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -89,7 +89,7 @@ export default function Home() {
           >
             Trusted by Industry Leaders
           </motion.h3>
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -131,7 +131,7 @@ export default function Home() {
       {/* Philosophy Intro */}
       <section className="py-40 bg-card">
         <div className="max-w-6xl mx-auto px-6 md:px-16 lg:px-24 text-center">
-          <motion.h2 
+          <motion.h2
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
@@ -156,7 +156,7 @@ export default function Home() {
       {/* Featured Projects */}
       <section className="py-40 bg-background">
         <div className="px-6 md:px-16 lg:px-24 mb-24 flex flex-col md:flex-row justify-between items-end gap-10">
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -164,7 +164,7 @@ export default function Home() {
           >
             <h2 className="text-5xl md:text-7xl font-serif font-light tracking-tight">Selected Works</h2>
           </motion.div>
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -179,7 +179,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-32 px-6 md:px-16 lg:px-24">
           {Array.from(new Map(PROJECTS_DATA.filter(p => p.image).map(p => [p.title, p])).values()).slice(0, 2).map((project, index) => (
             <Link href={`/projects/${project.id}`} key={project.id}>
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 100 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
@@ -212,44 +212,67 @@ export default function Home() {
       </section>
 
       {/* Services / Expertise */}
-      <section className="py-40 bg-card border-y border-border">
+      <section className="py-20 md:py-40 bg-card border-y border-border">
         <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
           <motion.div 
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="mb-24"
+            className="mb-12 md:mb-20"
           >
-            <h2 className="text-5xl md:text-7xl font-serif font-light tracking-tight">Our Expertise</h2>
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-serif font-light tracking-tight">Our Expertise</h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12 border-t border-border pt-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {[
               {
+                number: "01",
                 title: "Master Planning",
-                desc: "Strategic urban and corporate campus planning that integrates seamlessly with surrounding environments."
+                desc: "Strategic urban and corporate campus planning that integrates seamlessly with surrounding environments.",
+                boxStyle: "bg-[#DCEEFE] dark:bg-[#0c4a6e] border border-[#BAE6FD] dark:border-[#0284c7]/40 hover:bg-[#CEE5FC] dark:hover:bg-[#075985]",
+                numStyle: "text-[#0369A1] dark:text-[#38BDF8] font-semibold",
+                titleStyle: "text-[#0f172a] dark:text-white",
+                descStyle: "text-[#334155] dark:text-sky-100/90"
               },
               {
+                number: "02",
                 title: "Commercial Architecture",
-                desc: "Iconic corporate headquarters engineered for sustainability, scalability, and profound visual impact."
+                desc: "Iconic corporate headquarters engineered for sustainability, scalability, and profound visual impact.",
+                boxStyle: "bg-[#FEF3C7] dark:bg-[#78350f] border border-[#FDE68A] dark:border-[#b45309]/40 hover:bg-[#FDEBB2] dark:hover:bg-[#854d0e]",
+                numStyle: "text-[#B45309] dark:text-[#FBBF24] font-semibold",
+                titleStyle: "text-[#0f172a] dark:text-white",
+                descStyle: "text-[#334155] dark:text-amber-100/90"
               },
               {
+                number: "03",
                 title: "Interior Architecture",
-                desc: "Precision-crafted internal spaces that enhance enterprise productivity while exuding quiet luxury."
+                desc: "Precision-crafted internal spaces that enhance enterprise productivity while exuding quiet luxury.",
+                boxStyle: "bg-[#FFEDD5] dark:bg-[#7c2d12] border border-[#FED7AA] dark:border-[#c2410c]/40 hover:bg-[#FEE4C3] dark:hover:bg-[#9a3412]",
+                numStyle: "text-[#C2410C] dark:text-[#FB923C] font-semibold",
+                titleStyle: "text-[#0f172a] dark:text-white",
+                descStyle: "text-[#334155] dark:text-orange-100/90"
               }
             ].map((service, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 1, delay: i * 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="group"
+                transition={{ duration: 0.9, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className={`w-full min-h-[auto] sm:min-h-[220px] p-6 sm:p-8 md:p-10 rounded-2xl ${service.boxStyle} shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between`}
               >
-                <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-6">0{i + 1}</div>
-                <h3 className="text-3xl font-serif font-light mb-6 group-hover:text-accent transition-colors duration-500">{service.title}</h3>
-                <p className="text-muted-foreground font-light leading-relaxed">{service.desc}</p>
+                <div>
+                  <div className={`text-xs uppercase tracking-[0.2em] mb-4 sm:mb-6 ${service.numStyle}`}>
+                    {service.number}
+                  </div>
+                  <h3 className={`text-2xl sm:text-3xl font-serif font-light mb-4 sm:mb-6 ${service.titleStyle}`}>
+                    {service.title}
+                  </h3>
+                  <p className={`font-light leading-relaxed text-sm sm:text-base ${service.descStyle}`}>
+                    {service.desc}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -257,17 +280,17 @@ export default function Home() {
       </section>
 
       {/* Process Section */}
-      <section className="py-40 bg-background overflow-hidden relative">
+      <section className="py-20 md:py-40 bg-background overflow-hidden relative">
         <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeUp}
             >
-              <h2 className="text-5xl md:text-7xl font-serif font-light tracking-tight mb-12">The Methodology</h2>
-              <p className="text-xl text-muted-foreground font-light leading-relaxed mb-12 max-w-lg">
+              <h2 className="text-4xl sm:text-5xl md:text-7xl font-serif font-light tracking-tight mb-6 md:mb-12">The Methodology</h2>
+              <p className="text-lg sm:text-xl text-muted-foreground font-light leading-relaxed mb-8 md:mb-12 max-w-lg">
                 We approach every project as a structural puzzle. From the initial conceptual sketches to the final steel beam, our process is defined by absolute precision.
               </p>
               <Link href="/expertise/process" className="inline-flex items-center gap-4 text-xs uppercase tracking-[0.2em] border-b border-primary pb-2 hover:text-muted-foreground hover:border-muted-foreground transition-colors duration-500">
@@ -275,25 +298,62 @@ export default function Home() {
               </Link>
             </motion.div>
 
-            <div className="space-y-16">
+            <div className="flex flex-col gap-4 sm:gap-5 w-full">
               {[
-                { step: "01", title: "Site & Scale Analysis", text: "Evaluating environmental impact, spatial flow, and enterprise requirements." },
-                { step: "02", title: "Conceptual Geometry", text: "Translating corporate vision into foundational architectural forms." },
-                { step: "03", title: "Parametric Engineering", text: "Validating structural integrity through advanced BIM and digital twins." },
-                { step: "04", title: "Execution & Delivery", text: "Orchestrating global contractors to ensure flawless material execution." }
+                { 
+                  step: "01", 
+                  title: "Site & Scale Analysis", 
+                  text: "Evaluating environmental impact, spatial flow, and enterprise requirements.",
+                  bg: "bg-[#DCEEFE] dark:bg-[#0c4a6e] border border-[#BAE6FD] dark:border-[#0284c7]/40 hover:bg-[#CEE5FC] dark:hover:bg-[#075985]",
+                  numColor: "text-[#0369A1] dark:text-[#38BDF8] font-semibold",
+                  titleColor: "text-[#0f172a] dark:text-white",
+                  textColor: "text-[#334155] dark:text-sky-100/90"
+                },
+                { 
+                  step: "02", 
+                  title: "Conceptual Geometry", 
+                  text: "Translating corporate vision into foundational architectural forms.",
+                  bg: "bg-[#FEF3C7] dark:bg-[#78350f] border border-[#FDE68A] dark:border-[#b45309]/40 hover:bg-[#FDEBB2] dark:hover:bg-[#854d0e]",
+                  numColor: "text-[#B45309] dark:text-[#FBBF24] font-semibold",
+                  titleColor: "text-[#0f172a] dark:text-white",
+                  textColor: "text-[#334155] dark:text-amber-100/90"
+                },
+                { 
+                  step: "03", 
+                  title: "Parametric Engineering", 
+                  text: "Validating structural integrity through advanced BIM and digital twins.",
+                  bg: "bg-[#E2E8F0] dark:bg-[#334155] border border-[#CBD5E1] dark:border-[#475569]/50 hover:bg-[#D5DEE8] dark:hover:bg-[#3b4b61]",
+                  numColor: "text-[#475569] dark:text-[#94A3B8] font-semibold",
+                  titleColor: "text-[#0f172a] dark:text-white",
+                  textColor: "text-[#334155] dark:text-slate-100/90"
+                },
+                { 
+                  step: "04", 
+                  title: "Execution & Delivery", 
+                  text: "Orchestrating global contractors to ensure flawless material execution.",
+                  bg: "bg-[#FFEDD5] dark:bg-[#7c2d12] border border-[#FED7AA] dark:border-[#c2410c]/40 hover:bg-[#FEE4C3] dark:hover:bg-[#9a3412]",
+                  numColor: "text-[#C2410C] dark:text-[#FB923C] font-semibold",
+                  titleColor: "text-[#0f172a] dark:text-white",
+                  textColor: "text-[#334155] dark:text-orange-100/90"
+                }
               ].map((item, i) => (
                 <motion.div 
                   key={i}
-                  initial={{ opacity: 0, x: 50 }}
+                  initial={{ opacity: 0, x: 40 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 1, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                  className="border-l border-border pl-8 relative"
+                  transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className={`w-full min-h-[auto] sm:min-h-[165px] p-6 sm:p-7 md:p-8 rounded-2xl ${item.bg} shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between`}
                 >
-                  <div className="absolute top-0 -left-[1px] w-[2px] h-0 bg-primary group-hover:h-full transition-all duration-1000" />
-                  <div className="text-xs uppercase tracking-[0.2em] text-accent mb-3">{item.step}</div>
-                  <h4 className="text-2xl font-serif font-light mb-3">{item.title}</h4>
-                  <p className="text-muted-foreground font-light">{item.text}</p>
+                  <div className={`text-xs uppercase tracking-[0.2em] mb-2 sm:mb-3 ${item.numColor}`}>
+                    {item.step}
+                  </div>
+                  <h4 className={`text-xl sm:text-2xl font-serif font-light mb-2 ${item.titleColor}`}>
+                    {item.title}
+                  </h4>
+                  <p className={`font-light text-sm leading-relaxed ${item.textColor}`}>
+                    {item.text}
+                  </p>
                 </motion.div>
               ))}
             </div>
@@ -330,7 +390,7 @@ export default function Home() {
       <section className="py-48 bg-[#ffffff] text-[#000000] text-center px-6 relative overflow-hidden">
         {/* Faint architectural grid background */}
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(#000000 1px, transparent 1px), linear-gradient(90deg, #000000 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-        
+
         <motion.div
           initial="hidden"
           whileInView="visible"
