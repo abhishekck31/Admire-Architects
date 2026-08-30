@@ -57,14 +57,29 @@ export default function ProcessPage() {
       <div className="fixed inset-0 pointer-events-none opacity-[0.02]" style={{ backgroundImage: 'linear-gradient(#000000 1px, transparent 1px), linear-gradient(90deg, #000000 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
 
       {/* Hero Section */}
-      <section className="relative pt-48 pb-32 px-6 md:px-16 lg:px-24 border-b border-black/5 relative z-10">
+      <section className="relative pt-32 sm:pt-48 pb-20 sm:pb-32 px-6 md:px-16 lg:px-24 border-b border-black/5 relative z-10">
         <div className="max-w-7xl mx-auto text-center md:text-left">
           <motion.div initial="hidden" animate="visible" variants={fadeUp}>
-            <div className="text-[10px] uppercase tracking-[0.3em] text-[#60A5FA] mb-6">Execution Excellence</div>
-            <h1 className="text-5xl md:text-[7rem] font-serif font-light text-black tracking-tighter leading-[1] mb-10">
-              The Engine of <br className="hidden md:block" /> <span className="text-gray-500 italic">Precision.</span>
+            <div className="text-[10px] uppercase tracking-[0.3em] text-[#60A5FA] mb-4 sm:mb-6">Execution Excellence</div>
+            <h1 className="text-4xl sm:text-6xl md:text-[7rem] font-serif font-light text-black tracking-tighter leading-[1.1] md:leading-[1] mb-6 md:mb-10">
+              The Engine of <br className="hidden md:block" />{" "}
+              <span className="relative inline-block px-2 sm:px-3 md:px-5 py-0.5 mx-0.5 sm:mx-1">
+                {/* Ambient neon glow halo */}
+                <span
+                  className="absolute inset-0 bg-[#FACC15]/50 blur-xl rounded-xl -z-0 pointer-events-none"
+                  aria-hidden="true"
+                />
+                {/* Full-word luminous highlighter stroke */}
+                <span
+                  className="absolute inset-0 bg-gradient-to-r from-[#FDE047] via-[#FEF08A] to-[#FACC15] -rotate-1 rounded-lg -z-0 opacity-95 shadow-[0_0_25px_rgba(250,204,21,0.75),0_0_55px_rgba(253,224,71,0.45)] pointer-events-none"
+                  aria-hidden="true"
+                />
+                <span className="relative z-10 italic font-normal text-black">
+                  Precision.
+                </span>
+              </span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 font-light max-w-3xl leading-relaxed mx-auto md:mx-0">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600 font-light max-w-3xl leading-relaxed mx-auto md:mx-0">
               We do not leave massive enterprise structures to chance. Our execution methodology is a highly calibrated, zero-tolerance framework.
             </p>
           </motion.div>
@@ -72,15 +87,15 @@ export default function ProcessPage() {
       </section>
 
       {/* SECTION 1 — PROJECT CYCLE */}
-      <section className="py-40 relative z-10 bg-[#f8f9fa] border-b border-black/5">
+      <section className="py-20 md:py-40 relative z-10 bg-[#f8f9fa] border-b border-black/5">
         <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="mb-24">
-            <h2 className="text-4xl md:text-6xl font-serif font-light tracking-tight mb-4">Project Cycle</h2>
-            <p className="text-gray-600 font-light text-lg max-w-2xl">The fundamental lifecycle of our enterprise projects.</p>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="mb-12 md:mb-24">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif font-light tracking-tight mb-4">Project Cycle</h2>
+            <p className="text-gray-600 font-light text-base sm:text-lg max-w-2xl">The fundamental lifecycle of our enterprise projects.</p>
           </motion.div>
 
           {/* Interactive Cycle Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-32">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-16 md:mb-32">
             {PROJECT_CYCLE.map((stage, i) => {
               const cardThemes = [
                 { bg: "bg-[#fdf6ee]", accent: "bg-[#d4a56a]", text: "text-[#c4924e]", hoverBg: "from-[#d4a56a]/10" },   // warm cream / gold
@@ -98,7 +113,7 @@ export default function ProcessPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: i * 0.1 }}
                   onMouseEnter={() => setActiveCycle(i)}
-                  className={`relative p-8 border rounded-lg transition-all duration-700 cursor-pointer overflow-hidden ${theme.bg} ${
+                  className={`relative p-6 sm:p-7 md:p-8 border rounded-2xl transition-all duration-700 cursor-pointer overflow-hidden ${theme.bg} ${
                     activeCycle === i 
                       ? "border-transparent scale-[1.02] shadow-2xl" 
                       : "border-black/5 hover:border-black/10 shadow-md"
@@ -110,25 +125,16 @@ export default function ProcessPage() {
                   {/* Subtle hover gradient overlay */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${theme.hoverBg} to-transparent transition-opacity duration-700 ${activeCycle === i ? "opacity-100" : "opacity-0"}`} />
                   
-                  <div className={`relative z-10 text-4xl font-serif mb-6 transition-colors duration-500 ${activeCycle === i ? theme.text : "text-gray-400"}`}>
+                  <div className={`relative z-10 text-3xl sm:text-4xl font-serif mb-4 sm:mb-6 transition-colors duration-500 ${activeCycle === i ? theme.text : "text-gray-400"}`}>
                     {stage.id}
                   </div>
-                  <h3 className={`relative z-10 text-xl font-serif font-light mb-4 transition-colors duration-500 ${activeCycle === i ? "text-black" : "text-gray-700"}`}>
+                  <h3 className={`relative z-10 text-lg sm:text-xl font-serif font-light mb-3 sm:mb-4 transition-colors duration-500 ${activeCycle === i ? "text-black" : "text-gray-700"}`}>
                     {stage.title}
                   </h3>
                   
-                  <AnimatePresence>
-                    {activeCycle === i && (
-                      <motion.p
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="relative z-10 text-sm font-light text-gray-600 leading-relaxed"
-                      >
-                        {stage.desc}
-                      </motion.p>
-                    )}
-                  </AnimatePresence>
+                  <p className="relative z-10 text-sm font-light text-gray-600 leading-relaxed mt-2">
+                    {stage.desc}
+                  </p>
                 </motion.div>
               );
             })}
