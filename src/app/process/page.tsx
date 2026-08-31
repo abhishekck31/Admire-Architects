@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 import { FiArrowRight, FiCheckCircle, FiChevronRight, FiUsers, FiBox, FiTrendingUp, FiLayers, FiBriefcase } from "react-icons/fi";
+import HumanAvatar, { AvatarType } from "@/components/HumanAvatar";
 
 const fadeUp: any = {
   hidden: { opacity: 0, y: 50 },
@@ -31,12 +32,60 @@ const ADMIRE_PROCESS = [
   { num: "06", title: "Closeout", metrics: ["As Built Documentation", "Financial Closeout"], icon: <FiArrowRight /> }
 ];
 
+const ADMIRE_PROCESS_THEMES = [
+  { bg: "bg-[#CF6E4E]", circleBg: "bg-[#CF6E4E]", hoverBg: "from-black/20", glow: "shadow-[#CF6E4E]/30" },   // Terracotta (#CF6E4E)
+  { bg: "bg-[#147B80]", circleBg: "bg-[#147B80]", hoverBg: "from-black/20", glow: "shadow-[#147B80]/30" },   // Deep Teal (#147B80)
+  { bg: "bg-[#463854]", circleBg: "bg-[#463854]", hoverBg: "from-black/20", glow: "shadow-[#463854]/30" },   // Slate Plum (#463854)
+  { bg: "bg-[#2D5A4C]", circleBg: "bg-[#2D5A4C]", hoverBg: "from-black/20", glow: "shadow-[#2D5A4C]/30" },   // Emerald Forest (#2D5A4C)
+  { bg: "bg-[#BF5F5F]", circleBg: "bg-[#BF5F5F]", hoverBg: "from-black/20", glow: "shadow-[#BF5F5F]/30" },   // Dusty Rose (#BF5F5F)
+  { bg: "bg-[#DE9B3A]", circleBg: "bg-[#DE9B3A]", hoverBg: "from-black/20", glow: "shadow-[#DE9B3A]/30" },   // Warm Ochre (#DE9B3A)
+];
+
 const ORG_CHART = {
-  head: "Managing Director / Chief",
+  head: {
+    role: "Managing Director / Chief",
+    name: "Executive Leadership",
+    avatar: "md" as AvatarType,
+  },
   departments: [
-    { name: "Project Management", roles: ["Project Managers", "Project Engineers", "Site Engineer", "Quantity Surveyor"] },
-    { name: "Architecture Studio", roles: ["Principal Architect", "Senior Architects", "Draftsman"] },
-    { name: "Administration", roles: ["Accounts", "Procurement", "Admin", "Admin Assistant"] }
+    {
+      name: "Project Management",
+      accent: "#147B80",
+      accentBg: "bg-[#147B80]",
+      borderHover: "border-[#147B80]",
+      bgHover: "bg-[#147B80]/5",
+      roles: [
+        { title: "Project Managers", level: "Operations Lead", avatar: "pm" as AvatarType },
+        { title: "Project Engineers", level: "Engineering", avatar: "pe" as AvatarType },
+        { title: "Site Engineer", level: "Field & Quality Control", avatar: "se" as AvatarType },
+        { title: "Quantity Surveyor", level: "Cost & Estimation", avatar: "qs" as AvatarType },
+      ]
+    },
+    {
+      name: "Architecture Studio",
+      accent: "#463854",
+      accentBg: "bg-[#463854]",
+      borderHover: "border-[#463854]",
+      bgHover: "bg-[#463854]/5",
+      roles: [
+        { title: "Principal Architect", level: "Creative Direction", avatar: "pa" as AvatarType },
+        { title: "Senior Architects", level: "Design Studio", avatar: "sa" as AvatarType },
+        { title: "Draftsman", level: "CADD & Detailing", avatar: "df" as AvatarType },
+      ]
+    },
+    {
+      name: "Administration",
+      accent: "#CF6E4E",
+      accentBg: "bg-[#CF6E4E]",
+      borderHover: "border-[#CF6E4E]",
+      bgHover: "bg-[#CF6E4E]/5",
+      roles: [
+        { title: "Accounts", level: "Finance & Audit", avatar: "acc" as AvatarType },
+        { title: "Procurement", level: "Supply Chain", avatar: "pro" as AvatarType },
+        { title: "Admin", level: "Studio Operations", avatar: "adm" as AvatarType },
+        { title: "Admin Assistant", level: "Executive Support", avatar: "ast" as AvatarType },
+      ]
+    }
   ]
 };
 
@@ -183,46 +232,58 @@ export default function ProcessPage() {
             </div>
 
             <motion.div style={{ x: xTransform }} className="flex w-max gap-16 px-24 pt-20">
-              {ADMIRE_PROCESS.map((stage, i) => (
-                <div key={i} className="w-[500px] flex-shrink-0 relative group">
-                  
-                  {/* Background architectural grid line */}
-                  <div className="absolute top-8 left-0 w-full h-[1px] bg-black/10 z-0" />
-                  
-                  <div className="relative z-10">
-                    <div className="w-16 h-16 rounded-full border border-black/20 bg-[#f8f9fa] flex items-center justify-center text-xl font-serif text-[#60A5FA] mb-16 group-hover:bg-[#60A5FA] group-hover:text-white group-hover:border-[#60A5FA] transition-colors duration-500 shadow-xl">
-                      {stage.num}
-                    </div>
+              {ADMIRE_PROCESS.map((stage, i) => {
+                const theme = ADMIRE_PROCESS_THEMES[i % ADMIRE_PROCESS_THEMES.length];
+                return (
+                  <div key={i} className="w-[500px] flex-shrink-0 relative group">
                     
-                    <div className="p-12 border border-black/10 bg-[#f8f9fa]/80 backdrop-blur-md hover:border-[#60A5FA]/50 transition-all duration-700 h-[450px] flex flex-col justify-between overflow-hidden relative">
-                      {/* Subtle hover gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#60A5FA]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    {/* Background architectural grid line */}
+                    <div className="absolute top-8 left-0 w-full h-[1px] bg-black/10 z-0" />
+                    
+                    <div className="relative z-10">
+                      {/* Step Number Circle Badge */}
+                      <div className={`w-16 h-16 rounded-full border-2 border-white ${theme.circleBg} flex items-center justify-center text-xl font-serif text-white font-semibold mb-16 shadow-xl transition-all duration-500 group-hover:scale-110 group-hover:shadow-2xl`}>
+                        {stage.num}
+                      </div>
                       
-                      <div className="relative z-10">
-                        <div className="text-3xl text-gray-600 mb-6 group-hover:text-[#60A5FA] transition-colors duration-500">
-                          {stage.icon}
-                        </div>
-                        <h3 className="text-3xl font-serif font-light mb-10 text-black group-hover:text-[#60A5FA] transition-colors duration-500">{stage.title}</h3>
+                      {/* Card Content */}
+                      <div className={`p-12 rounded-2xl ${theme.bg} text-white shadow-xl group-hover:shadow-2xl group-hover:scale-[1.02] transition-all duration-700 h-[450px] flex flex-col justify-between overflow-hidden relative border border-white/20`}>
+                        {/* Top accent bar */}
+                        <div className="absolute top-0 left-0 right-0 h-1 bg-white/40 group-hover:bg-white transition-all duration-700" />
                         
-                        <div className="space-y-6">
-                          {stage.metrics.map((metric, idx) => (
-                            <div key={idx} className="flex items-center gap-4 group/item">
-                              <div className="w-6 h-[1px] bg-black/20 group-hover/item:bg-[#60A5FA] group-hover/item:w-10 transition-all duration-500" />
-                              <span className="text-sm font-light tracking-wide text-gray-700 group-hover/item:text-black transition-colors duration-300">{metric}</span>
-                            </div>
-                          ))}
+                        {/* Subtle hover gradient overlay */}
+                        <div className={`absolute inset-0 bg-gradient-to-br ${theme.hoverBg} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
+                        
+                        <div className="relative z-10">
+                          <div className="text-3xl text-white/85 mb-6 group-hover:text-white transition-colors duration-500">
+                            {stage.icon}
+                          </div>
+                          <h3 className="text-3xl font-serif font-light mb-10 text-white leading-tight">
+                            {stage.title}
+                          </h3>
+                          
+                          <div className="space-y-6">
+                            {stage.metrics.map((metric, idx) => (
+                              <div key={idx} className="flex items-center gap-4 group/item">
+                                <div className="w-6 h-[1px] bg-white/40 group-hover/item:bg-white group-hover/item:w-10 transition-all duration-500" />
+                                <span className="text-sm font-light tracking-wide text-white/90 group-hover/item:text-white transition-colors duration-300">
+                                  {metric}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
               
               {/* Bottom Description Card at the end */}
               <div className="w-[500px] flex-shrink-0 relative flex items-center justify-center">
-                <div className="p-12 border border-black/10 bg-[#f8f9fa] text-center">
-                  <FiCheckCircle className="mx-auto text-4xl text-[#60A5FA] mb-8" />
-                  <p className="text-xl font-serif font-light leading-relaxed text-gray-700">
+                <div className="p-12 rounded-2xl border border-black/10 bg-[#f8f9fa] shadow-xl text-center h-[450px] flex flex-col justify-center items-center">
+                  <FiCheckCircle className="mx-auto text-5xl text-[#60A5FA] mb-8" />
+                  <p className="text-xl font-serif font-light leading-relaxed text-gray-800">
                     "Tasks in each stage are defined as part of the process and are followed. Our process is flexible to take care of changes and adjustments."
                   </p>
                 </div>
@@ -236,31 +297,38 @@ export default function ProcessPage() {
       {/* Mobile Vertical Timeline for ADMIRE PROCESS */}
       <div className="md:hidden py-32 px-6 bg-[#ffffff] relative z-10">
         <h2 className="text-4xl font-serif font-light tracking-tight mb-20 text-center">Admire Process</h2>
-        <div className="space-y-24 border-l border-black/20 pl-8 relative ml-4">
-          {ADMIRE_PROCESS.map((stage, i) => (
-            <motion.div 
-              key={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeUp}
-              className="relative p-6 border border-black/10 bg-[#f8f9fa]"
-            >
-              <div className="absolute w-4 h-4 rounded-full bg-[#ffffff] border-2 border-[#60A5FA] -left-[42px] top-8" />
-              <div className="text-3xl font-serif text-[#60A5FA] mb-4">{stage.num}</div>
-              <h3 className="text-2xl font-serif font-light mb-6 text-black">{stage.title}</h3>
-              <div className="space-y-4">
-                {stage.metrics.map((metric, idx) => (
-                  <div key={idx} className="flex items-center gap-3">
-                    <div className="w-4 h-[1px] bg-black/20" />
-                    <span className="text-sm font-light text-gray-700">{metric}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-          <motion.div variants={fadeUp} className="p-8 border border-[#60A5FA]/30 bg-[#60A5FA]/5 mt-10">
-            <p className="text-base font-serif font-light leading-relaxed text-gray-700 italic text-center">
+        <div className="space-y-12 border-l-2 border-black/10 pl-6 relative ml-4">
+          {ADMIRE_PROCESS.map((stage, i) => {
+            const theme = ADMIRE_PROCESS_THEMES[i % ADMIRE_PROCESS_THEMES.length];
+            return (
+              <motion.div 
+                key={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={fadeUp}
+                className={`relative p-8 rounded-2xl ${theme.bg} text-white shadow-xl border border-white/20 overflow-hidden`}
+              >
+                <div className={`absolute w-5 h-5 rounded-full ${theme.circleBg} border-2 border-white -left-[35px] top-8 shadow-md`} />
+                <div className="text-3xl font-serif text-white/85 font-semibold mb-3">{stage.num}</div>
+                <div className="flex items-center gap-3 mb-5 text-2xl text-white">
+                  <span className="text-2xl text-white/90">{stage.icon}</span>
+                  <h3 className="text-2xl font-serif font-light">{stage.title}</h3>
+                </div>
+                <div className="space-y-4 pt-2">
+                  {stage.metrics.map((metric, idx) => (
+                    <div key={idx} className="flex items-center gap-3">
+                      <div className="w-5 h-[1px] bg-white/40" />
+                      <span className="text-sm font-light text-white/90">{metric}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
+          <motion.div variants={fadeUp} className="p-8 rounded-2xl border border-black/10 bg-[#f8f9fa] shadow-md mt-10 text-center">
+            <FiCheckCircle className="text-3xl text-[#60A5FA] mb-4 mx-auto" />
+            <p className="text-base font-serif font-light leading-relaxed text-gray-800 italic">
               "Tasks in each stage are defined as part of the process and are followed. Our process is flexible to take care of changes and adjustments."
             </p>
           </motion.div>
@@ -284,10 +352,19 @@ export default function ProcessPage() {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="relative z-20 border border-[#60A5FA] bg-[#ffffff] px-12 py-6 mb-16 shadow-[0_0_40px_rgba(184,155,114,0.1)] text-center cursor-default hover:bg-[#60A5FA]/10 transition-colors duration-500"
+              className="relative z-20 border border-[#60A5FA] bg-[#ffffff] px-8 py-5 rounded-2xl shadow-[0_10px_40px_rgba(96,165,250,0.15)] text-center cursor-default hover:shadow-[0_15px_45px_rgba(96,165,250,0.25)] hover:scale-[1.02] transition-all duration-500 flex items-center gap-4 group mb-16"
             >
-              <FiUsers className="mx-auto text-2xl text-[#60A5FA] mb-2" />
-              <h3 className="text-xl font-medium tracking-wide uppercase text-black">{ORG_CHART.head}</h3>
+              <div className="relative flex-shrink-0 transition-transform duration-500 group-hover:scale-105">
+                <HumanAvatar type={ORG_CHART.head.avatar} size={56} className="border-2 border-[#60A5FA]/30 shadow-md" />
+              </div>
+              <div className="text-left">
+                <div className="text-[10px] uppercase tracking-[0.25em] font-semibold text-[#60A5FA]">
+                  {ORG_CHART.head.name}
+                </div>
+                <h3 className="text-lg sm:text-xl font-serif font-medium tracking-wide text-black">
+                  {ORG_CHART.head.role}
+                </h3>
+              </div>
               
               {/* Vertical line connecting to branches */}
               <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-px h-16 bg-black/20" />
@@ -297,7 +374,7 @@ export default function ProcessPage() {
             <div className="hidden md:block w-3/4 h-px bg-black/20 relative z-10" />
 
             {/* Departments Row */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 w-full mt-0 md:mt-16 relative z-20">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 w-full mt-0 md:mt-16 relative z-20">
               {ORG_CHART.departments.map((dept, i) => (
                 <div 
                   key={i} 
@@ -313,18 +390,18 @@ export default function ProcessPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.2 }}
-                    className={`border px-8 py-5 text-center w-full max-w-xs transition-all duration-500 relative ${
-                      hoveredOrgDept === i ? "border-[#60A5FA] bg-[#60A5FA]/5" : "border-black/10 bg-[#f8f9fa]"
+                    className={`border px-6 py-4 rounded-xl text-center w-full max-w-sm transition-all duration-500 relative ${
+                      hoveredOrgDept === i ? `${dept.borderHover} ${dept.bgHover} shadow-md` : "border-black/10 bg-[#f8f9fa]"
                     }`}
                   >
-                    <h4 className={`text-sm uppercase tracking-widest transition-colors duration-500 ${hoveredOrgDept === i ? "text-[#60A5FA]" : "text-gray-700"}`}>
+                    <h4 className={`text-xs uppercase tracking-widest font-semibold transition-colors duration-500 ${hoveredOrgDept === i ? "text-black" : "text-gray-700"}`}>
                       {dept.name}
                     </h4>
-                    <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-[#60A5FA] transition-all duration-500 ${hoveredOrgDept === i ? "opacity-100" : "opacity-0"}`} />
+                    <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-[2px] ${dept.accentBg} transition-all duration-500 ${hoveredOrgDept === i ? "opacity-100 w-3/4" : "opacity-40"}`} />
                   </motion.div>
 
                   {/* Vertical line to sub roles */}
-                  <div className={`w-px h-10 transition-colors duration-500 ${hoveredOrgDept === i ? "bg-[#60A5FA]/50" : "bg-black/10"}`} />
+                  <div className={`w-px h-8 transition-colors duration-500 ${hoveredOrgDept === i ? `${dept.accentBg}` : "bg-black/10"}`} />
 
                   {/* Sub Roles List */}
                   <motion.div 
@@ -332,14 +409,26 @@ export default function ProcessPage() {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 + (i * 0.2) }}
-                    className={`flex flex-col gap-3 w-full max-w-xs border transition-colors duration-500 p-6 ${
-                      hoveredOrgDept === i ? "border-[#60A5FA]/30 bg-[#ffffff]/80 shadow-2xl" : "border-black/5 bg-[#ffffff]"
+                    className={`flex flex-col gap-2.5 w-full max-w-sm border rounded-2xl transition-all duration-500 p-4 ${
+                      hoveredOrgDept === i ? `${dept.borderHover} bg-[#ffffff] shadow-2xl scale-[1.02]` : "border-black/10 bg-[#ffffff] shadow-sm"
                     }`}
                   >
                     {dept.roles.map((role, idx) => (
-                      <div key={idx} className="flex items-center gap-3 group">
-                        <div className={`w-1.5 h-1.5 rounded-full transition-colors duration-500 ${hoveredOrgDept === i ? "bg-[#60A5FA]" : "bg-black/20"}`} />
-                        <span className={`text-sm font-light transition-colors duration-300 ${hoveredOrgDept === i ? "text-black" : "text-gray-600 group-hover:text-black"}`}>{role}</span>
+                      <div 
+                        key={idx} 
+                        className="flex items-center gap-3.5 p-2.5 rounded-xl hover:bg-black/[0.03] transition-colors duration-300 group/role cursor-default"
+                      >
+                        <div className="relative flex-shrink-0 transition-transform duration-300 group-hover/role:scale-110">
+                          <HumanAvatar type={role.avatar} size={42} className="border border-black/10 shadow-sm" />
+                        </div>
+                        <div className="flex flex-col min-w-0">
+                          <span className="text-sm font-medium text-black group-hover/role:text-[#60A5FA] transition-colors duration-300">
+                            {role.title}
+                          </span>
+                          <span className="text-[11px] font-light text-gray-500">
+                            {role.level}
+                          </span>
+                        </div>
                       </div>
                     ))}
                   </motion.div>
