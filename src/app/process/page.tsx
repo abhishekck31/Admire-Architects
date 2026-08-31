@@ -98,11 +98,11 @@ export default function ProcessPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-16 md:mb-32">
             {PROJECT_CYCLE.map((stage, i) => {
               const cardThemes = [
-                { bg: "bg-[#fdf6ee]", accent: "bg-[#d4a56a]", text: "text-[#c4924e]", hoverBg: "from-[#d4a56a]/10" },   // warm cream / gold
-                { bg: "bg-[#f0f5f0]", accent: "bg-[#7da87d]", text: "text-[#6b946b]", hoverBg: "from-[#7da87d]/10" },   // soft sage
-                { bg: "bg-[#eef4ff]", accent: "bg-[#60A5FA]", text: "text-[#4a90e2]", hoverBg: "from-[#60A5FA]/10" },   // pale sky blue
-                { bg: "bg-[#f4f0f8]", accent: "bg-[#9b8ec4]", text: "text-[#8a7db5]", hoverBg: "from-[#9b8ec4]/10" },   // lavender mist
-                { bg: "bg-[#fef0f0]", accent: "bg-[#d4837d]", text: "text-[#c4716a]", hoverBg: "from-[#d4837d]/10" },   // rose blush
+                { bg: "bg-[#CF6E4E]", accent: "bg-white", text: "text-white/80", hoverBg: "from-black/15" },   // Terracotta (#CF6E4E)
+                { bg: "bg-[#147B80]", accent: "bg-white", text: "text-white/80", hoverBg: "from-black/15" },   // Deep Teal (#147B80)
+                { bg: "bg-[#463854]", accent: "bg-white", text: "text-white/80", hoverBg: "from-black/15" },   // Slate Plum (#463854)
+                { bg: "bg-[#BF5F5F]", accent: "bg-white", text: "text-white/80", hoverBg: "from-black/15" },   // Dusty Rose (#BF5F5F)
+                { bg: "bg-[#DE9B3A]", accent: "bg-white", text: "text-white/80", hoverBg: "from-black/15" },   // Warm Ochre (#DE9B3A)
               ];
               const theme = cardThemes[i];
               return (
@@ -113,26 +113,26 @@ export default function ProcessPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: i * 0.1 }}
                   onMouseEnter={() => setActiveCycle(i)}
-                  className={`relative p-6 sm:p-7 md:p-8 border rounded-2xl transition-all duration-700 cursor-pointer overflow-hidden ${theme.bg} ${
+                  className={`relative p-6 sm:p-7 md:p-8 rounded-2xl transition-all duration-700 cursor-pointer overflow-hidden text-white ${theme.bg} ${
                     activeCycle === i 
-                      ? "border-transparent scale-[1.02] shadow-2xl" 
-                      : "border-black/5 hover:border-black/10 shadow-md"
+                      ? "scale-[1.02] shadow-2xl shadow-black/20 ring-2 ring-white/30" 
+                      : "shadow-md hover:shadow-xl hover:scale-[1.01]"
                   }`}
                 >
                   {/* Top accent bar */}
-                  <div className={`absolute top-0 left-0 right-0 h-1 transition-all duration-700 ${activeCycle === i ? `${theme.accent} opacity-100` : `${theme.accent} opacity-40`}`} />
+                  <div className={`absolute top-0 left-0 right-0 h-1 transition-all duration-700 ${activeCycle === i ? "bg-white opacity-100" : "bg-white/40 opacity-50"}`} />
                   
                   {/* Subtle hover gradient overlay */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${theme.hoverBg} to-transparent transition-opacity duration-700 ${activeCycle === i ? "opacity-100" : "opacity-0"}`} />
                   
-                  <div className={`relative z-10 text-3xl sm:text-4xl font-serif mb-4 sm:mb-6 transition-colors duration-500 ${activeCycle === i ? theme.text : "text-gray-400"}`}>
+                  <div className={`relative z-10 text-3xl sm:text-4xl font-serif mb-4 sm:mb-6 font-semibold ${theme.text}`}>
                     {stage.id}
                   </div>
-                  <h3 className={`relative z-10 text-lg sm:text-xl font-serif font-light mb-3 sm:mb-4 transition-colors duration-500 ${activeCycle === i ? "text-black" : "text-gray-700"}`}>
+                  <h3 className="relative z-10 text-lg sm:text-xl font-serif font-light mb-3 sm:mb-4 text-white">
                     {stage.title}
                   </h3>
                   
-                  <p className="relative z-10 text-sm font-light text-gray-600 leading-relaxed mt-2">
+                  <p className="relative z-10 text-sm font-light text-white/90 leading-relaxed mt-2">
                     {stage.desc}
                   </p>
                 </motion.div>
