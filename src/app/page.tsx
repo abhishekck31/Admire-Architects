@@ -230,28 +230,28 @@ export default function Home() {
                 number: "01",
                 title: "Master Planning",
                 desc: "Strategic urban and corporate campus planning that integrates seamlessly with surrounding environments.",
-                boxStyle: "bg-[#DCEEFE] dark:bg-[#0c4a6e] border border-[#BAE6FD] dark:border-[#0284c7]/40 hover:bg-[#CEE5FC] dark:hover:bg-[#075985]",
-                numStyle: "text-[#0369A1] dark:text-[#38BDF8] font-semibold",
-                titleStyle: "text-[#0f172a] dark:text-white",
-                descStyle: "text-[#334155] dark:text-sky-100/90"
+                boxStyle: "bg-[#179FB7] text-white hover:bg-[#138A9E] shadow-lg hover:shadow-2xl hover:shadow-[#179FB7]/30 border-transparent",
+                numStyle: "text-white/80 font-bold",
+                titleStyle: "text-white",
+                descStyle: "text-white/90"
               },
               {
                 number: "02",
                 title: "Commercial Architecture",
                 desc: "Iconic corporate headquarters engineered for sustainability, scalability, and profound visual impact.",
-                boxStyle: "bg-[#FEF3C7] dark:bg-[#78350f] border border-[#FDE68A] dark:border-[#b45309]/40 hover:bg-[#FDEBB2] dark:hover:bg-[#854d0e]",
-                numStyle: "text-[#B45309] dark:text-[#FBBF24] font-semibold",
-                titleStyle: "text-[#0f172a] dark:text-white",
-                descStyle: "text-[#334155] dark:text-amber-100/90"
+                boxStyle: "bg-[#E09D00] text-white hover:bg-[#C98C00] shadow-lg hover:shadow-2xl hover:shadow-[#E09D00]/30 border-transparent",
+                numStyle: "text-white/85 font-bold",
+                titleStyle: "text-white",
+                descStyle: "text-white/90"
               },
               {
                 number: "03",
                 title: "Interior Architecture",
                 desc: "Precision-crafted internal spaces that enhance enterprise productivity while exuding quiet luxury.",
-                boxStyle: "bg-[#FFEDD5] dark:bg-[#7c2d12] border border-[#FED7AA] dark:border-[#c2410c]/40 hover:bg-[#FEE4C3] dark:hover:bg-[#9a3412]",
-                numStyle: "text-[#C2410C] dark:text-[#FB923C] font-semibold",
-                titleStyle: "text-[#0f172a] dark:text-white",
-                descStyle: "text-[#334155] dark:text-orange-100/90"
+                boxStyle: "bg-[#F36900] text-white hover:bg-[#D95D00] shadow-lg hover:shadow-2xl hover:shadow-[#F36900]/30 border-transparent",
+                numStyle: "text-white/80 font-bold",
+                titleStyle: "text-white",
+                descStyle: "text-white/90"
               }
             ].map((service, i) => (
               <motion.div 
@@ -260,7 +260,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.9, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className={`w-full min-h-[auto] sm:min-h-[220px] p-6 sm:p-8 md:p-10 rounded-2xl ${service.boxStyle} shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between`}
+                className={`w-full min-h-[auto] sm:min-h-[220px] p-6 sm:p-8 md:p-10 rounded-2xl ${service.boxStyle} transition-all duration-300 flex flex-col justify-between`}
               >
                 <div>
                   <div className={`text-xs uppercase tracking-[0.2em] mb-4 sm:mb-6 ${service.numStyle}`}>
@@ -304,37 +304,37 @@ export default function Home() {
                   step: "01", 
                   title: "Site & Scale Analysis", 
                   text: "Evaluating environmental impact, spatial flow, and enterprise requirements.",
-                  bg: "bg-[#DCEEFE] dark:bg-[#0c4a6e] border border-[#BAE6FD] dark:border-[#0284c7]/40 hover:bg-[#CEE5FC] dark:hover:bg-[#075985]",
-                  numColor: "text-[#0369A1] dark:text-[#38BDF8] font-semibold",
-                  titleColor: "text-[#0f172a] dark:text-white",
-                  textColor: "text-[#334155] dark:text-sky-100/90"
+                  bg: "bg-[#179FB7] text-white shadow-md hover:shadow-xl hover:shadow-[#179FB7]/30 hover:bg-[#138A9E]",
+                  numColor: "text-white/80 font-bold",
+                  titleColor: "text-white",
+                  textColor: "text-white/90"
                 },
                 { 
                   step: "02", 
                   title: "Conceptual Geometry", 
                   text: "Translating corporate vision into foundational architectural forms.",
-                  bg: "bg-[#FEF3C7] dark:bg-[#78350f] border border-[#FDE68A] dark:border-[#b45309]/40 hover:bg-[#FDEBB2] dark:hover:bg-[#854d0e]",
-                  numColor: "text-[#B45309] dark:text-[#FBBF24] font-semibold",
-                  titleColor: "text-[#0f172a] dark:text-white",
-                  textColor: "text-[#334155] dark:text-amber-100/90"
+                  bg: "bg-[#E09D00] text-white shadow-md hover:shadow-xl hover:shadow-[#E09D00]/30 hover:bg-[#C98C00]",
+                  numColor: "text-white/85 font-bold",
+                  titleColor: "text-white",
+                  textColor: "text-white/90"
                 },
                 { 
                   step: "03", 
                   title: "Parametric Engineering", 
                   text: "Validating structural integrity through advanced BIM and digital twins.",
-                  bg: "bg-[#E2E8F0] dark:bg-[#334155] border border-[#CBD5E1] dark:border-[#475569]/50 hover:bg-[#D5DEE8] dark:hover:bg-[#3b4b61]",
-                  numColor: "text-[#475569] dark:text-[#94A3B8] font-semibold",
-                  titleColor: "text-[#0f172a] dark:text-white",
-                  textColor: "text-[#334155] dark:text-slate-100/90"
+                  bg: "bg-[#95B00F] text-white shadow-md hover:shadow-xl hover:shadow-[#95B00F]/30 hover:bg-[#839B0D]",
+                  numColor: "text-white/85 font-bold",
+                  titleColor: "text-white",
+                  textColor: "text-white/90"
                 },
                 { 
                   step: "04", 
                   title: "Execution & Delivery", 
                   text: "Orchestrating global contractors to ensure flawless material execution.",
-                  bg: "bg-[#FFEDD5] dark:bg-[#7c2d12] border border-[#FED7AA] dark:border-[#c2410c]/40 hover:bg-[#FEE4C3] dark:hover:bg-[#9a3412]",
-                  numColor: "text-[#C2410C] dark:text-[#FB923C] font-semibold",
-                  titleColor: "text-[#0f172a] dark:text-white",
-                  textColor: "text-[#334155] dark:text-orange-100/90"
+                  bg: "bg-[#F36900] text-white shadow-md hover:shadow-xl hover:shadow-[#F36900]/30 hover:bg-[#D95D00]",
+                  numColor: "text-white/80 font-bold",
+                  titleColor: "text-white",
+                  textColor: "text-white/90"
                 }
               ].map((item, i) => (
                 <motion.div 

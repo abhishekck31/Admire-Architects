@@ -13,11 +13,11 @@ const SERVICES = [
     number: "01",
     description: "Iconic structural design tailored for global corporate headquarters and monumental enterprise developments.",
     image: "/project_1_1779118457708.png",
-    bg: "bg-[#DCEEFE] dark:bg-[#0c4a6e] border border-[#BAE6FD] dark:border-[#0284c7]/40 hover:bg-[#CEE5FC] dark:hover:bg-[#075985]",
-    numColor: "text-[#0369A1] dark:text-[#38BDF8]",
-    titleColor: "text-[#0f172a] dark:text-white",
-    descColor: "text-[#334155] dark:text-sky-100/90",
-    arrowBg: "bg-white/80 dark:bg-white/10 text-[#0369A1] dark:text-[#38BDF8] group-hover:bg-[#0284c7] group-hover:text-white"
+    bg: "bg-[#179FB7] text-white hover:bg-[#138A9E] shadow-md hover:shadow-xl hover:shadow-[#179FB7]/30 border-transparent",
+    numColor: "text-white/80 font-bold",
+    titleColor: "text-white",
+    descColor: "text-white/90",
+    arrowBg: "bg-white/20 text-white group-hover:bg-white group-hover:text-[#179FB7]"
   },
   {
     id: "interior-design",
@@ -25,11 +25,11 @@ const SERVICES = [
     number: "02",
     description: "Precision-crafted internal spaces that enhance enterprise productivity while exuding quiet, profound luxury.",
     image: "/project_2_1779118501379.png",
-    bg: "bg-[#FEF3C7] dark:bg-[#78350f] border border-[#FDE68A] dark:border-[#b45309]/40 hover:bg-[#FDEBB2] dark:hover:bg-[#854d0e]",
-    numColor: "text-[#B45309] dark:text-[#FBBF24]",
-    titleColor: "text-[#0f172a] dark:text-white",
-    descColor: "text-[#334155] dark:text-amber-100/90",
-    arrowBg: "bg-white/80 dark:bg-white/10 text-[#B45309] dark:text-[#FBBF24] group-hover:bg-[#b45309] group-hover:text-white"
+    bg: "bg-[#008BB0] text-white hover:bg-[#007A9A] shadow-md hover:shadow-xl hover:shadow-[#008BB0]/30 border-transparent",
+    numColor: "text-white/80 font-bold",
+    titleColor: "text-white",
+    descColor: "text-white/90",
+    arrowBg: "bg-white/20 text-white group-hover:bg-white group-hover:text-[#008BB0]"
   },
   {
     id: "project-management",
@@ -37,11 +37,11 @@ const SERVICES = [
     number: "03",
     description: "Rigorous oversight and risk mitigation, ensuring multi-million dollar developments are executed flawlessly.",
     image: "/hero_arch_1779118409602.png",
-    bg: "bg-[#E2E8F0] dark:bg-[#334155] border border-[#CBD5E1] dark:border-[#475569]/50 hover:bg-[#D5DEE8] dark:hover:bg-[#3b4b61]",
-    numColor: "text-[#475569] dark:text-[#94A3B8]",
-    titleColor: "text-[#0f172a] dark:text-white",
-    descColor: "text-[#334155] dark:text-slate-100/90",
-    arrowBg: "bg-white/80 dark:bg-white/10 text-[#475569] dark:text-[#94A3B8] group-hover:bg-[#475569] group-hover:text-white"
+    bg: "bg-[#E09D00] text-white hover:bg-[#C98C00] shadow-md hover:shadow-xl hover:shadow-[#E09D00]/30 border-transparent",
+    numColor: "text-white/85 font-bold",
+    titleColor: "text-white",
+    descColor: "text-white/90",
+    arrowBg: "bg-white/20 text-white group-hover:bg-white group-hover:text-[#E09D00]"
   },
   {
     id: "design-build",
@@ -49,11 +49,11 @@ const SERVICES = [
     number: "04",
     description: "A unified workflow bridging the gap between visionary concept and physical construction under one entity.",
     image: "/project_1_1779118457708.png",
-    bg: "bg-[#FFEDD5] dark:bg-[#7c2d12] border border-[#FED7AA] dark:border-[#c2410c]/40 hover:bg-[#FEE4C3] dark:hover:bg-[#9a3412]",
-    numColor: "text-[#C2410C] dark:text-[#FB923C]",
-    titleColor: "text-[#0f172a] dark:text-white",
-    descColor: "text-[#334155] dark:text-orange-100/90",
-    arrowBg: "bg-white/80 dark:bg-white/10 text-[#C2410C] dark:text-[#FB923C] group-hover:bg-[#c2410c] group-hover:text-white"
+    bg: "bg-[#95B00F] text-white hover:bg-[#839B0D] shadow-md hover:shadow-xl hover:shadow-[#95B00F]/30 border-transparent",
+    numColor: "text-white/85 font-bold",
+    titleColor: "text-white",
+    descColor: "text-white/90",
+    arrowBg: "bg-white/20 text-white group-hover:bg-white group-hover:text-[#95B00F]"
   },
   {
     id: "turnkey-solutions",
@@ -61,11 +61,11 @@ const SERVICES = [
     number: "05",
     description: "End-to-end delivery of enterprise spaces. From empty land to the final piece of curated furniture.",
     image: "/project_2_1779118501379.png",
-    bg: "bg-[#DCEEFE] dark:bg-[#0c4a6e] border border-[#BAE6FD] dark:border-[#0284c7]/40 hover:bg-[#CEE5FC] dark:hover:bg-[#075985]",
-    numColor: "text-[#0369A1] dark:text-[#38BDF8]",
-    titleColor: "text-[#0f172a] dark:text-white",
-    descColor: "text-[#334155] dark:text-sky-100/90",
-    arrowBg: "bg-white/80 dark:bg-white/10 text-[#0369A1] dark:text-[#38BDF8] group-hover:bg-[#0284c7] group-hover:text-white"
+    bg: "bg-[#F36900] text-white hover:bg-[#D95D00] shadow-md hover:shadow-xl hover:shadow-[#F36900]/30 border-transparent",
+    numColor: "text-white/80 font-bold",
+    titleColor: "text-white",
+    descColor: "text-white/90",
+    arrowBg: "bg-white/20 text-white group-hover:bg-white group-hover:text-[#F36900]"
   }
 ];
 
