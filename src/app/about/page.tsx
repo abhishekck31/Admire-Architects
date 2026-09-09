@@ -21,18 +21,18 @@ const staggerContainer: any = {
 
 export default function AboutPage() {
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
   });
-  
+
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
     <div className="relative min-h-screen bg-[#ffffff] text-[#000000] overflow-clip font-sans">
-      
+
       {/* SECTION 1 — HERO SECTION */}
       <section ref={containerRef} className="relative pt-40 md:pt-56 pb-20 md:pb-32 w-full flex items-center justify-center overflow-hidden">
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="absolute inset-[-5%] z-0">
@@ -45,7 +45,7 @@ export default function AboutPage() {
           /> */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#60A5FA]/15 via-[#ffffff]/60 to-[#ffffff]" />
         </motion.div>
-        
+
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 lg:px-24 flex flex-col items-center text-center">
           <motion.div
             initial="hidden"
@@ -78,10 +78,10 @@ export default function AboutPage() {
       {/* SECTION 2 — COMPANY INTRODUCTION */}
       <section id="introduction" className="py-20 md:py-32 bg-[#ffffff] relative border-b border-black/5">
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'linear-gradient(#1E3A8A 1px, transparent 1px), linear-gradient(90deg, #1E3A8A 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-        
+
         <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            
+
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -130,7 +130,7 @@ export default function AboutPage() {
                   fill 
                   className="object-cover grayscale group-hover:scale-105 transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] opacity-70" 
                 /> */}
-                
+
                 {/* Floating Badges */}
                 <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 flex flex-col gap-3 md:gap-4 z-10">
                   {[
@@ -138,7 +138,7 @@ export default function AboutPage() {
                     "Established Since 2005",
                     "Multi-State Operations"
                   ].map((badge, i) => (
-                    <motion.div 
+                    <motion.div
                       key={i}
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
@@ -161,15 +161,15 @@ export default function AboutPage() {
       <section className="py-40 md:py-56 bg-gradient-to-b from-[#eef4ff] via-[#f8f9fa] to-[#eef4ff] relative flex items-center justify-center overflow-hidden">
         {/* Subtle background architecture lines */}
         <div className="absolute top-0 left-0 w-full h-full opacity-20">
-           <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="archGrid" width="100" height="100" patternUnits="userSpaceOnUse">
-                  <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#60A5FA" strokeWidth="0.5" />
-                  <path d="M 0 100 L 100 0" fill="none" stroke="#60A5FA" strokeWidth="0.5" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#archGrid)" />
-            </svg>
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="archGrid" width="100" height="100" patternUnits="userSpaceOnUse">
+                <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#60A5FA" strokeWidth="0.5" />
+                <path d="M 0 100 L 100 0" fill="none" stroke="#60A5FA" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#archGrid)" />
+          </svg>
         </div>
 
         <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
@@ -287,7 +287,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
               { label: "Established", value: "2005" },
-              { label: "Enterprise Projects", value: "100+" },
+              { label: "Enterprise Projects", value: "250+" },
               { label: "Client Base", value: "Fortune 500" },
               { label: "Presence", value: "Multi-State" },
               { label: "Core Operations", value: "ISO Certified" },
@@ -360,7 +360,7 @@ export default function AboutPage() {
           {/* <Image src="/project_1_1779118457708.png" alt="Let's Build" fill className="object-cover opacity-20 grayscale" /> */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#ffffff] via-transparent to-[#ffffff]" />
         </div>
-        
+
         <div className="relative z-10 max-w-4xl mx-auto px-6">
           <motion.div
             initial="hidden"

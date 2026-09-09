@@ -51,14 +51,13 @@ export default function Navigation() {
   return (
     <>
       <nav
-        className={`fixed top-2.5 left-2.5 right-2.5 sm:top-3 sm:left-4 sm:right-4 md:top-4 md:left-10 md:right-10 z-[100] px-3.5 sm:px-5 md:px-10 transition-all duration-300 flex justify-between items-center pointer-events-auto rounded-2xl md:rounded-[2rem] ${
-          isScrolled
-            ? "py-2 sm:py-2.5 md:py-2.5 bg-white/95 dark:bg-background/95 backdrop-blur-md shadow-md border border-black/5 dark:border-white/10"
-            : "py-2 sm:py-2.5 md:py-3.5 bg-white/80 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none border border-black/5 md:border-transparent shadow-sm md:shadow-none"
-        }`}
+        className={`fixed top-2.5 left-2.5 right-2.5 sm:top-3 sm:left-4 sm:right-4 md:top-4 md:left-10 md:right-10 z-[100] px-3.5 sm:px-5 md:px-10 transition-all duration-300 flex justify-between items-center pointer-events-auto rounded-2xl md:rounded-[2rem] ${isScrolled
+          ? "py-2 sm:py-2.5 md:py-2.5 bg-white/95 dark:bg-background/95 backdrop-blur-md shadow-md border border-black/5 dark:border-white/10"
+          : "py-2 sm:py-2.5 md:py-3.5 bg-white/80 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none border border-black/5 md:border-transparent shadow-sm md:shadow-none"
+          }`}
       >
         <Link href="/" className="flex items-center gap-2.5 sm:gap-4 md:gap-5 z-[101] group cursor-pointer min-w-0">
-          <div className="relative w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 flex-shrink-0">
+          <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-[68px] md:h-[68px] flex-shrink-0">
             <Image
               src="/favicon/favicon.svg"
               alt="Admire Architects Logo"
@@ -70,10 +69,11 @@ export default function Navigation() {
           <span className="flex flex-col leading-tight min-w-0">
             <span className="text-sm xs:text-base sm:text-lg md:text-2xl lg:text-3xl tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.2em] font-light uppercase transition-colors duration-300 text-brand-blue truncate">
               Admire <span className="font-semibold">Architects</span>
+              <span className="block sm:inline sm:ml-2 md:ml-3">Pvt. Ltd</span>
             </span>
             {/* Company motto */}
             <span className="hidden sm:block mt-0.5 text-[7.5px] md:text-[9px] uppercase tracking-[0.25em] md:tracking-[0.35em] font-medium transition-colors duration-300 text-brand-blue-light">
-              Designing the Future
+              Architects & Project Management
             </span>
           </span>
         </Link>
@@ -182,9 +182,8 @@ export default function Navigation() {
                       >
                         <div className="flex items-center gap-3 sm:gap-5 md:gap-8">
                           <span
-                            className={`text-[9px] sm:text-[10px] md:text-xs uppercase tracking-widest font-sans font-medium transition-colors duration-300 ${
-                              isActive ? "text-[#60A5FA]" : "text-black/35 dark:text-white/40 group-hover:text-[#60A5FA]"
-                            }`}
+                            className={`text-[9px] sm:text-[10px] md:text-xs uppercase tracking-widest font-sans font-medium transition-colors duration-300 ${isActive ? "text-[#60A5FA]" : "text-black/35 dark:text-white/40 group-hover:text-[#60A5FA]"
+                              }`}
                           >
                             0{i + 1}
                           </span>
@@ -193,11 +192,10 @@ export default function Navigation() {
                           </span>
                         </div>
                         <FiArrowRight
-                          className={`text-base sm:text-xl md:text-2xl transition-all duration-300 transform ${
-                            isActive
-                              ? "text-[#60A5FA] translate-x-0 opacity-100"
-                              : "text-transparent -translate-x-4 opacity-0 group-hover:text-[#60A5FA] group-hover:translate-x-0 group-hover:opacity-100"
-                          }`}
+                          className={`text-base sm:text-xl md:text-2xl transition-all duration-300 transform ${isActive
+                            ? "text-[#60A5FA] translate-x-0 opacity-100"
+                            : "text-transparent -translate-x-4 opacity-0 group-hover:text-[#60A5FA] group-hover:translate-x-0 group-hover:opacity-100"
+                            }`}
                         />
                       </Link>
                     </motion.li>

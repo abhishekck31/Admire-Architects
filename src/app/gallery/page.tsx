@@ -72,7 +72,7 @@ export default function GalleryPage() {
             Project <span className="text-brand-blue">Gallery</span>
           </h1>
           <p className="text-lg text-gray-700 font-light max-w-2xl leading-relaxed">
-            {totalImages} images across {sections.length} delivered projects — corporate interiors, workplaces and
+            Corporate interiors, workplaces and
             turnkey fit-outs built by Admire Architects.
           </p>
         </motion.div>
