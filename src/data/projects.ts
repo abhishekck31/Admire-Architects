@@ -56,40 +56,43 @@ const RAW_TURNKEY = [
 ];
 
 const RAW_LATEST = [
-  // The nine headline projects, shown first and in this order.
+  // Curated order requested for the Latest Projects list.
   "Celonis @ Table Space Tower, Bangalore",
+  "Global Infocity Park, Perungudi, Chennai",
+  "Green Space Factory @ Nelamangala, Bangalore",
+  "Green Space Office @ Yeshwanthpur, Bangalore",
+  "HealthMinds @ Yeshwanthpur, Bangalore",
+  "Venkatesh Office, Bangalore",
+  "Genpact Madurai",
+  "Genpact, SEZ Bellandur, Bangalore",
+  "Prestige Golfshire Villa, Nandi Hills, Bangalore",
+  "Resillion, SJR Primeco, Arekere, Bangalore",
   "Everest, Manyata Tech Park, Bangalore",
   "Blueprint Technologies, Manyata Tech Park, Bangalore",
-  "ZS Technologies, Manyata Tech Park, Bangalore",
-  "Rocketlane, Perungudi, Chennai",
+  "ZS, Perungudi, Chennai",
   "Brillio, Perungudi, Chennai",
-  "GIP 13th Floor, Chennai",
   "Black Hawk, Domlur, Bangalore",
   "Google Millennium, 1 Shobha, Bangalore",
-  // Remaining latest projects.
+  "Pega System, Bangalore",
+  "Truven Health Analytics, Hyderabad",
+  "IBM Automation Lab, Bangalore",
+  "Dell DLF, Chennai (50,000 SFT)",
+  "Schneider Electric, PTP, Bangalore",
+  // Remaining previously-listed projects, kept after the curated order above.
+  "ZS Technologies, Manyata Tech Park, Bangalore",
+  "Rocketlane, Perungudi, Chennai",
   "SJR Union City, Whitefield, Bangalore",
   "Genpact, Surya Park, Electronic City, Bangalore",
-  "Genpact, SEZ Bellandur, Bangalore",
   "Daimler Truck, Whitefield, Bangalore",
   "Mercedes Benz, Whitefield, Bangalore",
   "Nexer, Manyata Tech Park, Bangalore",
   "ParentPay, Manyata Tech Park, Bangalore",
   "Zitro India, Whitefield, Bangalore",
-  "Prestige Golfshire Villa, Nandi Hills, Bangalore",
   "Elastic Technologies, Domlur, Bangalore",
   "Maximus, SJR Primeco, Arekere, Bangalore",
-  "Resillion, SJR Primeco, Arekere, Bangalore",
   "Faiser, Perungudi, Chennai",
-  "ZS, Perungudi, Chennai",
-  "GIP, Common Area, Perungudi, Chennai",
-  "HealthMinds @ Yeshwanthpur, Bangalore",
   "PWC, Elnath Building, PTP, Bangalore",
-  "Table Space Office, Bangalore",
-  "Green Space Office @ Yeshwanthpur, Bangalore",
-  "Green Space Factory @ Nelamangala, Bangalore",
-  "Genpact Madurai",
-  "Pega System",
-  "Venkatesh Office, Bangalore"
+  "Table Space Office, Bangalore"
 ];
 
 export interface Project {
@@ -171,7 +174,7 @@ function parseProject(str: string, category: string, index: number): Project {
        "/Projects/Brillo Chennai-20260628T015139Z-3-001/Brillo Chennai/Picture93.jpg",
        "/Projects/Brillo Chennai-20260628T015139Z-3-001/Brillo Chennai/Picture90.jpg"
      ];
-  } else if (lowerTitle.includes("gip") && location.toLowerCase().includes("chennai")) {
+  } else if ((lowerTitle.includes("gip") || lowerTitle.includes("global infocity park")) && location.toLowerCase().includes("chennai")) {
      projectImages = [
        "/Projects/GIP Chennai-20260628T015158Z-3-001/GIP Chennai/Picture200.jpg",
        "/Projects/GIP Chennai-20260628T015158Z-3-001/GIP Chennai/Picture194.jpg",
