@@ -68,8 +68,8 @@ export default function Home() {
           >
             {[
               { number: "20+", label: "Years of Excellence" },
-              { number: "150+", label: "Global HQ Built" },
-              { number: "12", label: "Industry Awards" }
+              { number: "250+", label: "Projects Delivered" },
+              { number: "40+", label: "Enterprise Clients" }
             ].map((stat, i) => (
               <AnimatedCounter key={i} value={stat.number} label={stat.label} />
             ))}
@@ -78,8 +78,8 @@ export default function Home() {
       </section>
 
       {/* Enterprise Clients Showcase */}
-      <section className="py-32 bg-background overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24 mb-16">
+      <section className="pt-32 pb-16 bg-background overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
           <motion.h3
             initial="hidden"
             whileInView="visible"
@@ -94,9 +94,15 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid grid-cols-4 gap-4 sm:gap-8 md:flex md:flex-wrap md:justify-center md:items-center md:gap-16 transition-all duration-1000"
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-8 gap-y-10 md:gap-x-12 md:gap-y-14 items-center justify-items-center transition-all duration-1000"
           >
             {[
+              { name: "Table Space", src: "/ClientLogosImgs/tablespace.png" },
+              { name: "Schneider Electric", src: "/ClientLogosImgs/schneiderelectric.png" },
+              { name: "Genpact", src: "/ClientLogosImgs/genpact.png" },
+              { name: "HP", src: "/ClientLogosImgs/hp.png" },
+              { name: "IBM", src: "/ClientLogosImgs/ibm.png" },
+              { name: "Wipro", src: "/ClientLogosImgs/wipro.png" },
               { name: "Airtel", src: "/ClientLogosImgs/airtel.png" },
               { name: "Blueprint", src: "/ClientLogosImgs/blueprint.png" },
               { name: "Cisco", src: "/ClientLogosImgs/cisco.png" },
@@ -105,23 +111,17 @@ export default function Home() {
               { name: "Daimler Truck", src: "/ClientLogosImgs/daimlertruck.png" },
               { name: "Dell", src: "/ClientLogosImgs/dell.png" },
               { name: "Emids", src: "/ClientLogosImgs/emids.png" },
-              { name: "Genpact", src: "/ClientLogosImgs/genpact.png" },
               { name: "Goldman Sachs", src: "/ClientLogosImgs/goldmanSachs.png" },
-              { name: "HP", src: "/ClientLogosImgs/hp.png" },
-              { name: "IBM", src: "/ClientLogosImgs/ibm.png" },
               { name: "Mercedes-Benz", src: "/ClientLogosImgs/mercedesbenz.png" },
               { name: "Nexxer", src: "/ClientLogosImgs/nexxer.png" },
               { name: "Nokia", src: "/ClientLogosImgs/nokia.png" },
               { name: "ParentPay", src: "/ClientLogosImgs/parentpay.png" },
               { name: "Quickplay", src: "/ClientLogosImgs/quickplay.png" },
-              { name: "Schneider Electric", src: "/ClientLogosImgs/schneiderelectric.png" },
-              { name: "Table Space", src: "/ClientLogosImgs/tablespace.png" },
               { name: "Target", src: "/ClientLogosImgs/target.png" },
-              { name: "Wipro", src: "/ClientLogosImgs/wipro.png" },
               { name: "Zitro", src: "/ClientLogosImgs/zitro.png" },
             ].map((client, i) => (
-              <motion.div key={i} variants={fadeUp} className="relative w-full h-10 sm:h-12 md:w-48 md:h-24 group hover:scale-105 transition-transform duration-300">
-                <Image src={client.src} alt={client.name} fill sizes="(max-width: 768px) 30vw, 192px" className="object-contain" />
+              <motion.div key={i} variants={fadeUp} className="relative w-full aspect-[600/260] group hover:scale-105 transition-transform duration-300">
+                <Image src={client.src} alt={client.name} fill sizes="(max-width: 640px) 45vw, (max-width: 768px) 30vw, 260px" className="object-contain" />
               </motion.div>
             ))}
           </motion.div>

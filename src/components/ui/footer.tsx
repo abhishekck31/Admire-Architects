@@ -26,7 +26,7 @@ export const Footer = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTML
           <div className="grid grid-cols-1 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <a href="#" className="text-xl font-semibold font-serif text-white">
-                Admire Architects
+                Admire Architects Pvt. Ltd.
               </a>
               <p className="text-sm text-white/50 mt-2 max-w-sm leading-relaxed">
                 Shaping the physical environment of global enterprises through relentless engineering, absolute minimalism, and visionary design.

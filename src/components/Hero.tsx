@@ -38,7 +38,7 @@ export default function Hero() {
   return (
     <section 
       ref={containerRef} 
-      className="relative h-screen w-full bg-white p-3 pt-20 md:p-5 md:pt-[5.5rem] flex flex-col"
+      className="relative h-screen w-full bg-white p-3 pt-24 md:p-5 md:pt-[7.5rem] flex flex-col"
     >
       {/* Capsule Container for Hero Images */}
       <div className="relative w-full h-full rounded-[2rem] overflow-hidden shadow-2xl bg-black">

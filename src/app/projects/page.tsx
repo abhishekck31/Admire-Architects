@@ -23,8 +23,17 @@ export default function ProjectsShowcase() {
     });
   }, [activeCategory, searchQuery]);
 
-  const projectsWithImages = filteredProjects.filter(p => p.image);
-  const projectsWithoutImages = filteredProjects.filter(p => !p.image);
+  // One ordered list, 10 per page — the data file's order is the display order.
+  const PER_PAGE = 10;
+  const [page, setPage] = useState(0);
+  const totalPages = Math.max(1, Math.ceil(filteredProjects.length / PER_PAGE));
+  const currentPage = Math.min(page, totalPages - 1);
+  const pageProjects = filteredProjects.slice(currentPage * PER_PAGE, currentPage * PER_PAGE + PER_PAGE);
+
+  const goToPage = (next: number) => {
+    setPage(Math.max(0, Math.min(next, totalPages - 1)));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // Find initial project with image
   const initialDefaultProject = PROJECTS_DATA.find(p => p.category === CATEGORIES[0] && p.image) || PROJECTS_DATA[0];
@@ -36,6 +45,7 @@ export default function ProjectsShowcase() {
   // Handle Category Change
   const handleCategoryChange = (category: string) => {
     setActiveCategory(category);
+    setPage(0);
     // Find first project in new category that has an image, fallback to any project in category
     const firstProject = PROJECTS_DATA.find(p => p.category === category && p.image) || PROJECTS_DATA.find(p => p.category === category);
     if (firstProject) {
@@ -219,7 +229,7 @@ export default function ProjectsShowcase() {
               type="text" 
               placeholder="Search by project name, client, or city..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => { setSearchQuery(e.target.value); setPage(0); }}
               className="w-full bg-black/5 border border-black/10 rounded-full py-4 pl-12 pr-6 text-black text-sm font-light focus:outline-none focus:border-[#60A5FA] transition-colors"
             />
           </div>
@@ -244,7 +254,7 @@ export default function ProjectsShowcase() {
 
         {/* Project Results Stats */}
         <div className="mb-8 flex items-center justify-between text-[10px] uppercase tracking-[0.2em] text-gray-500">
-          <span>{filteredProjects.length} Projects Found</span>
+          <span>{filteredProjects.length} Projects Found{totalPages > 1 && ` — Page ${currentPage + 1} of ${totalPages}`}</span>
           <span className="flex items-center gap-2"><FiFilter /> {activeCategory}</span>
         </div>
 
@@ -257,8 +267,9 @@ export default function ProjectsShowcase() {
               </motion.div>
             )}
             
-            {projectsWithImages.map((project, i) => {
+            {pageProjects.map((project, i) => {
               const isExpanded = expandedId === project.id;
+              const listNumber = currentPage * PER_PAGE + i + 1;
               
               return (
                 <motion.div
@@ -277,7 +288,7 @@ export default function ProjectsShowcase() {
                   >
                     <div className="flex items-center gap-6">
                       <div className={`text-[10px] font-serif italic transition-colors duration-500 ${isExpanded ? "text-[#60A5FA]" : "text-gray-600"}`}>
-                        {(i + 1).toString().padStart(2, '0')}
+                        {listNumber.toString().padStart(2, '0')}
                       </div>
                       <h3 className={`text-xl md:text-2xl font-serif font-light text-left transition-colors duration-500 ${isExpanded ? "text-black" : "text-gray-600 group-hover:text-black"}`}>
                         {project.title}
@@ -335,18 +346,41 @@ export default function ProjectsShowcase() {
           </AnimatePresence>
         </div>
 
-        {/* Other Projects List */}
-        {projectsWithoutImages.length > 0 && (
-          <div className="mt-20 pt-12 border-t border-black/10">
-            <h2 className="text-2xl font-serif font-light mb-8 text-black">Other Projects</h2>
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {projectsWithoutImages.map((project) => (
-                <li key={project.id} className="text-sm font-light text-gray-600 flex items-start gap-3">
-                  <span className="w-1.5 h-1.5 mt-1.5 flex-shrink-0 rounded-full bg-[#60A5FA]/60"></span>
-                  <span className="leading-relaxed">{project.title}</span>
-                </li>
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="mt-12 pt-8 border-t border-black/10 flex items-center justify-between gap-4">
+            <button
+              onClick={() => goToPage(currentPage - 1)}
+              disabled={currentPage === 0}
+              className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-medium px-5 py-3 border rounded-full transition-all duration-500 disabled:opacity-30 disabled:cursor-not-allowed border-black/20 text-gray-600 enabled:hover:border-black/60 enabled:hover:text-black"
+            >
+              <FiChevronLeft size={12} /> Previous
+            </button>
+
+            <div className="flex items-center gap-2">
+              {Array.from({ length: totalPages }, (_, p) => (
+                <button
+                  key={p}
+                  onClick={() => goToPage(p)}
+                  aria-label={`Page ${p + 1}`}
+                  className={`w-8 h-8 rounded-full text-[10px] font-medium transition-all duration-500 ${
+                    p === currentPage
+                      ? "bg-[#60A5FA] text-white"
+                      : "text-gray-500 hover:text-black hover:bg-black/5"
+                  }`}
+                >
+                  {p + 1}
+                </button>
               ))}
-            </ul>
+            </div>
+
+            <button
+              onClick={() => goToPage(currentPage + 1)}
+              disabled={currentPage === totalPages - 1}
+              className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-medium px-5 py-3 border rounded-full transition-all duration-500 disabled:opacity-30 disabled:cursor-not-allowed border-black/20 text-gray-600 enabled:hover:border-black/60 enabled:hover:text-black"
+            >
+              Next <FiChevronRight size={12} />
+            </button>
           </div>
         )}
 
