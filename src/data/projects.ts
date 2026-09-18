@@ -95,11 +95,373 @@ const RAW_LATEST = [
   "Table Space Office, Bangalore"
 ];
 
+/**
+ * Client-supplied project photography, read straight out of
+ * `public/Admire Website - Project Images/<folder>/Edited/`.
+ *
+ * `folder` and `files` are copied verbatim from that directory — the client's
+ * own numbering is the display order, so nothing here is re-sorted or curated.
+ * `match` is tested against the *parsed* title and location (both lower-cased),
+ * i.e. after parseProject has stripped the area and pulled the trailing place
+ * name out into `location`.
+ */
+const IMAGE_ROOT = "/Admire Website - Project Images";
+
+interface ProjectImageSet {
+  folder: string;
+  match: (title: string, location: string) => boolean;
+  files: string[];
+}
+
+const PROJECT_IMAGE_SETS: ProjectImageSet[] = [
+  {
+    folder: "01. Celonis - BLR",
+    match: (t) => t.includes("celonis"),
+    files: [
+      "01. Reception.jpeg",
+      "02. Training Room.jpeg",
+      "03. Training Room.jpeg",
+      "04. Open Office.jpeg",
+      "05. Cabin.jpeg",
+      "06. Collab Area.jpeg",
+      "07. Cafeteria.jpeg",
+      "08. Cafeteria.jpeg",
+      "09. Cafeteria.jpeg",
+      "10. Step Seating.jpeg",
+    ],
+  },
+  {
+    folder: "02. GIP Chennai",
+    match: (t, loc) => t.includes("global infocity") && loc.includes("chennai"),
+    files: [
+      "01. Open Office.jpeg",
+      "02. Open Office.jpeg",
+      "03. Open Office.jpeg",
+      "04. Open Office.jpeg",
+      "05. Open Office.jpeg",
+      "06. Open Office.jpeg",
+      "07. Open Office.jpeg",
+      "08. Cafeteria.jpeg",
+      "09. Cafeteria.jpeg",
+      "10. Cabin.jpeg",
+      "11. 3 Pax Meeting Room.jpeg",
+      "12. 4 Pax.jpeg",
+      "13. 8 Pax.jpeg",
+    ],
+  },
+  {
+    folder: "03. Green Space Factory - BLR",
+    match: (t) => t.includes("green space factory"),
+    files: [
+      "01. Reception.png",
+      "02. Reception.png",
+      "03. Workstation Area.png",
+      "04. Workstation.png",
+      "05. 8 Pax Meeting Room.png",
+      "06. MD_s Cabin.png",
+      "07. Manager Cabin.png",
+      "08. Head Cabin.png",
+      "09. Operation Head Cabin.png",
+      "10. Operation Head Cabin.png",
+    ],
+  },
+  {
+    folder: "04. Green Space Office - BLR",
+    match: (t) => t.includes("green space office"),
+    files: [
+      "01. Reception.png",
+      "02. Reception.png",
+      "03. Open Office.jpeg",
+      "04. Open Office.jpeg",
+      "05. Prayer Room.png",
+      "06. Prayer Room.png",
+      "07. 4 Pax.png",
+      "08. Cabin.png",
+      "09. Head Cabin.png",
+      "10. pantry.png",
+      "11. Pantry.png",
+      "12. 6 Pax.jpg",
+      "13. 6 Pax.jpg",
+      "14. Phone Booth.png",
+    ],
+  },
+  {
+    folder: "05. Venkatesh Office - BLR",
+    match: (t) => t.includes("venkatesh"),
+    files: [
+      "01. Reception.jpeg",
+      "02. Reception.jpeg",
+      "03. Reception.jpeg",
+      "04. Reception.jpeg",
+      "05. MD Cabin.jpeg",
+      "06. MD Cabin.jpeg",
+      "07. Board Room.jpeg",
+      "08. Board Room.jpeg",
+    ],
+  },
+  {
+    folder: "06. Genpact Madurai",
+    match: (t) => t.includes("genpact") && t.includes("madurai"),
+    files: [
+      "01. Reception.jpeg",
+      "02. Open Office.jpeg",
+      "03. Open Office.jpeg",
+      "04. Open Office.jpeg",
+      "05. Open Office.jpeg",
+      "06. Board Room.jpeg",
+      "07. Cafeteria.jpeg",
+      "08. Cafeteria.jpeg",
+      "09. Toilet.jpeg",
+      "10. Toilet.jpeg",
+    ],
+  },
+  {
+    folder: "07. Health Minds - BLR",
+    match: (t) => t.includes("healthmind") || t.includes("health mind"),
+    files: [
+      "01. Reception.jpg",
+      "02. Open Office.png",
+      "03. Open Office.png",
+      "04. Open Office.jpg",
+      "05. Open Office.jpg",
+      "06. Ceo Cabin.jpg",
+      "07. 10 Pax.jpg",
+      "08. Pantry.png",
+      "09. Pantry.png",
+      "10. Cabin.png",
+      "11. Locker.png",
+      "12. Phone Booth.jpg",
+    ],
+  },
+  {
+    folder: "08. Prestige Golfshire - BLR",
+    match: (t) => t.includes("prestige golfshire"),
+    files: [
+      "01.jpg",
+      "02.jpg",
+      "03.jpg",
+      "04.jpg",
+      "05.jpg",
+      "06.jpg",
+      "07.jpg",
+    ],
+  },
+  {
+    folder: "09. Resillion - BLR",
+    match: (t) => t.includes("resillion"),
+    files: [
+      "01.jpg",
+      "02.jpg",
+      "03.jpg",
+      "04.jpg",
+    ],
+  },
+  {
+    folder: "10. Genpact Surya Park - BLR",
+    match: (t) => t.includes("genpact") && t.includes("surya"),
+    files: [
+      "01.png",
+      "02.png",
+      "03.png",
+      "04.png",
+      "05.png",
+      "06.png",
+      "07.png",
+      "08.png",
+      "09.png",
+      "10.png",
+      "11.png",
+      "12.png",
+      "13.png",
+      "14.png",
+      "15.png",
+    ],
+  },
+  {
+    folder: "11. Everest - BLR",
+    match: (t) => t.includes("everest"),
+    files: [
+      "01.png",
+      "02.jpeg",
+      "03.png",
+      "04.png",
+      "05.jpeg",
+      "06.jpeg",
+      "07.png",
+      "08.jpg",
+      "09.jpeg",
+      "10.png",
+    ],
+  },
+  {
+    folder: "12. Blue Print - BLR",
+    match: (t) => t.includes("blueprint") || t.includes("blue print"),
+    files: [
+      "01.jpg",
+      "02.jpg",
+      "03.jpg",
+      "04.jpg",
+      "05.jpg",
+      "06.jpg",
+      "07.jpg",
+      "08.jpg",
+      "09.jpg",
+      "10.jpg",
+    ],
+  },
+  {
+    folder: "13. Black Hawk - BLR",
+    match: (t) => t.includes("black hawk"),
+    files: [
+      "01.jpg",
+      "02.jpg",
+      "03.jpg",
+      "04.jpg",
+      "05.jpg",
+      "06.jpg",
+      "07.jpg",
+      "08.jpg",
+      "09.jpg",
+      "10.jpg",
+      "11.jpg",
+      "13.jpg",
+      "14.jpg",
+    ],
+  },
+  {
+    folder: "14. Millenium - BLR",
+    match: (t) => t.includes("millennium") || t.includes("millenium"),
+    files: [
+      "01.png",
+      "02.png",
+      "03.png",
+      "04.png",
+      "05.png",
+      "06.png",
+      "07.png",
+      "08.png",
+      "09.png",
+      "10.png",
+      "11.png",
+      "12.png",
+    ],
+  },
+  {
+    folder: "15. Pega System",
+    match: (t) => t.includes("pega"),
+    files: [
+      "001.jpeg",
+      "002.jpeg",
+      "003.jpeg",
+      "004.jpeg",
+      "005.jpeg",
+      "006.jpeg",
+      "007.jpeg",
+      "008.jpeg",
+      "009.jpeg",
+      "010.jpeg",
+    ],
+  },
+  {
+    folder: "16. Rocketlane - Chennai",
+    match: (t) => t.includes("rocketlane"),
+    files: [
+      "01.png",
+      "02.png",
+      "03.png",
+      "04.png",
+      "05.png",
+      "06.png",
+    ],
+  },
+  {
+    folder: "17. Brillo Chennai",
+    match: (t, loc) => (t.includes("brillio") || t.includes("brillo")) && loc.includes("chennai"),
+    files: [
+      "01.jpg",
+      "02.jpg",
+      "03.jpg",
+      "04.jpg",
+      "05.jpg",
+      "06.jpg",
+      "07.jpg",
+      "08.jpg",
+    ],
+  },
+  {
+    folder: "18. ZS Chennai",
+    match: (t, loc) => t.includes("zs") && loc.includes("chennai"),
+    files: [
+      "01.jpg",
+      "02.png",
+      "03.jpg",
+      "04.jpg",
+      "05.jpg",
+    ],
+  },
+  {
+    folder: "19. Genpact SEZ - BLR",
+    match: (t) => t.includes("genpact") && t.includes("sez"),
+    files: [
+      "01.jpeg",
+      "02.jpeg",
+      "03.jpeg",
+      "04.jpeg",
+      "05.jpeg",
+      "06.jpeg",
+    ],
+  },
+  {
+    folder: "20. Truven Health Analytics-Hyderabad",
+    match: (t, loc) => t.includes("truven") && loc.includes("hyderabad"),
+    files: [
+      "01.png",
+      "02.png",
+      "03.png",
+      "04.png",
+      "05.png",
+      "06.png",
+    ],
+  },
+  {
+    folder: "21. IBM Automation Lab-BLR",
+    match: (t) => t.includes("ibm automation lab"),
+    files: [
+      "01.png",
+      "02.png",
+      "03.png",
+      "04.png",
+      "05.png",
+    ],
+  },
+  {
+    folder: "22. Dell DLF Chennai",
+    match: (t) => t.includes("dell") && t.includes("dlf"),
+    files: [
+      "01.png",
+      "02.png",
+      "03.png",
+      "04.png",
+      "05.png",
+    ],
+  },
+];
+
+/** Photographs for a parsed project, or [] when the client sent none. */
+function imagesFor(title: string, location: string): string[] {
+  const t = title.toLowerCase();
+  const loc = location.toLowerCase();
+  const set = PROJECT_IMAGE_SETS.find((entry) => entry.match(t, loc));
+  if (!set) return [];
+  return set.files.map((file) => `${IMAGE_ROOT}/${set.folder}/Edited/${file}`);
+}
+
 export interface Project {
   id: string;
   title: string;
   location: string;
-  area: string;
+  /** Floor area / project value, when the client has disclosed one. */
+  area: string | null;
   category: string;
   image: string | null;
   allImages: string[];
@@ -108,7 +470,7 @@ export interface Project {
 
 function parseProject(str: string, category: string, index: number): Project {
   let title = str;
-  let area = "Undisclosed";
+  let area: string | null = null;
   let location = "Multiple Locations";
   
   // Extract area if present in parentheses
@@ -137,102 +499,7 @@ function parseProject(str: string, category: string, index: number): Project {
     area = "Rs.7.5 Crore to 10 Crore";
   }
 
-  // Map to project images
-  let projectImages: string[] = [];
-  const lowerTitle = title.toLowerCase();
-  
-  // Only images that hold up at full display size are listed here. Projects whose
-  // source photos were all low-resolution (Celonis, Everest, Health Minds, Prestige
-  // Golfshire, Schneider, ZS Chennai) intentionally have none and fall back to the
-  // "Images Coming Soon" state rather than showing a blurry photo.
-  if (lowerTitle.includes("dell") && lowerTitle.includes("dlf") && location.toLowerCase().includes("chennai")) {
-     projectImages = [
-       "/Projects/Dell DLF Chennai-20260628T015144Z-3-001/Dell DLF Chennai/Picture15.png",
-       "/Projects/Dell DLF Chennai-20260628T015144Z-3-001/Dell DLF Chennai/Picture14.png",
-       "/Projects/Dell DLF Chennai-20260628T015144Z-3-001/Dell DLF Chennai/Picture12.png",
-       "/Projects/Dell DLF Chennai-20260628T015144Z-3-001/Dell DLF Chennai/Picture13.png"
-     ];
-  } else if (lowerTitle.includes("ibm automation lab")) {
-     projectImages = [
-       "/Projects/IBM Automation Lab-BLR-20260628T015204Z-3-001/IBM Automation Lab-BLR/Picture1.png"
-     ];
-  } else if (lowerTitle.includes("black hawk")) {
-     projectImages = [
-       "/Projects/Black Hawk - BLR-20260628T015121Z-3-001/Black Hawk - BLR/Picture34.jpg",
-       "/Projects/Black Hawk - BLR-20260628T015121Z-3-001/Black Hawk - BLR/Picture20.jpg",
-       "/Projects/Black Hawk - BLR-20260628T015121Z-3-001/Black Hawk - BLR/Picture26.jpg"
-     ];
-  } else if (lowerTitle.includes("blueprint") || lowerTitle.includes("blue print")) {
-     projectImages = [
-       "/Projects/BLue Print - BLR-20260628T015136Z-3-001/BLue Print - BLR/Picture150.jpg",
-       "/Projects/BLue Print - BLR-20260628T015136Z-3-001/BLue Print - BLR/Picture148.jpg",
-       "/Projects/BLue Print - BLR-20260628T015136Z-3-001/BLue Print - BLR/Picture149.jpg"
-     ];
-  } else if (lowerTitle.includes("brillio") && location.toLowerCase().includes("chennai")) {
-     projectImages = [
-       "/Projects/Brillo Chennai-20260628T015139Z-3-001/Brillo Chennai/Picture92.jpg",
-       "/Projects/Brillo Chennai-20260628T015139Z-3-001/Brillo Chennai/Picture93.jpg",
-       "/Projects/Brillo Chennai-20260628T015139Z-3-001/Brillo Chennai/Picture90.jpg"
-     ];
-  } else if ((lowerTitle.includes("gip") || lowerTitle.includes("global infocity park")) && location.toLowerCase().includes("chennai")) {
-     projectImages = [
-       "/Projects/GIP Chennai-20260628T015158Z-3-001/GIP Chennai/Picture200.jpg",
-       "/Projects/GIP Chennai-20260628T015158Z-3-001/GIP Chennai/Picture194.jpg",
-       "/Projects/GIP Chennai-20260628T015158Z-3-001/GIP Chennai/Picture192.jpg"
-     ];
-  } else if (lowerTitle.includes("genpact") && lowerTitle.includes("sez")) {
-     projectImages = [
-       "/Projects/Genpact SEZ - BLR-20260628T015155Z-3-001/Genpact SEZ - BLR/009.jpeg",
-       "/Projects/Genpact SEZ - BLR-20260628T015155Z-3-001/Genpact SEZ - BLR/010.jpeg",
-       "/Projects/Genpact SEZ - BLR-20260628T015155Z-3-001/Genpact SEZ - BLR/006.jpeg"
-     ];
-  } else if (lowerTitle.includes("genpact") && lowerTitle.includes("surya")) {
-     projectImages = [
-       "/Projects/Genpact Surya Park - BLR-20260628T015156Z-3-001/Genpact Surya Park - BLR/Picture103.jpg"
-     ];
-  } else if (lowerTitle.includes("genpact") && lowerTitle.includes("madurai")) {
-     projectImages = [
-       "/Projects/Genpact Madurai-20260628T015154Z-3-001/Genpact Madurai/WhatsApp Image 2025-07-29 at 10.52.49.jpeg",
-       "/Projects/Genpact Madurai-20260628T015154Z-3-001/Genpact Madurai/WhatsApp Image 2025-07-29 at 10.52.33 (1).jpeg",
-       "/Projects/Genpact Madurai-20260628T015154Z-3-001/Genpact Madurai/WhatsApp Image 2025-07-29 at 10.52.32.jpeg"
-     ];
-  } else if (lowerTitle.includes("green space factory")) {
-     projectImages = [
-       "/Projects/Green Space Factory - BLR-20260628T015201Z-3-001/Green Space Factory - BLR/Picture166.png",
-       "/Projects/Green Space Factory - BLR-20260628T015201Z-3-001/Green Space Factory - BLR/Picture165.png",
-       "/Projects/Green Space Factory - BLR-20260628T015201Z-3-001/Green Space Factory - BLR/Picture174.png"
-     ];
-  } else if (lowerTitle.includes("green space office")) {
-     projectImages = [
-       "/Projects/Green Space Office - BLR-20260628T015202Z-3-001/Green Space Office - BLR/view 1.png",
-       "/Projects/Green Space Office - BLR-20260628T015202Z-3-001/Green Space Office - BLR/view 2.png",
-       "/Projects/Green Space Office - BLR-20260628T015202Z-3-001/Green Space Office - BLR/Picture161.png"
-     ];
-  } else if (lowerTitle.includes("pega")) {
-     projectImages = [
-       "/Projects/Pega System-20260628T015208Z-3-001/Pega System/002.jpeg",
-       "/Projects/Pega System-20260628T015208Z-3-001/Pega System/004.jpeg",
-       "/Projects/Pega System-20260628T015208Z-3-001/Pega System/006.jpeg"
-     ];
-  } else if (lowerTitle.includes("resillion")) {
-     projectImages = [
-       "/Projects/Resillion - BLR-20260628T015212Z-3-001/Resillion - BLR/Picture191.jpg",
-       "/Projects/Resillion - BLR-20260628T015212Z-3-001/Resillion - BLR/Picture188.jpg",
-       "/Projects/Resillion - BLR-20260628T015212Z-3-001/Resillion - BLR/Picture190.jpg"
-     ];
-  } else if (lowerTitle.includes("truven health analytics") && location.toLowerCase().includes("hyderabad")) {
-     projectImages = [
-       "/Projects/Truven Health Analytics-Hyderabad-20260628T015217Z-3-001/Truven Health Analytics-Hyderabad/Picture3.png",
-       "/Projects/Truven Health Analytics-Hyderabad-20260628T015217Z-3-001/Truven Health Analytics-Hyderabad/Picture4.png",
-       "/Projects/Truven Health Analytics-Hyderabad-20260628T015217Z-3-001/Truven Health Analytics-Hyderabad/Picture5.png"
-     ];
-  } else if (lowerTitle.includes("venkatesh")) {
-     projectImages = [
-       "/Projects/Venkatesh Office - BLR-20260628T015218Z-3-001/Venkatesh Office - BLR/WhatsApp Image 2026-06-26 at 16.48.30 (1).jpeg",
-       "/Projects/Venkatesh Office - BLR-20260628T015218Z-3-001/Venkatesh Office - BLR/WhatsApp Image 2026-06-26 at 16.48.21 (2).jpeg",
-       "/Projects/Venkatesh Office - BLR-20260628T015218Z-3-001/Venkatesh Office - BLR/WhatsApp Image 2026-06-26 at 16.48.32 (2).jpeg"
-     ];
-  }
+  const projectImages = imagesFor(title, location);
 
   const mainImage = projectImages.length > 0 ? projectImages[0] : null;
 

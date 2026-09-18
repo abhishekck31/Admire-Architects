@@ -202,7 +202,7 @@ export default function Home() {
                 <div className="flex justify-between items-start">
                   <div>
                     <h3 className="text-2xl md:text-3xl font-serif font-light mb-3 text-black group-hover:text-[#60A5FA] transition-colors">{project.title}</h3>
-                    <p className="text-gray-500 uppercase tracking-[0.2em] text-xs">{project.location} / {project.area}</p>
+                    <p className="text-gray-500 uppercase tracking-[0.2em] text-xs">{project.location}{project.area ? ` / ${project.area}` : ""}</p>
                   </div>
                 </div>
               </motion.div>

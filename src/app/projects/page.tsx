@@ -197,10 +197,12 @@ export default function ProjectsShowcase() {
                   <span className="text-[9px] uppercase tracking-[0.2em] text-gray-300 mb-1">Location</span>
                   <span className="text-sm font-light text-white drop-shadow-sm">{activeProject.location}</span>
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-[9px] uppercase tracking-[0.2em] text-gray-300 mb-1">Scale</span>
-                  <span className="text-sm font-light text-white drop-shadow-sm">{activeProject.area}</span>
-                </div>
+                {activeProject.area && (
+                  <div className="flex flex-col">
+                    <span className="text-[9px] uppercase tracking-[0.2em] text-gray-300 mb-1">Scale</span>
+                    <span className="text-sm font-light text-white drop-shadow-sm">{activeProject.area}</span>
+                  </div>
+                )}
               </motion.div>
             </div>
           </motion.div>
@@ -323,13 +325,15 @@ export default function ProjectsShowcase() {
                               </div>
                               <div className="text-sm font-light text-black">{project.location}</div>
                             </div>
-                            <div>
-                              <div className="flex items-center gap-2 text-[#60A5FA] mb-1">
-                                <FiBox size={12} />
-                                <span className="text-[9px] uppercase tracking-[0.2em] font-medium">Scale</span>
+                            {project.area && (
+                              <div>
+                                <div className="flex items-center gap-2 text-[#60A5FA] mb-1">
+                                  <FiBox size={12} />
+                                  <span className="text-[9px] uppercase tracking-[0.2em] font-medium">Scale</span>
+                                </div>
+                                <div className="text-sm font-light text-black">{project.area}</div>
                               </div>
-                              <div className="text-sm font-light text-black">{project.area}</div>
-                            </div>
+                            )}
                           </div>
 
                           {/* Action Button */}
