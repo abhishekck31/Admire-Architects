@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
-import { PROJECTS_DATA, type Project } from "@/data/projects";
+import { CATEGORIES, PROJECTS_DATA, type Project } from "@/data/projects";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -22,17 +22,27 @@ interface GallerySection {
 }
 
 /**
- * A project can appear under more than one category (e.g. Quickplay is both a
- * Turnkey and a Design & PMC entry) — collapse those into a single section so
- * the same photographs are not listed twice.
+ * Sections mirror /projects exactly: categories in CATEGORIES order, so the
+ * client's curated "Latest Projects" list leads the page the same way it is the
+ * default tab on the showcase, and inside a category the data file's order is
+ * the display order. Photographs keep the client's own numbering.
+ *
+ * A handful of projects are listed under more than one category — Dell DLF,
+ * Truven and IBM Automation Lab each appear twice — and resolve to the same
+ * photo set. Those collapse into one section, keyed on the photo set itself, so
+ * the same project is not repeated with identical images.
  */
 function buildSections(projects: Project[]): GallerySection[] {
   const sections = new Map<string, GallerySection>();
 
-  for (const project of projects) {
+  const ordered = [...projects].sort(
+    (a, b) => CATEGORIES.indexOf(a.category) - CATEGORIES.indexOf(b.category)
+  );
+
+  for (const project of ordered) {
     if (project.allImages.length === 0) continue;
 
-    const key = `${project.title}|${project.location}`.toLowerCase();
+    const key = project.allImages[0];
     const existing = sections.get(key);
 
     if (existing) {
@@ -44,7 +54,10 @@ function buildSections(projects: Project[]): GallerySection[] {
 
     sections.set(key, {
       key,
-      slug: key.replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+      slug: `${project.title} ${project.location}`
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, ""),
       title: project.title,
       location: project.location,
       category: project.category,
@@ -53,7 +66,7 @@ function buildSections(projects: Project[]): GallerySection[] {
     });
   }
 
-  return Array.from(sections.values()).sort((a, b) => a.title.localeCompare(b.title));
+  return Array.from(sections.values());
 }
 
 export default function GalleryPage() {
