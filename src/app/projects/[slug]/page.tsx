@@ -92,7 +92,7 @@ export default function ProjectCaseStudyPage({ params }: { params: Promise<{ slu
               { label: "Location", value: project.location },
               { label: "Scale", value: project.area },
               { label: "Category", value: project.category }
-            ].map((meta, i) => (
+            ].filter((meta) => meta.value).map((meta, i) => (
               <motion.div 
                 key={i}
                 initial="hidden"
