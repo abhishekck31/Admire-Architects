@@ -10,6 +10,14 @@ from .base import env
 
 DEBUG = False
 
+# base.py gives these development defaults so a fresh clone runs without any
+# config. In production that convenience becomes a hazard: a deploy that
+# forgot .env would boot happily on a SECRET_KEY and an API key published in
+# this repository. Re-reading them with no default turns that into an
+# ImproperlyConfigured at startup instead.
+SECRET_KEY = env("DJANGO_SECRET_KEY")
+BACKEND_API_KEY = env("BACKEND_API_KEY")
+
 # e.g. DJANGO_ALLOWED_HOSTS=admirearchitects.pythonanywhere.com
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS")
 
