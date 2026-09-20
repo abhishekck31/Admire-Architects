@@ -5,6 +5,8 @@ Selected by setting DJANGO_SETTINGS_MODULE=admire.settings.production in the
 WSGI file on the PythonAnywhere Web tab. Every secret comes from backend/.env.
 """
 
+from pathlib import Path
+
 from .base import *  # noqa: F401,F403
 from .base import env
 
@@ -21,23 +23,35 @@ BACKEND_API_KEY = env("BACKEND_API_KEY")
 # e.g. DJANGO_ALLOWED_HOSTS=admirearchitects.pythonanywhere.com
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS")
 
+# Everything the client creates — the database, uploaded photographs, CVs —
+# lives under DATA_ROOT, deliberately OUTSIDE the code checkout, so re-cloning
+# or cleaning the repository cannot destroy their content. On PythonAnywhere
+# this resolves to ~/admire-data.
+DATA_ROOT = Path(env("DATA_ROOT", default=str(Path.home() / "admire-data")))
+
+# SQLite is a deliberate fit here, not a stopgap. PythonAnywhere's free tier
+# offers neither MySQL nor Postgres, and blocks outbound connections on
+# database ports, so a hosted database is unreachable too. The workload suits
+# it regardless: writes are a handful of staff editing content, and read
+# traffic is served from the frontend's hour-long cache rather than this box.
+#
+# Moving to a real server later is one line — set DATABASE_URL to a mysql://
+# or postgres:// URL in .env and re-run migrate.
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": env("DB_NAME"),
-        "USER": env("DB_USER"),
-        "PASSWORD": env("DB_PASSWORD"),
-        "HOST": env("DB_HOST"),
-        "PORT": env("DB_PORT", default="3306"),
-        "OPTIONS": {
-            "charset": "utf8mb4",
-            # PythonAnywhere's MySQL connections drop when idle; without this
-            # the first request after a quiet spell raises OperationalError.
-            "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
-        "CONN_MAX_AGE": 0,
-    }
+    "default": env.db_url(
+        "DATABASE_URL",
+        default=f"sqlite:///{DATA_ROOT / 'db.sqlite3'}",
+    )
 }
+
+# Uploaded project photography, served by PythonAnywhere's own web server via
+# the /media/ static mapping so it never wakes the Django worker.
+MEDIA_ROOT = DATA_ROOT / "media"
+
+# Applicants' CVs. This one gets NO static mapping on the Web tab — that
+# absence is what keeps them off the public internet. The staff-gated download
+# view in careers/views.py is the only way to read one.
+PRIVATE_MEDIA_ROOT = DATA_ROOT / "private_media"
 
 # The admin is served over HTTPS on *.pythonanywhere.com.
 CSRF_TRUSTED_ORIGINS = env.list("DJANGO_CSRF_TRUSTED_ORIGINS")

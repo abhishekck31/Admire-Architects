@@ -56,14 +56,32 @@ on this server's disk.
 
 ## Deploying to PythonAnywhere
 
-1. **Console** — clone the repo and build the virtualenv:
+1. **Console** — clone *only the backend* and build the virtualenv:
    ```bash
-   git clone https://github.com/abhishekck31/Admire-Architects.git
-   mkvirtualenv --python=python3.10 admire
-   pip install -r Admire-Architects/backend/requirements.txt
+   git clone --filter=blob:none --no-checkout https://github.com/abhishekck31/Admire-Architects.git
+   cd ~/Admire-Architects
+   git sparse-checkout init --cone
+   git sparse-checkout set backend
+   git checkout main
+   mkvirtualenv --python=/usr/bin/python3.10 admire
+   pip install -r ~/Admire-Architects/backend/requirements.txt
    ```
 
-2. **Databases tab** — create a MySQL database, note the host and password.
+   A full clone does not fit the free tier's 512MB disk: the repo carries
+   ~292MB of site photography that the backend never needs, since those images
+   are served from the frontend's CDN and this side only stores their paths.
+   The sparse checkout is ~750KB. `git pull` still works for deploys.
+
+2. **Storage** — `mkdir -p ~/admire-data`. The database, uploaded photos and
+   CVs all live here, deliberately outside the checkout, so re-cloning or
+   cleaning the repo cannot destroy the client's content.
+
+   The database is SQLite. The free tier offers no MySQL or Postgres and
+   blocks outbound connections on database ports, so a hosted one is not
+   reachable either — and the workload suits SQLite regardless: writes are a
+   few staff editing content, while read traffic is served from the
+   frontend's hour-long cache. To move to a real server later, install the
+   driver and set `DATABASE_URL` in `.env`.
 
 3. **Config** — `cp backend/.env.example backend/.env` and fill it in. Generate
    the two secrets with:
@@ -93,7 +111,7 @@ on this server's disk.
    | URL | Directory |
    |---|---|
    | `/static/` | `/home/<user>/Admire-Architects/backend/staticfiles` |
-   | `/media/`  | `/home/<user>/Admire-Architects/backend/media` |
+   | `/media/`  | `/home/<user>/admire-data/media` |
 
    > **Never add a mapping for `private_media/`.** That directory holds
    > applicants' CVs. Having no mapping is what keeps them unreachable by URL;
