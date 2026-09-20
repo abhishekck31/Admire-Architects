@@ -1,0 +1,10 @@
+Django>=5.0,<6.0
+Pillow>=10.0
+django-environ>=0.11
+django-jazzmin>=3.0
+django-admin-sortable2>=2.2
+
+# MySQL driver — used on PythonAnywhere. Local development falls back to
+# SQLite (see admire/settings/local.py), so this can be skipped locally if
+# the build tools for it are not available.
+mysqlclient>=2.2

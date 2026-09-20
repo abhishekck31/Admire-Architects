@@ -1,8 +1,9 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { Blocks, Handshake, Images, Scale, Webhook, CodeXml, CreditCard, Mail, Phone, MapPin } from "lucide-react";
+import { Blocks, Briefcase, Handshake, Images, Scale, Webhook, CodeXml, CreditCard, Mail, Phone, MapPin } from "lucide-react";
 import { FiLinkedin, FiInstagram, FiTwitter } from "react-icons/fi";
 
 const SOCIAL_LINKS = [
@@ -57,22 +58,22 @@ export const Footer = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTML
                 <h3 className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#60A5FA]">Our Work</h3>
                 <ul className="mt-4 space-y-3">
                   <li>
-                    <a href="/projects" className="text-sm transition-all text-white/50 hover:text-white group flex items-center">
+                    <Link href="/projects" className="text-sm transition-all text-white/50 hover:text-white group flex items-center">
                       <Blocks className="inline stroke-2 h-4 w-4 mr-2 transition-all stroke-white/40 group-hover:stroke-white" />
                       Projects
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/gallery" className="text-sm transition-all text-white/50 hover:text-white group flex items-center">
+                    <Link href="/gallery" className="text-sm transition-all text-white/50 hover:text-white group flex items-center">
                       <Images className="inline stroke-2 h-4 w-4 mr-2 transition-all stroke-white/40 group-hover:stroke-white" />
                       Gallery
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/clients" className="text-sm transition-all text-white/50 hover:text-white group flex items-center">
+                    <Link href="/clients" className="text-sm transition-all text-white/50 hover:text-white group flex items-center">
                       <Handshake className="inline stroke-2 h-4 w-4 mr-2 transition-all stroke-white/40 group-hover:stroke-white" />
                       Clients
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -81,22 +82,28 @@ export const Footer = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTML
                 <h3 className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#60A5FA]">Company</h3>
                 <ul className="mt-4 space-y-3">
                   <li>
-                    <a href="/about" className="text-sm transition-all text-white/50 hover:text-white group flex items-center">
+                    <Link href="/about" className="text-sm transition-all text-white/50 hover:text-white group flex items-center">
                       <Scale className="inline stroke-2 h-4 w-4 mr-2 transition-all stroke-white/40 group-hover:stroke-white" />
                       About Us
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/services" className="text-sm transition-all text-white/50 hover:text-white group flex items-center">
+                    <Link href="/services" className="text-sm transition-all text-white/50 hover:text-white group flex items-center">
                       <Webhook className="inline stroke-2 h-4 w-4 mr-2 transition-all stroke-white/40 group-hover:stroke-white" />
                       Services
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/process" className="text-sm transition-all text-white/50 hover:text-white group flex items-center">
+                    <Link href="/process" className="text-sm transition-all text-white/50 hover:text-white group flex items-center">
                       <CodeXml className="inline stroke-2 h-4 w-4 mr-2 transition-all stroke-white/40 group-hover:stroke-white" />
                       Process
-                    </a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/careers" className="text-sm transition-all text-white/50 hover:text-white group flex items-center">
+                      <Briefcase className="inline stroke-2 h-4 w-4 mr-2 transition-all stroke-white/40 group-hover:stroke-white" />
+                      Careers
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -105,10 +112,10 @@ export const Footer = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTML
                 <h3 className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#60A5FA]">Contact</h3>
                 <ul className="mt-4 space-y-3">
                   <li>
-                    <a href="/contact" className="text-sm transition-all text-white/50 hover:text-white group flex items-center">
+                    <Link href="/contact" className="text-sm transition-all text-white/50 hover:text-white group flex items-center">
                       <CreditCard className="inline stroke-2 h-4 w-4 mr-2 transition-all stroke-white/40 group-hover:stroke-white" />
                       Get in Touch
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <a href="mailto:palani.m@admiregrp.in" className="text-sm transition-all text-white/50 hover:text-white group flex items-center">

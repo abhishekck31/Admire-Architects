@@ -15,6 +15,7 @@ const navLinks = [
   { href: "/services", label: "Services", image: "/heroSectionImgs/OpenPlanHero.png" },
   { href: "/process", label: "Process", image: "/heroSectionImgs/CEOofficeHero.png" },
   { href: "/clients", label: "Clients", image: "/heroSectionImgs/CorporateMeetingHero.png" },
+  { href: "/careers", label: "Careers", image: "/heroSectionImgs/OpenPlanHero.png" },
   { href: "/contact", label: "Contact", image: "/heroSectionImgs/LoungeHero.png" },
 ];
 
