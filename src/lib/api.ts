@@ -19,7 +19,19 @@ const BACKEND_API_KEY = process.env.BACKEND_API_KEY ?? "";
 export const PROJECTS_TAG = "projects";
 export const JOBS_TAG = "jobs";
 
-const CACHE_SECONDS = 3600;
+/**
+ * How long a cached backend response may live before Next.js refetches it.
+ *
+ * This is only a safety net. Updates normally arrive the moment the client
+ * saves, via the tag drop in /api/revalidate — this caps how long a change
+ * could sit unseen if that ping ever fails silently.
+ *
+ * It is a budget decision as much as a freshness one: the backend runs on a
+ * free tier with ~100 CPU-seconds a day. Ten minutes works out to a few
+ * hundred backend requests a day; one minute would be nearer three thousand
+ * and would exhaust that budget on polling alone.
+ */
+const CACHE_SECONDS = 600;
 
 export interface Job {
   id: string;

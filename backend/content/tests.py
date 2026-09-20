@@ -130,6 +130,40 @@ class AdminTests(TestCase):
     def test_anonymous_is_redirected_to_login(self):
         self.assertEqual(self.client.get("/admin/content/project/").status_code, 302)
 
+    def test_dashboard_markup_matches_the_publish_button_hooks(self):
+        """
+        static/js/admin_revalidate.js keys off two things the admin renders:
+        a logout form (to know it is on a signed-in page, so the "Publish to
+        site" button appears) and .alert-success (to fire automatically after
+        a save). Both come from Jazzmin's templates, so a Jazzmin upgrade
+        could silently remove them and break publishing with no error.
+        """
+        self.client.login(username="staff", password="pw12345!")
+        html = self.client.get("/admin/content/project/").content.decode()
+
+        self.assertIn('id="logout-form"', html)
+        self.assertIn("admin_revalidate.js", html)
+
+        # A save must produce the success markup the script listens for.
+        response = self.client.post(
+            f"/admin/content/project/{self.project.pk}/change/",
+            {
+                "title": "Celonis @ Table Space Tower",
+                "location": "Bangalore",
+                "category": "Latest Projects",
+                "area": "",
+                "description": "A project.",
+                "published": "on",
+                "sort_order": "0",
+                "images-TOTAL_FORMS": "0",
+                "images-INITIAL_FORMS": "0",
+                "images-MIN_NUM_FORMS": "0",
+                "images-MAX_NUM_FORMS": "1000",
+            },
+            follow=True,
+        )
+        self.assertIn("alert-success", response.content.decode())
+
     def test_staff_can_open_dashboard_screens(self):
         self.client.login(username="staff", password="pw12345!")
         for url in (
