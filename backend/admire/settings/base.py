@@ -108,6 +108,13 @@ PRIVATE_MEDIA_ROOT = BASE_DIR / "private_media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# The dashboard is the only thing anyone signs in to here. Django defaults
+# these to /accounts/profile/, a URL this project does not define, so signing
+# in at /admin/login/ without a ?next= lands on a 404.
+LOGIN_URL = "/admin/login/"
+LOGIN_REDIRECT_URL = "/admin/"
+LOGOUT_REDIRECT_URL = "/admin/login/"
+
 # Uploads are downscaled by ProjectImage.save(), but cap what Django will
 # accept in the first place so a huge file cannot fill the free-tier disk.
 DATA_UPLOAD_MAX_MEMORY_SIZE = 20 * 1024 * 1024  # 20MB
