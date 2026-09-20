@@ -1,0 +1,15 @@
+.env
+# The root .gitignore excludes .env* — the template must still be tracked.
+!.env.example
+db.sqlite3
+staticfiles/
+
+# Uploaded content lives on the server, not in the repo. The directories are
+# kept so a fresh clone has somewhere to write.
+media/*
+!media/.gitkeep
+private_media/*
+!private_media/.gitkeep
+
+__pycache__/
+*.pyc
