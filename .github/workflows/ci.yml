@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+# A new push to the same branch makes the previous run irrelevant.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  frontend:
+    name: Frontend (lint + build)
+    runs-on: ubuntu-latest
+
+    env:
+      # The build must not depend on a reachable backend. With these unset,
+      # src/lib/api.ts falls back to the committed project snapshot, which is
+      # exactly the degraded path we want covered.
+      NEXT_PUBLIC_SITE_URL: https://admiregrp.in
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+  backend:
+    name: Backend (tests + deploy check)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+
+      - run: pip install -r requirements.txt
+
+      - name: Tests
+        run: python manage.py test
+
+      - name: Deploy check
+        # Throwaway values: this asserts the production settings module is
+        # internally consistent, not that these are the real secrets.
+        env:
+          DJANGO_SETTINGS_MODULE: admire.settings.production
+          DJANGO_SECRET_KEY: ci-only-not-a-real-secret-key-padded-to-fifty-chars
+          BACKEND_API_KEY: ci-only
+          DJANGO_ALLOWED_HOSTS: example.com
+          DJANGO_CSRF_TRUSTED_ORIGINS: https://example.com
+        # W005/W021 are the HSTS directives we deliberately leave off while the
+        # dashboard sits on a shared *.pythonanywhere.com domain.
+        run: python manage.py check --deploy --fail-level ERROR

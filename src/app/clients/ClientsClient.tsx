@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
 import type { Project } from "@/data/projects";
 
-const fadeUp: any = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
 };
@@ -52,7 +52,7 @@ export default function ClientsClient({ projects }: { projects: Project[] }) {
               Enterprise <br/> <span className="text-muted-foreground italic">Trust.</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground font-light max-w-2xl leading-relaxed">
-              Global leaders do not compromise. We are the architects of choice for the world's most demanding corporate entities.
+              Global leaders do not compromise. We are the architects of choice for the world&apos;s most demanding corporate entities.
             </p>
           </motion.div>
         </div>

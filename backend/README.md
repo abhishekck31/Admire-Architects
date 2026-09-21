@@ -6,8 +6,8 @@ read job applications; the Next.js site on Vercel reads it over a small JSON
 API.
 
 ```
-admireartitects.com  (Next.js on Vercel)
-  /projects  /gallery  /careers        <- cached 1 hour, refreshed on publish
+admiregrp.in  (Next.js on Vercel)
+  /projects  /gallery  /careers        <- cached 10 min, refreshed on publish
         |  server-side fetch, X-Api-Key       ^
         v                                     |  browser pings on save
 <user>.pythonanywhere.com  (this app)         |
@@ -33,8 +33,8 @@ python manage.py runserver
 Defaults to SQLite and `DEBUG=True` via `admire/settings/local.py`, so no MySQL
 or `.env` is needed locally. The dashboard is at http://127.0.0.1:8000/admin/.
 
-Run the tests with `python manage.py test` (31 tests, covering the API shape,
-ordering, image downscaling and resume privacy).
+Run the tests with `python manage.py test` (39 tests, covering the API shape,
+ordering, image downscaling, resume privacy, intake validation and throttling).
 
 ## Seed data
 

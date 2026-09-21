@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useScroll, useTransform, AnimatePresence, Variants, useInView, useMotionValue, animate } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
-import { FiArrowRight, FiMenu } from "react-icons/fi";
+import { motion, useTransform, Variants, useInView, useMotionValue, animate } from "framer-motion";
+import { useRef, useEffect } from "react";
+import { FiArrowRight } from "react-icons/fi";
 import Hero from "@/components/Hero";
 import type { Project } from "@/data/projects";
 
@@ -138,7 +138,7 @@ export default function HomeClient({ projects }: { projects: Project[] }) {
             variants={fadeUp}
             className="text-4xl md:text-6xl lg:text-7xl font-serif font-light leading-[1.2] tracking-tight mb-12 text-primary"
           >
-            "Architecture is the physical manifestation of corporate ambition. We strip away the non-essential to reveal the profound."
+            &quot;Architecture is the physical manifestation of corporate ambition. We strip away the non-essential to reveal the profound.&quot;
           </motion.h2>
           <motion.div
             initial={{ opacity: 0 }}
@@ -376,7 +376,7 @@ export default function HomeClient({ projects }: { projects: Project[] }) {
               </svg>
             </div>
             <p className="text-2xl md:text-5xl font-serif font-light leading-[1.3] mb-12">
-              "Admire Architects didn't just design our workspace; they physically manifested our enterprise's operational identity into steel and glass. Absolute visionaries."
+              &quot;Admire Architects didn&apos;t just design our workspace; they physically manifested our enterprise&apos;s operational identity into steel and glass. Absolute visionaries.&quot;
             </p>
             <div className="text-xs uppercase tracking-[0.2em]">
               <strong className="font-medium text-foreground block mb-1">Director, Corporate Real Estate</strong>

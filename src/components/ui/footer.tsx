@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { Blocks, Briefcase, Handshake, Images, Scale, Webhook, CodeXml, CreditCard, Mail, Phone, MapPin } from "lucide-react";
+import { Blocks, Briefcase, Handshake, Images, Scale, Webhook, CodeXml, CreditCard, Mail, Phone } from "lucide-react";
 import { FiLinkedin, FiInstagram, FiTwitter } from "react-icons/fi";
 
 const SOCIAL_LINKS = [
@@ -34,7 +34,7 @@ export const Footer = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTML
               </p>
 
               <div className="flex gap-4 mt-6">
-                {SOCIAL_LINKS.map(({ label, href, Icon, hoverClass }) => (
+                {SOCIAL_LINKS.map(({ label, href, Icon }) => (
                   <a
                     key={label}
                     className={cn(
