@@ -7,16 +7,22 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX, FiArrowRight } from "react-icons/fi";
 
+// The menu's hover preview draws from the same three photographs as the hero,
+// cycled across the nine links so adjacent entries never show the same one.
+const WORKSTATIONS = "/heroSectionImgs/open-plan-workstations.png";
+const BREAKOUT = "/heroSectionImgs/breakout-lounge.png";
+const CITY_VIEW = "/heroSectionImgs/city-view-lounge.png";
+
 const navLinks = [
-  { href: "/", label: "Home", image: "/heroSectionImgs/CEOofficeHero.png" },
-  { href: "/about", label: "About", image: "/heroSectionImgs/CorporateMeetingHero.png" },
-  { href: "/projects", label: "Projects", image: "/heroSectionImgs/LoungeHero.png" },
-  { href: "/gallery", label: "Gallery", image: "/heroSectionImgs/OpenPlanHero.png" },
-  { href: "/services", label: "Services", image: "/heroSectionImgs/OpenPlanHero.png" },
-  { href: "/process", label: "Process", image: "/heroSectionImgs/CEOofficeHero.png" },
-  { href: "/clients", label: "Clients", image: "/heroSectionImgs/CorporateMeetingHero.png" },
-  { href: "/careers", label: "Careers", image: "/heroSectionImgs/OpenPlanHero.png" },
-  { href: "/contact", label: "Contact", image: "/heroSectionImgs/LoungeHero.png" },
+  { href: "/", label: "Home", image: CITY_VIEW },
+  { href: "/about", label: "About", image: BREAKOUT },
+  { href: "/projects", label: "Projects", image: WORKSTATIONS },
+  { href: "/gallery", label: "Gallery", image: CITY_VIEW },
+  { href: "/services", label: "Services", image: BREAKOUT },
+  { href: "/process", label: "Process", image: WORKSTATIONS },
+  { href: "/clients", label: "Clients", image: CITY_VIEW },
+  { href: "/careers", label: "Careers", image: BREAKOUT },
+  { href: "/contact", label: "Contact", image: WORKSTATIONS },
 ];
 
 export default function Navigation() {

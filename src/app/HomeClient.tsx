@@ -8,10 +8,46 @@ import { FiArrowRight } from "react-icons/fi";
 import Hero from "@/components/Hero";
 import type { Project } from "@/data/projects";
 
+/**
+ * The projects shown under "Selected Works", in order.
+ *
+ * Named explicitly rather than taken off the top of the list. The API returns
+ * projects in a legacy order the home page used to slice blindly, which meant
+ * reordering anything in the dashboard silently changed what the front page
+ * featured. Naming them here makes that a deliberate edit instead.
+ */
+const FEATURED_SLUGS = ["latestprojects-0", "latestprojects-4"];
+
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
 };
+
+/**
+ * Resolve the featured projects, falling back to the first photographed ones.
+ *
+ * A featured slug can go missing — unpublished in the dashboard, or renamed —
+ * and the front page must not lose its project section when that happens.
+ */
+function selectFeatured(projects: Project[]): Project[] {
+  const photographed = projects.filter((project) => project.image);
+
+  const featured = FEATURED_SLUGS.map((slug) =>
+    photographed.find((project) => project.id === slug),
+  ).filter((project): project is Project => Boolean(project));
+
+  if (featured.length === FEATURED_SLUGS.length) return featured;
+
+  // Top up from the rest, de-duplicated by title so the same building does not
+  // appear twice under two slugs.
+  const byTitle = new Map(photographed.map((project) => [project.title, project]));
+  for (const project of byTitle.values()) {
+    if (featured.length >= FEATURED_SLUGS.length) break;
+    if (!featured.some((chosen) => chosen.id === project.id)) featured.push(project);
+  }
+
+  return featured;
+}
 
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
@@ -177,7 +213,7 @@ export default function HomeClient({ projects }: { projects: Project[] }) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-32 px-6 md:px-16 lg:px-24">
-          {Array.from(new Map(projects.filter(p => p.image).map(p => [p.title, p])).values()).slice(0, 2).map((project, index) => (
+          {selectFeatured(projects).map((project, index) => (
             <Link href={`/projects/${project.id}`} key={project.id}>
               <motion.div
                 initial={{ opacity: 0, y: 100 }}
