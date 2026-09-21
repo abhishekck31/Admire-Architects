@@ -65,6 +65,21 @@ SECURE_REFERRER_POLICY = "same-origin"
 # PythonAnywhere terminates TLS in front of the app.
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
+# Redirect any plain-HTTP request to HTTPS. Safe only because the proxy header
+# above is set — without it Django cannot tell that a forwarded request was
+# already secure and would redirect forever.
+SECURE_SSL_REDIRECT = True
+
+# Tell browsers to use HTTPS for a year without asking first, so a staff login
+# typed as "http://..." on a hostile network is never sent in the clear.
+#
+# INCLUDE_SUBDOMAINS and PRELOAD stay off on purpose: the app lives on a shared
+# *.pythonanywhere.com domain, and neither directive is ours to assert there.
+# Revisit both if the dashboard ever moves to its own domain.
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+SECURE_HSTS_PRELOAD = False
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,

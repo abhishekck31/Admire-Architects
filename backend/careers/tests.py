@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 
@@ -70,6 +71,10 @@ class JobApiTests(TestCase):
 
 class ApplicationIntakeTests(TestCase):
     def setUp(self):
+        # The intake throttle counts in the cache, which LocMemCache keeps
+        # for the life of the process rather than the test. Without this,
+        # tests leak submissions into each other and later ones get a 429.
+        cache.clear()
         self.job = make_job()
 
     @staticmethod
@@ -185,11 +190,103 @@ class ApplicationIntakeTests(TestCase):
         )
         self.assertEqual(response.status_code, 400)
 
+    def test_rejects_a_malformed_email(self):
+        """EmailField does not validate under objects.create(), so the view must."""
+        response = self.client.post(
+            "/api/applications/", {"name": "A", "email": "not-an-email"}, **API_KEY
+        )
+        self.assertEqual(response.status_code, 400)
+        self.assertFalse(JobApplication.objects.exists())
+
+    def test_rejects_an_executable_wearing_a_pdf_name(self):
+        """Content-Type and filename are caller-supplied; the bytes are not."""
+        disguised = SimpleUploadedFile(
+            "cv.pdf", bytes([0x4D, 0x5A, 0x90, 0x00]) + b"payload",
+            content_type="application/pdf",
+        )
+        response = self.client.post(
+            "/api/applications/",
+            {"name": "A", "email": "a@e.com", "resume": disguised},
+            **API_KEY,
+        )
+        self.assertEqual(response.status_code, 400)
+        self.assertFalse(JobApplication.objects.exists())
+
+    def test_accepts_a_word_document(self):
+        docx = SimpleUploadedFile(
+            "cv.docx",
+            bytes([0x50, 0x4B, 0x03, 0x04]) + b" fake zip",
+            content_type=(
+                "application/vnd.openxmlformats-officedocument"
+                ".wordprocessingml.document"
+            ),
+        )
+        response = self.client.post(
+            "/api/applications/",
+            {"name": "A", "email": "a@e.com", "resume": docx},
+            **API_KEY,
+        )
+        self.assertEqual(response.status_code, 201)
+        JobApplication.objects.get().resume.delete(save=False)
+
+    def test_throttles_a_flood_of_applications(self):
+        """The form writes a row and up to 4MB a time; it cannot be unbounded."""
+        payload = {"name": "A", "email": "flood@example.com"}
+        for _ in range(5):
+            self.assertEqual(
+                self.client.post("/api/applications/", payload, **API_KEY).status_code,
+                201,
+            )
+
+        response = self.client.post("/api/applications/", payload, **API_KEY)
+        self.assertEqual(response.status_code, 429)
+        self.assertEqual(JobApplication.objects.count(), 5)
+
+    def test_throttle_separates_applicants_behind_the_same_proxy(self):
+        """
+        Submissions arrive from Vercel, so REMOTE_ADDR is identical for
+        everyone. Distinct applicants must not share one bucket.
+        """
+        for i in range(5):
+            self.assertEqual(
+                self.client.post(
+                    "/api/applications/",
+                    {"name": "A", "email": "first@example.com"},
+                    HTTP_X_FORWARDED_FOR="203.0.113.10",
+                    **API_KEY,
+                ).status_code,
+                201,
+                msg=f"submission {i} should have been accepted",
+            )
+
+        # Same proxy, different applicant and address: still welcome.
+        self.assertEqual(
+            self.client.post(
+                "/api/applications/",
+                {"name": "B", "email": "second@example.com"},
+                HTTP_X_FORWARDED_FOR="203.0.113.11",
+                **API_KEY,
+            ).status_code,
+            201,
+        )
+
+        # The flooder, however, is now blocked.
+        self.assertEqual(
+            self.client.post(
+                "/api/applications/",
+                {"name": "A", "email": "first@example.com"},
+                HTTP_X_FORWARDED_FOR="203.0.113.10",
+                **API_KEY,
+            ).status_code,
+            429,
+        )
+
 
 class ResumePrivacyTests(TestCase):
     """Resumes are applicant PII; only a signed-in staff user may read one."""
 
     def setUp(self):
+        cache.clear()
         User.objects.create_superuser("staff", "s@e.com", "pw12345!")
         self.client.post(
             "/api/applications/",

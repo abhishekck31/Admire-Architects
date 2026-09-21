@@ -1,6 +1,9 @@
 import json
 
 from django.contrib.admin.views.decorators import staff_member_required
+from django.core.cache import cache
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
 from django.http import FileResponse, Http404, JsonResponse
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
@@ -28,6 +31,72 @@ ALLOWED_RESUME_TYPES = {
     "application/msword",
     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
 }
+ALLOWED_RESUME_EXTENSIONS = (".pdf", ".doc", ".docx")
+
+# Leading bytes of the formats we accept. Content-Type is supplied by whoever
+# built the request and is trivially forged, so it is treated as a hint and
+# this is the actual check: a PDF starts "%PDF-", and .doc/.docx are an OLE2
+# compound file and a ZIP container respectively.
+RESUME_MAGIC_PREFIXES = (
+    b"%PDF-",                      # .pdf
+    b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1",  # .doc  (OLE2)
+    b"PK\x03\x04",                 # .docx (ZIP)
+)
+
+# How many applications one submitter may send before we start turning them
+# away. The pipeline writes a database row and up to 4MB to a small free-tier
+# disk, so an unthrottled form is a way to fill it.
+RATE_LIMIT_MAX = 5
+RATE_LIMIT_WINDOW_SECONDS = 60 * 60
+
+
+def _client_ip(request) -> str | None:
+    """
+    The applicant's address, or None if we cannot tell.
+
+    Applications arrive via the Next.js server action, so REMOTE_ADDR is
+    Vercel's egress address, not the applicant's — counting against it would
+    put every applicant in the world in one bucket. The frontend forwards the
+    real address as X-Forwarded-For; the left-most entry is the client.
+
+    Returning None when that header is absent is deliberate: no identity is
+    better than one shared by everybody.
+    """
+    forwarded = request.headers.get("X-Forwarded-For", "")
+    if forwarded:
+        return forwarded.split(",")[0].strip() or None
+    return None
+
+
+def _rate_limited(request, email: str) -> bool:
+    """
+    Count recent submissions per submitter and per email address.
+
+    Both keys matter: the address catches one script hammering the form, the
+    email catches the same applicant resubmitting in a loop from a changing
+    address. The email key always applies, so a missing X-Forwarded-For weakens
+    the throttle but never disables it.
+
+    Uses the default local-memory cache, which is per-worker — approximate, but
+    it costs nothing and PythonAnywhere's free tier runs a single worker.
+    """
+    keys = [f"apply:email:{email.lower()}"]
+
+    ip = _client_ip(request)
+    if ip:
+        keys.append(f"apply:ip:{ip}")
+    for key in keys:
+        # add() only succeeds if the key is absent, which is what starts the
+        # window; from then on incr() counts within that same expiry.
+        if cache.add(key, 1, RATE_LIMIT_WINDOW_SECONDS):
+            continue
+        try:
+            if cache.incr(key) > RATE_LIMIT_MAX:
+                return True
+        except ValueError:
+            # The key expired between add() and incr(); treat as a fresh window.
+            cache.set(key, 1, RATE_LIMIT_WINDOW_SECONDS)
+    return False
 
 
 def serialize_job(job: JobOpening) -> dict:
@@ -114,6 +183,21 @@ def application_create(request):
     if not name or not email:
         return JsonResponse({"detail": "Name and email are required."}, status=400)
 
+    # JobApplication.email is an EmailField, but objects.create() does not run
+    # field validators — so without this the column happily stores "asdf".
+    try:
+        validate_email(email)
+    except ValidationError:
+        return JsonResponse(
+            {"detail": "That email address does not look right."}, status=400
+        )
+
+    if _rate_limited(request, email):
+        return JsonResponse(
+            {"detail": "Too many applications from here. Please try again later."},
+            status=429,
+        )
+
     job = None
     job_slug = (payload.get("jobSlug") or "").strip()
     if job_slug:
@@ -123,7 +207,17 @@ def application_create(request):
     if resume:
         if resume.size > MAX_RESUME_BYTES:
             return JsonResponse({"detail": "Resume exceeds the 4MB limit."}, status=400)
-        if resume.content_type not in ALLOWED_RESUME_TYPES:
+
+        wrong_type = resume.content_type not in ALLOWED_RESUME_TYPES
+        wrong_extension = not resume.name.lower().endswith(ALLOWED_RESUME_EXTENSIONS)
+
+        # Read the first few bytes and put them back, so the later save() still
+        # writes the whole file.
+        head = resume.read(8)
+        resume.seek(0)
+        wrong_contents = not head.startswith(RESUME_MAGIC_PREFIXES)
+
+        if wrong_type or wrong_extension or wrong_contents:
             return JsonResponse(
                 {"detail": "Resume must be a PDF or Word document."}, status=400
             )
