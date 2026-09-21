@@ -6,11 +6,26 @@ import { useRef, useState, useEffect } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 
+/**
+ * The hero slideshow, in rotation order.
+ *
+ * Each carries its own alt text: the slides are the page's opening image and
+ * describe different spaces, so one generic string for all of them told a
+ * screen reader nothing.
+ */
 const heroImages = [
-  "/heroSectionImgs/CEOofficeHero.png",
-  "/heroSectionImgs/CorporateMeetingHero.png",
-  "/heroSectionImgs/LoungeHero.png",
-  "/heroSectionImgs/OpenPlanHero.png"
+  {
+    src: "/heroSectionImgs/city-view-lounge.png",
+    alt: "Breakout seating beside floor-to-ceiling glazing overlooking the city skyline",
+  },
+  {
+    src: "/heroSectionImgs/open-plan-workstations.png",
+    alt: "Open-plan workstations with acoustic screens and an illuminated feature wall",
+  },
+  {
+    src: "/heroSectionImgs/breakout-lounge.png",
+    alt: "Office breakout area with planting, timber seating and pendant lighting",
+  },
 ];
 
 export default function Hero() {
@@ -48,11 +63,11 @@ export default function Hero() {
           style={{ y: bgY, opacity }} 
           className="absolute inset-0 z-0 bg-black"
         >
-          {heroImages.map((src, index) => (
+          {heroImages.map((image, index) => (
             <motion.div
-              key={src}
+              key={image.src}
               initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ 
+              animate={{
                 opacity: index === currentImageIndex ? 1 : 0,
                 scale: index === currentImageIndex ? 1 : 1.05
               }}
@@ -60,8 +75,8 @@ export default function Hero() {
               className="absolute inset-0"
             >
               <Image
-                src={src}
-                alt={`Modern Enterprise Architecture Space ${index + 1}`}
+                src={image.src}
+                alt={image.alt}
                 fill
                 sizes="100vw"
                 quality={90}
@@ -116,7 +131,13 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Animated Project Showcase Cluster */}
+          {/* Animated Project Showcase Cluster
+
+              The three cards are deliberately image-less. They float over a
+              background that cycles every photograph in heroImages, so any
+              fixed picture here duplicates whatever is behind it for part of
+              the rotation, and the stack crowds the headline besides. Giving
+              them content means solving both first. */}
           <div className="hidden lg:flex relative w-1/2 h-full items-center justify-center pointer-events-none">
             <motion.div
                animate={{ y: [0, -15, 0] }}
@@ -124,7 +145,7 @@ export default function Hero() {
                className="absolute z-10 -ml-40 mt-10"
             >
               <div className="relative w-64 h-80 rounded-2xl overflow-hidden border border-white/20 shadow-2xl">
-                {/* <Image src="/heroSectionImgs/LoungeHero.png" fill className="object-cover" alt="Project 1" /> */}
+                {/* Intentionally empty: see note on the cluster below. */}
               </div>
             </motion.div>
             
@@ -134,7 +155,7 @@ export default function Hero() {
                className="absolute z-20"
             >
               <div className="relative w-72 h-96 rounded-2xl overflow-hidden border border-white/30 shadow-2xl">
-                {/* <Image src="/heroSectionImgs/OpenPlanHero.png" fill className="object-cover" alt="Project 2" /> */}
+                {/* Intentionally empty: see note on the cluster below. */}
               </div>
             </motion.div>
             
@@ -144,7 +165,7 @@ export default function Hero() {
                className="absolute z-10 ml-48 -mt-20"
             >
               <div className="relative w-56 h-72 rounded-2xl overflow-hidden border border-white/20 shadow-2xl">
-                {/* <Image src="/heroSectionImgs/CEOofficeHero.png" fill className="object-cover" alt="Project 3" /> */}
+                {/* Intentionally empty: see note on the cluster below. */}
               </div>
             </motion.div>
           </div>
