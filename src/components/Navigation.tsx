@@ -25,10 +25,16 @@ export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
-  // Close menu on route change
-  useEffect(() => {
+  // Close the menu on route change.
+  //
+  // Adjusted during render rather than in an effect: React discards this pass
+  // and re-renders immediately with the menu closed, so the new page never
+  // paints with the overlay still up. An effect would let that frame through.
+  const [lastPathname, setLastPathname] = useState(pathname);
+  if (pathname !== lastPathname) {
+    setLastPathname(pathname);
     setIsOpen(false);
-  }, [pathname]);
+  }
 
   // Lock body scroll when menu is open
   useEffect(() => {

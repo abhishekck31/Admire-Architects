@@ -1,5 +1,7 @@
 "use server";
 
+import { headers } from "next/headers";
+
 import { submitApplication } from "@/lib/api";
 
 /**
@@ -117,7 +119,15 @@ export async function applyToJob(
     formData.delete("resume");
   }
 
-  const result = await submitApplication(formData);
+  // The applicant's own address, so the backend can throttle per submitter
+  // rather than lumping everyone behind Vercel's egress IP. Vercel sets both;
+  // x-real-ip is already a single address, x-forwarded-for may be a chain.
+  const requestHeaders = await headers();
+  const clientIp =
+    requestHeaders.get("x-real-ip") ??
+    requestHeaders.get("x-forwarded-for")?.split(",")[0].trim();
+
+  const result = await submitApplication(formData, clientIp ?? undefined);
 
   if (!result.ok) {
     return { status: "error", message: result.error };

@@ -3,11 +3,12 @@
  *
  * These run on the server only — the API key must never reach a browser.
  *
- * Caching: responses are cached for an hour and tagged, so visitors are served
- * from Vercel's CDN and the PythonAnywhere backend is barely touched. When the
+ * Caching: responses are cached for ten minutes and tagged, so visitors are
+ * served from Vercel's CDN and the PythonAnywhere backend is barely touched.
+ * When the
  * client saves in the dashboard, their browser pings /api/revalidate, which
- * drops the tag and makes the change live immediately. The hour is only the
- * worst case if that ping fails.
+ * drops the tag and makes the change live immediately. The ten minutes is
+ * only the worst case if that ping fails.
  */
 
 import type { Project } from "@/data/projects";
@@ -171,9 +172,16 @@ export interface ApplicationResult {
   error?: string;
 }
 
-/** Forward an application to the backend. Called from a server action. */
+/**
+ * Forward an application to the backend. Called from a server action.
+ *
+ * `clientIp` is passed through as X-Forwarded-For because this request
+ * originates on Vercel, not on the applicant's machine — without it every
+ * applicant would look like the same caller and share one rate-limit bucket.
+ */
 export async function submitApplication(
   form: FormData,
+  clientIp?: string,
 ): Promise<ApplicationResult> {
   if (!BACKEND_URL || !BACKEND_API_KEY) {
     return { ok: false, error: "Applications are not available right now." };
@@ -182,7 +190,10 @@ export async function submitApplication(
   try {
     const response = await fetch(`${BACKEND_URL}/api/applications/`, {
       method: "POST",
-      headers: { "X-Api-Key": BACKEND_API_KEY },
+      headers: {
+        "X-Api-Key": BACKEND_API_KEY,
+        ...(clientIp ? { "X-Forwarded-For": clientIp } : {}),
+      },
       body: form,
       cache: "no-store",
     });
