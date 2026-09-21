@@ -87,22 +87,36 @@ export default function Navigation() {
 
         {/* Action Buttons and Hamburger */}
         <div className="flex items-center gap-3 sm:gap-6 z-[101]">
-          <div className={`hidden lg:flex items-center gap-5 mr-1 transition-all duration-300 ${isOpen ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
+          <div className={`flex items-center gap-3 sm:gap-4 lg:gap-5 lg:mr-1 transition-all duration-300 ${isOpen ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
+            {/* Plain links: desktop only, where there is room beside the logo. */}
             <Link
               href="/projects"
-              className="text-[9px] md:text-[10px] uppercase tracking-widest font-medium text-black hover:text-[#60A5FA] transition-colors cursor-pointer"
+              className="hidden lg:inline-block text-[9px] md:text-[10px] uppercase tracking-widest font-medium text-black dark:text-white hover:text-[#60A5FA] dark:hover:text-[#60A5FA] transition-colors cursor-pointer"
             >
               Projects
             </Link>
             <Link
               href="/gallery"
-              className="text-[9px] md:text-[10px] uppercase tracking-widest font-medium text-black hover:text-[#60A5FA] transition-colors cursor-pointer"
+              className="hidden lg:inline-block text-[9px] md:text-[10px] uppercase tracking-widest font-medium text-black dark:text-white hover:text-[#60A5FA] dark:hover:text-[#60A5FA] transition-colors cursor-pointer"
             >
               Gallery
             </Link>
+
+            {/* Outlined rather than solid, so it reads as the second action
+                beside Contact rather than competing with it.
+
+                Both pills stay at lg, where Contact already lived: below
+                that the logo has to share the bar with them and the company
+                name truncates mid-word ("ADMIRE ARCHI..."). */}
+            <Link
+              href="/careers"
+              className="hidden lg:inline-block text-[9px] md:text-[10px] uppercase tracking-widest font-medium px-4 md:px-5 py-2 rounded-full border border-black/20 dark:border-white/25 text-black dark:text-white hover:border-[#60A5FA] hover:text-[#60A5FA] dark:hover:text-[#60A5FA] transition-colors cursor-pointer"
+            >
+              Careers
+            </Link>
             <Link
               href="/contact"
-              className="text-[9px] md:text-[10px] uppercase tracking-widest font-medium px-5 py-2 rounded-full bg-black text-white hover:bg-[#60A5FA] transition-colors shadow-sm cursor-pointer"
+              className="hidden lg:inline-block text-[9px] md:text-[10px] uppercase tracking-widest font-medium px-4 md:px-5 py-2 rounded-full bg-black dark:bg-white text-white dark:text-black hover:bg-[#60A5FA] dark:hover:bg-[#60A5FA] dark:hover:text-white transition-colors shadow-sm cursor-pointer"
             >
               Contact
             </Link>
