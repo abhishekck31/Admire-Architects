@@ -11,11 +11,17 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const job = await getJobBySlug(slug);
 
-  if (!job) return { title: "Opening Not Found | Admire Architects" };
+  if (!job) return { title: "Opening Not Found" };
 
   return {
-    title: `${job.title}, ${job.location} | Careers at Admire Architects`,
+    title: `${job.title}, ${job.location} — Careers`,
     description: job.description.slice(0, 160),
+    alternates: { canonical: `/careers/${job.slug}` },
+    openGraph: {
+      title: `${job.title}, ${job.location} | Careers at Admire Architects`,
+      description: job.description.slice(0, 160),
+      url: `/careers/${job.slug}`,
+    },
   };
 }
 

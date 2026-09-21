@@ -16,11 +16,18 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const project = await getProjectBySlug(slug);
 
-  if (!project) return { title: "Project Not Found | Admire Architects" };
+  if (!project) return { title: "Project Not Found" };
 
   return {
-    title: `${project.title}, ${project.location} | Admire Architects`,
+    title: `${project.title}, ${project.location}`,
     description: project.description,
+    alternates: { canonical: `/projects/${project.id}` },
+    openGraph: {
+      title: `${project.title}, ${project.location} | Admire Architects`,
+      description: project.description,
+      url: `/projects/${project.id}`,
+      images: project.image ? [{ url: project.image }] : undefined,
+    },
   };
 }
 
