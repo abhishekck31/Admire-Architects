@@ -130,45 +130,6 @@ export default function Hero() {
               </button>
             </motion.div>
           </div>
-
-          {/* Animated Project Showcase Cluster
-
-              The three cards are deliberately image-less. They float over a
-              background that cycles every photograph in heroImages, so any
-              fixed picture here duplicates whatever is behind it for part of
-              the rotation, and the stack crowds the headline besides. Giving
-              them content means solving both first. */}
-          <div className="hidden lg:flex relative w-1/2 h-full items-center justify-center pointer-events-none">
-            <motion.div
-               animate={{ y: [0, -15, 0] }}
-               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-               className="absolute z-10 -ml-40 mt-10"
-            >
-              <div className="relative w-64 h-80 rounded-2xl overflow-hidden border border-white/20 shadow-2xl">
-                {/* Intentionally empty: see note on the cluster below. */}
-              </div>
-            </motion.div>
-            
-            <motion.div
-               animate={{ y: [0, 15, 0] }}
-               transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-               className="absolute z-20"
-            >
-              <div className="relative w-72 h-96 rounded-2xl overflow-hidden border border-white/30 shadow-2xl">
-                {/* Intentionally empty: see note on the cluster below. */}
-              </div>
-            </motion.div>
-            
-            <motion.div
-               animate={{ y: [0, -10, 0] }}
-               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-               className="absolute z-10 ml-48 -mt-20"
-            >
-              <div className="relative w-56 h-72 rounded-2xl overflow-hidden border border-white/20 shadow-2xl">
-                {/* Intentionally empty: see note on the cluster below. */}
-              </div>
-            </motion.div>
-          </div>
         </motion.div>
 
         {/* Stats/Metrics Element - Reduced size and minimalistic */}
