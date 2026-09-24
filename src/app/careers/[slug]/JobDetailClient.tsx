@@ -50,7 +50,7 @@ export default function JobDetailClient({ job }: { job: JobDetail }) {
       <div className="fixed left-6 top-24 z-50 md:left-12">
         <Link
           href="/careers"
-          className="flex items-center gap-2 rounded-full border border-black/10 bg-white/80 px-5 py-3 text-[10px] md:text-xs uppercase tracking-[0.2em] font-medium text-black shadow-sm backdrop-blur-md transition-colors hover:text-brand-blue"
+          className="flex items-center gap-2 rounded-full border border-black/10 bg-white/80 px-5 py-3 text-[11px] uppercase tracking-[0.2em] font-medium text-black shadow-sm backdrop-blur-md transition-colors hover:text-brand-blue"
         >
           <FiArrowLeft aria-hidden /> All Openings
         </Link>
@@ -64,7 +64,7 @@ export default function JobDetailClient({ job }: { job: JobDetail }) {
           className="mx-auto max-w-5xl"
         >
           {job.department && (
-            <div className="mb-6 text-[10px] md:text-xs uppercase tracking-[0.4em] text-brand-blue-light font-semibold">
+            <div className="mb-6 text-[11px] uppercase tracking-[0.4em] text-brand-blue-light font-semibold">
               {job.department}
             </div>
           )}
@@ -75,7 +75,7 @@ export default function JobDetailClient({ job }: { job: JobDetail }) {
           <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3">
             {meta.map(({ label, value, icon: Icon }) => (
               <div key={label} className="border-l border-brand-blue-light/40 pl-5">
-                <div className="mb-2 flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
+                <div className="mb-2 flex items-center gap-2 text-[12px] uppercase tracking-[0.2em] text-muted-foreground">
                   <Icon aria-hidden className="text-brand-blue-light" />
                   {label}
                 </div>
@@ -117,7 +117,7 @@ export default function JobDetailClient({ job }: { job: JobDetail }) {
             variants={fadeUp}
             className="border-t-2 border-brand-blue-light/30 pt-16"
           >
-            <div className="mb-3 text-[10px] uppercase tracking-[0.3em] text-brand-blue-light font-semibold">
+            <div className="mb-3 text-[13px] uppercase tracking-[0.3em] text-brand-blue-light font-semibold">
               Apply
             </div>
             <h2 className="mb-10 text-3xl md:text-4xl font-serif font-light tracking-tight">

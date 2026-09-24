@@ -13,10 +13,10 @@ const INITIAL: ApplyState = { status: "idle" };
 
 // Matches the underline inputs already used on /contact.
 const FIELD =
-  "w-full bg-transparent border-b border-border py-3.5 outline-none focus:border-brand-blue transition-colors font-light text-sm tracking-wide";
+  "w-full bg-transparent border-b border-border py-3.5 outline-none focus:border-brand-blue transition-colors font-light text-base tracking-wide";
 
 const LABEL =
-  "mb-1 block text-[10px] uppercase tracking-[0.2em] text-muted-foreground";
+  "mb-1 block text-[13px] uppercase tracking-[0.2em] text-muted-foreground";
 
 function Field({
   label,
@@ -37,7 +37,7 @@ function Field({
       </span>
       {children}
       {hint && (
-        <span className="mt-1.5 block text-[11px] font-light text-muted-foreground/80">
+        <span className="mt-1.5 block text-[14px] font-light text-muted-foreground/80">
           {hint}
         </span>
       )}
@@ -58,7 +58,7 @@ function Section({
     <fieldset className="border-t border-brand-blue-light/25 pt-8">
       <legend className="sr-only">{title}</legend>
       <div className="mb-6 flex items-baseline gap-4">
-        <span className="font-mono text-[11px] font-semibold tracking-[0.2em] text-brand-blue-light">
+        <span className="font-mono text-[14px] font-semibold tracking-[0.2em] text-brand-blue-light">
           {step}
         </span>
         <h3 className="text-lg md:text-xl font-serif font-light tracking-tight">
@@ -76,7 +76,7 @@ function CheckboxGrid({ name, options }: { name: string; options: string[] }) {
       {options.map((option) => (
         <label
           key={option}
-          className="flex cursor-pointer items-center gap-3 text-sm font-light"
+          className="flex cursor-pointer items-center gap-3 text-base font-light"
         >
           <input
             type="checkbox"
@@ -119,7 +119,7 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="self-start bg-brand-blue px-10 py-5 text-xs uppercase tracking-[0.2em] font-medium text-white transition-colors duration-500 hover:bg-brand-blue-light disabled:cursor-not-allowed disabled:opacity-60"
+      className="self-start bg-brand-blue px-10 py-5 text-sm uppercase tracking-[0.2em] font-medium text-white transition-colors duration-500 hover:bg-brand-blue-light disabled:cursor-not-allowed disabled:opacity-60"
     >
       {pending ? "Sending…" : "Submit Application"}
     </button>
@@ -298,7 +298,7 @@ export default function ApplyForm({
           <div>
             <label
               htmlFor="resume"
-              className="mb-3 flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-muted-foreground"
+              className="mb-3 flex items-center gap-2 text-[13px] uppercase tracking-[0.2em] text-muted-foreground"
             >
               <FiPaperclip aria-hidden className="text-brand-blue-light" />
               Attach your CV — PDF or Word, up to 4MB
@@ -308,9 +308,9 @@ export default function ApplyForm({
               type="file"
               name="resume"
               accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-              className="block w-full text-sm font-light text-muted-foreground file:mr-4 file:cursor-pointer file:border file:border-brand-blue/30 file:bg-transparent file:px-6 file:py-3 file:text-[10px] file:uppercase file:tracking-[0.2em] file:text-brand-blue file:transition-colors hover:file:bg-brand-blue/10"
+              className="block w-full text-base font-light text-muted-foreground file:mr-4 file:cursor-pointer file:border file:border-brand-blue/30 file:bg-transparent file:px-6 file:py-3 file:text-[13px] file:uppercase file:tracking-[0.2em] file:text-brand-blue file:transition-colors hover:file:bg-brand-blue/10"
             />
-            <p className="mt-2 text-[11px] font-light text-muted-foreground/80">
+            <p className="mt-2 text-[14px] font-light text-muted-foreground/80">
               Keep your portfolio as a link above — design portfolios are
               usually far too large to attach.
             </p>
@@ -323,7 +323,7 @@ export default function ApplyForm({
       </Section>
 
       {state.status === "error" && (
-        <p role="alert" className="text-sm font-light text-destructive">
+        <p role="alert" className="text-base font-light text-destructive">
           {state.message}
         </p>
       )}
